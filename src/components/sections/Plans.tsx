@@ -6,15 +6,101 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const pexels = (id: number, w = 800) =>
-  `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=${w}`;
+// custom on-brand panel icons — one distinct mark per plan, drawn in the
+// site's own navy/teal palette instead of stock photography
+function PlanArt({ variant }: { variant: "basic" | "pro" | "custom" | "customPro" }) {
+  return (
+    <div className="absolute inset-0 overflow-hidden">
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(155deg, #2f4d63 0%, #20394a 55%, #12222d 100%)",
+        }}
+      />
+      {/* decorative dot grid, echoes the dotted connector line used elsewhere on the site */}
+      <svg className="absolute inset-0 h-full w-full opacity-[0.18]" preserveAspectRatio="none">
+        <pattern id={`dots-${variant}`} width="18" height="18" patternUnits="userSpaceOnUse">
+          <circle cx="2" cy="2" r="1.4" fill="#ffffff" />
+        </pattern>
+        <rect width="100%" height="100%" fill={`url(#dots-${variant})`} />
+      </svg>
+      {/* soft glow */}
+      <div
+        className="absolute -bottom-10 -right-10 w-48 h-48 rounded-full blur-2xl"
+        style={{ background: "radial-gradient(circle, rgba(79,179,166,0.4), transparent 70%)" }}
+      />
+
+      <div className="relative h-full w-full flex items-center justify-center">
+        <span className="flex items-center justify-center w-20 h-20 rounded-full bg-white/10 backdrop-blur-sm ring-1 ring-white/20">
+          <svg viewBox="0 0 24 24" fill="none" className="w-9 h-9 text-canvas">
+            {variant === "basic" && (
+              <>
+                <path
+                  d="M6 3h9l3 3v15H6V3z"
+                  stroke="currentColor"
+                  strokeWidth="1.4"
+                  strokeLinejoin="round"
+                />
+                <path d="M15 3v3h3" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />
+                <path
+                  d="M9 12.5l2 2 4-4.5"
+                  stroke="var(--accent-soft)"
+                  strokeWidth="1.6"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </>
+            )}
+            {variant === "pro" && (
+              <>
+                <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.4" />
+                <path
+                  d="M8 12.5l2.5 2.5L16.5 9"
+                  stroke="var(--accent-soft)"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <circle cx="12" cy="12" r="4.5" stroke="currentColor" strokeWidth="1" opacity="0.5" />
+              </>
+            )}
+            {variant === "custom" && (
+              <>
+                <path
+                  d="M4 20V9l8-6 8 6v11"
+                  stroke="currentColor"
+                  strokeWidth="1.4"
+                  strokeLinejoin="round"
+                />
+                <path d="M4 20h16" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+                <rect x="9" y="12" width="6" height="8" stroke="var(--accent-soft)" strokeWidth="1.6" />
+              </>
+            )}
+            {variant === "customPro" && (
+              <>
+                <path
+                  d="M3 12l4-4 4 3 4-3 4 3v3l-4 4-3-2-3 2-4-3z"
+                  stroke="currentColor"
+                  strokeWidth="1.4"
+                  strokeLinejoin="round"
+                />
+                <circle cx="12" cy="6" r="2" stroke="var(--accent-soft)" strokeWidth="1.6" />
+              </>
+            )}
+          </svg>
+        </span>
+      </div>
+    </div>
+  );
+}
 
 const PLANS = [
   {
     num: "01",
     name: "Basic",
     tagline: "If you already have your supplier.",
-    image: pexels(8470836),
+    art: "basic" as const,
     features: [
       "Contact Suppliers",
       "Payment Assistance",
@@ -27,7 +113,7 @@ const PLANS = [
     num: "02",
     name: "Pro",
     tagline: "If you don't have a supplier yet.",
-    image: pexels(24394699),
+    art: "pro" as const,
     features: [
       "Product Categorization",
       "Supplier Sourcing",
@@ -40,7 +126,7 @@ const PLANS = [
     num: "03",
     name: "Custom",
     tagline: "Bundled solutions, quoted case-to-case.",
-    image: pexels(23496705),
+    art: "custom" as const,
     features: [
       "Tailor-Made Sourcing Solutions",
       "Import & Logistics Support",
@@ -53,7 +139,7 @@ const PLANS = [
     num: "04",
     name: "Custom Pro",
     tagline: "For clients travelling to source themselves.",
-    image: pexels(35150092),
+    art: "customPro" as const,
     features: [
       "Business Travel Assistance",
       "Supplier Audits & Verification",
@@ -64,7 +150,7 @@ const PLANS = [
   },
 ];
 
-export default function Plans() {
+export default function Plans({ hideHeading = false }: { hideHeading?: boolean }) {
   const root = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -115,30 +201,34 @@ export default function Plans() {
       className="relative bg-canvas pt-16 pb-32 md:pt-20 md:pb-48 px-6 md:px-10"
     >
       <div className="max-w-7xl mx-auto">
-        <div className="plans-mark flex items-center gap-4 mb-10 justify-center">
-          <span className="font-mono text-sm text-accent"></span>
-          <span className="hairline w-24" />
-          <span className="text-xs uppercase tracking-[0.3em] text-ink-soft">
-            Our Services
-          </span>
-          <span className="hairline w-24" />
-        </div>
+        {!hideHeading && (
+          <>
+            <div className="plans-mark flex items-center gap-4 mb-10 justify-center">
+              <span className="font-mono text-sm text-accent"></span>
+              <span className="hairline w-24" />
+              <span className="text-xs uppercase tracking-[0.3em] text-ink-soft">
+                Our Services
+              </span>
+              <span className="hairline w-24" />
+            </div>
 
-        <h2 className="plans-heading font-display font-light leading-[1.05] text-4xl md:text-6xl text-center max-w-3xl mx-auto mb-8">
-          <span className="split-line">
-            <span>Four ways to source,</span>
-          </span>
-          <span className="split-line">
-            <span>
-              one <span className="font-semibold text-accent">accountable</span> desk.
-            </span>
-          </span>
-        </h2>
+            <h2 className="plans-heading font-display font-light leading-[1.05] text-4xl md:text-6xl text-center max-w-3xl mx-auto mb-8">
+              <span className="split-line">
+                <span>Four ways to source,</span>
+              </span>
+              <span className="split-line">
+                <span>
+                  one <span className="font-semibold text-accent">accountable</span> desk.
+                </span>
+              </span>
+            </h2>
 
-        <p className="plans-sub text-center max-w-xl mx-auto text-ink-soft leading-relaxed mb-20 md:mb-24">
-          Pick the plan that matches where you are in the sourcing journey,
-          from a supplier-in-hand check to a full on-the-ground sourcing desk.
-        </p>
+            <p className="plans-sub text-center max-w-xl mx-auto text-ink-soft leading-relaxed mb-20 md:mb-24">
+              Pick the plan that matches where you are in the sourcing journey,
+              from a supplier-in-hand check to a full on-the-ground sourcing desk.
+            </p>
+          </>
+        )}
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-5">
           {PLANS.map((plan) => (
@@ -158,11 +248,7 @@ export default function Plans() {
               )}
 
               <div className={"relative aspect-[4/3] " + (plan.featured ? "mt-8" : "")}>
-                <img
-                  src={plan.image}
-                  alt=""
-                  className="absolute inset-0 h-full w-full object-cover"
-                />
+                <PlanArt variant={plan.art} />
               </div>
 
               <div className="flex-1 flex flex-col p-6">

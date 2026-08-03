@@ -6,7 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function Consultation() {
+export default function Consultation({ hideHeading = false }: { hideHeading?: boolean } = {}) {
   const root = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -47,29 +47,34 @@ export default function Consultation() {
       className="relative bg-canvas pt-8 pb-32 md:pt-10 md:pb-48 px-6 md:px-10"
     >
       <div className="max-w-6xl mx-auto text-center">
-        <div className="consult-mark flex items-center gap-4 mb-16 justify-center">
-          <span className="font-mono text-sm text-accent"></span>
-          <span className="hairline w-24" />
-          <span className="text-xs uppercase tracking-[0.3em] text-ink-soft">
-            Consultation
-          </span>
-          <span className="hairline w-24" />
-        </div>
+        {!hideHeading && (
+          <>
+            <div className="consult-mark flex items-center gap-4 mb-16 justify-center">
+              <span className="font-mono text-sm text-accent"></span>
+              <span className="hairline w-24" />
+              <span className="text-xs uppercase tracking-[0.3em] text-ink-soft">
+                Consultation
+              </span>
+              <span className="hairline w-24" />
+            </div>
 
-        <h2 className="font-display font-light leading-[1.05] text-[9vw] md:text-[4.6vw]">
-          <span className="consult-line block overflow-hidden">
-            <span>Looking for the Right</span>
-          </span>
-          <span className="consult-line block overflow-hidden font-medium text-accent">
-            <span>Product or Supplier?</span>
-          </span>
-        </h2>
+            <h2 className="font-display font-light leading-[1.05] text-[9vw] md:text-[4.6vw]">
+              <span className="consult-line block overflow-hidden">
+                <span>Looking for the Right</span>
+              </span>
+              <span className="consult-line block overflow-hidden font-medium text-accent">
+                <span>Product or Supplier?</span>
+              </span>
+            </h2>
 
-        <p className="consult-fade mt-10 max-w-xl mx-auto text-ink-soft leading-relaxed">
-          Share your product requirement with our team. We will help you
-          identify suitable suppliers, compare quotations and manage the
-          complete sourcing process.
-        </p>
+            <p className="consult-fade mt-10 max-w-xl mx-auto text-ink-soft leading-relaxed">
+              Share your product requirements with Navkar Global Sourcing, and
+              we&apos;ll help you identify verified suppliers, compare
+              quotations, and manage your sourcing journey from supplier
+              selection to final delivery.
+            </p>
+          </>
+        )}
 
         <div className="consult-fade mt-12 flex flex-col sm:flex-row gap-4 justify-center">
           <a

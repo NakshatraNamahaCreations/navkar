@@ -15,19 +15,14 @@ const STATS = [
 
 const PILLARS = [
   {
-    tag: "Mission",
-    kicker: "Why We Exist",
-    text: "To provide reliable, transparent, and end-to-end sourcing solutions by connecting businesses with verified manufacturers, ensuring uncompromising quality, optimizing costs, and delivering exceptional customer service at every stage of the procurement journey.",
-  },
-  {
     tag: "Vision",
     kicker: "Where We're Headed",
-    text: "To make international sourcing simple, transparent, and accessible for every business, from startups to global enterprises.",
+    text: "To become a trusted Global Sourcing Partner that makes international sourcing simple, transparent, and accessible for every business from startups to global enterprises through reliable sourcing solutions and long-term manufacturing partnerships.",
   },
   {
-    tag: "Goal",
-    kicker: "What We're Building",
-    text: "Our goal is to make global sourcing easier, safer and more transparent for every client — guided by integrity, precision, and long-term partnership.",
+    tag: "Mission",
+    kicker: "Why We Exist",
+    text: "To provide reliable, transparent, and end-to-end sourcing solutions by connecting businesses with verified manufacturers, optimizing procurement costs, maintaining uncompromising quality standards, and delivering exceptional customer service throughout every stage of the procurement journey. As a trusted Global Sourcing Company, we are committed to creating lasting value for our clients.",
   },
 ];
 
@@ -123,8 +118,8 @@ export default function TrustedBy() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-start">
-          <h2 className="trusted-headline font-display text-6xl sm:text-7xl md:text-8xl font-black leading-[0.95] text-ink flex flex-wrap gap-x-[0.25em]">
-            {["Who", "We", "Are"].map((word, i) => (
+          <h2 className="trusted-headline font-display text-5xl sm:text-6xl md:text-7xl font-black leading-[0.95] text-ink flex flex-wrap gap-x-[0.25em]">
+            {["Your", "Reliable", "Global", "Sourcing", "Partner"].map((word, i) => (
               <span key={i} className="inline-block overflow-hidden align-top">
                 <span className="trusted-headline-word inline-block">{word}</span>
               </span>
@@ -133,25 +128,28 @@ export default function TrustedBy() {
 
           <div>
             <p className="font-display text-2xl md:text-3xl font-light leading-[1.3] text-ink mb-6">
-              We are a global sourcing partner built for modern businesses,
-              where trusted manufacturing meets end-to-end execution.
+              Helping Businesses Source Smarter with Confidence
             </p>
 
             <p className="trusted-copy text-sm md:text-base leading-relaxed text-ink-soft">
               Finding a reliable supplier and ensuring smooth production can
               be challenging.{" "}
-              <span className="font-semibold text-accent">
+              <span className="text-accent">
                 Navkar Global Sourcing
               </span>{" "}
-              takes care of the entire process, from sourcing suppliers to
-              delivering your products.
+              is a trusted Global Sourcing Partner and Global Sourcing Company
+              that manages the complete sourcing process, from supplier
+              identification to final product delivery. Backed by a Verified
+              Supplier Network and End-to-End Procurement solutions, we help
+              businesses source with confidence while making global sourcing
+              easier, safer, and more transparent.
             </p>
 
             <a
               href="#why-choose-us"
               className="trusted-cta mt-8 inline-flex items-center gap-3 rounded-full bg-ink text-canvas pl-6 pr-2 py-2 text-sm font-medium hover:bg-ink/90 transition-colors duration-300"
             >
-              Learn More
+              Know More About Us
               <span className="flex items-center justify-center w-8 h-8 rounded-full bg-canvas text-ink">
                 →
               </span>
@@ -180,9 +178,9 @@ export default function TrustedBy() {
               [ 04 &middot; Our Purpose ]
             </span>
             <h2 className="trusted-pillar-heading font-display text-4xl sm:text-5xl md:text-6xl font-black leading-[0.95] text-ink">
-              Mission,
+              Vision &amp;
               <br />
-              Vision &amp; Goals
+              Mission
             </h2>
           </div>
           <p className="trusted-pillar-intro text-sm md:text-base text-ink-soft leading-relaxed max-w-xs md:text-right">
@@ -191,7 +189,7 @@ export default function TrustedBy() {
           </p>
         </div>
 
-        <div className="trusted-pillar-grid grid md:grid-cols-3 gap-5 md:gap-6">
+        <div className="trusted-pillar-grid grid md:grid-cols-2 gap-5 md:gap-6">
           {PILLARS.map((p, i) => (
             <div
               key={p.tag}

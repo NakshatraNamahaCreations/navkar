@@ -10,62 +10,62 @@ gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
 const STEPS = [
   {
     title: "Client Enquiry",
-    copy: "Share your product details, specifications, required quantity, target price, and delivery expectations. We'll source the right manufacturer and provide you with the best possible solution.",
+    copy: "Share your product details, specifications, required quantity, target price, and delivery expectations. As a trusted Global Sourcing Company, we begin the Product Sourcing Process by understanding your requirements and identifying the most suitable sourcing solution.",
     icon: "inquiry",
   },
   {
     title: "Requirement Review and Feasibility Assessment",
-    copy: "We thoroughly analyze your requirements, assess sourcing feasibility, validate commercial viability, and develop the most efficient procurement strategy for your business.",
+    copy: "We carefully review your requirements, assess sourcing feasibility, validate commercial viability, and develop an efficient Procurement Process that aligns with your business objectives and sourcing strategy.",
     icon: "analysis",
   },
   {
     title: "Supplier Identification",
-    copy: "We carefully identify and verify manufacturers from China that align with your product specifications, quality standards, order quantity, and delivery requirements.",
+    copy: "We identify and evaluate manufacturers in China that match your product specifications, quality standards, order quantity, and delivery expectations through a structured Supplier Selection Process.",
     icon: "search",
   },
   {
     title: "Supplier Verification and Factory Audit",
-    copy: "We thoroughly verify shortlisted suppliers and coordinate factory audits, when required, to assess their manufacturing capabilities, quality systems, compliance, and overall reliability—giving you confidence before placing an order.",
+    copy: "We conduct a thorough Supplier Verification Process and coordinate the Factory Audit Process, when required, to evaluate manufacturing capabilities, quality systems, compliance, and overall supplier reliability before order placement.",
     icon: "shield",
   },
   {
     title: "Quotation Collection and Comparison",
-    copy: "We collect quotations from shortlisted suppliers and perform a comprehensive comparison based on pricing, product specifications, quality, lead times, minimum order quantities (MOQs), and commercial terms to identify the best sourcing option.",
+    copy: "We collect quotations from shortlisted suppliers and compare pricing, product specifications, quality, lead times, minimum order quantities (MOQs), and commercial terms to recommend the most suitable sourcing option.",
     icon: "compare",
   },
   {
     title: "Proposal Presentation to Client",
-    copy: "We provide a comprehensive comparison of supplier options, pricing, delivery lead times, and commercial terms to help you select the best supplier.",
+    copy: "We present a detailed comparison of supplier options, pricing, delivery schedules, and commercial terms, helping you make informed sourcing decisions as part of our transparent Product Sourcing Process.",
     icon: "doc",
   },
   {
     title: "Client Approval",
-    copy: "You review the shortlisted supplier options and approve the preferred supplier based on pricing, quality, lead time, and commercial terms. Once approved, we proceed with order confirmation and supplier coordination.",
+    copy: "You review the shortlisted suppliers and approve the preferred manufacturer based on pricing, quality, delivery timelines, and commercial terms. Once approved, we proceed with order confirmation and supplier coordination.",
     icon: "check",
   },
   {
     title: "Price and Terms Negotiation",
-    copy: "We negotiate with the selected supplier to secure the best possible pricing, favorable payment terms, appropriate packaging specifications, and optimized production timelines, ensuring a cost-effective and reliable sourcing outcome.",
+    copy: "We negotiate with the selected supplier to secure competitive pricing, favorable payment terms, suitable packaging specifications, and optimized production schedules, ensuring a cost-effective sourcing solution.",
     icon: "handshake",
   },
   {
     title: "Purchase Order Placement",
-    copy: "Once you provide final approval of the product specifications, pricing, and commercial terms, we place the purchase order with the selected supplier and coordinate the production process to ensure timely execution.",
+    copy: "After your final approval of the product specifications, pricing, and commercial terms, we place the purchase order and coordinate with the supplier to initiate the Manufacturing Process efficiently.",
     icon: "cart",
   },
   {
     title: "Production Monitoring and Inspection",
-    copy: "We closely monitor production progress, provide regular status updates, and coordinate quality inspections to ensure the products meet your specifications, quality standards, and delivery schedule before shipment.",
+    copy: "We provide continuous Production Monitoring, track manufacturing progress, and coordinate the Product Inspection Process to ensure your products meet the required quality standards and delivery schedule before shipment.",
     icon: "gauge",
   },
   {
     title: "Shipping and Logistics",
-    copy: "We coordinate end-to-end logistics, ensuring your goods are delivered safely, efficiently, and on schedule.",
+    copy: "We manage the Import Supply Chain by coordinating end-to-end shipping and logistics, ensuring your products are transported safely, efficiently, and on schedule.",
     icon: "ship",
   },
   {
     title: "Final Delivery",
-    copy: "Your products are delivered safely and on time to the agreed destination, completing a seamless end-to-end sourcing and logistics process with full coordination at every stage.",
+    copy: "Your products are delivered safely to the agreed destination, completing a seamless Global Procurement Workflow with full coordination throughout the Product Sourcing Process, from enquiry to final delivery.",
     icon: "flag",
   },
 ];
@@ -186,7 +186,7 @@ function StepIcon({
 
 const MARQUEE_PX_PER_SEC = 34;
 
-export default function Process() {
+export default function Process({ hideHeading = false }: { hideHeading?: boolean } = {}) {
   const root = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const pausedRef = useRef(false);
@@ -372,25 +372,29 @@ export default function Process() {
     <section id="process" ref={root} className="relative bg-[#eef0f0] pt-16 pb-32 md:pt-20 md:pb-40">
       <div className="max-w-[1600px] mx-auto px-6 md:px-14">
         {/* headline + eyebrow + nav arrows */}
-        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 mb-16 md:mb-20">
-          <h2 className="process-heading font-display font-light leading-[1.05] text-5xl md:text-7xl max-w-xl">
-            <span className="split-line">
-              <span>How We</span>
-            </span>
-            <span className="split-line">
-              <span>
-                <span className="font-semibold text-accent">Work</span> Together
+        <div className={`flex flex-col md:flex-row md:items-start md:justify-between gap-6 mb-16 md:mb-20 ${hideHeading ? "md:justify-end" : ""}`}>
+          {!hideHeading && (
+            <h2 className="process-heading font-display font-light leading-[1.05] text-5xl md:text-7xl max-w-xl">
+              <span className="split-line">
+                <span>How We</span>
               </span>
-            </span>
-          </h2>
+              <span className="split-line">
+                <span>
+                  <span className="font-semibold text-accent">Work</span> Together
+                </span>
+              </span>
+            </h2>
+          )}
 
           <div className="flex flex-col items-start md:items-end gap-6 md:pt-3">
-            <div className="process-eyebrow flex items-start gap-3 md:max-w-[240px] text-left md:text-right">
-              <span className="w-1.5 h-1.5 rounded-full bg-accent mt-1.5 shrink-0" />
-              <p className="text-xs uppercase tracking-[0.2em] text-ink-soft leading-relaxed">
-                For the accountable handling of every order
-              </p>
-            </div>
+            {!hideHeading && (
+              <div className="process-eyebrow flex items-start gap-3 md:max-w-[240px] text-left md:text-right">
+                <span className="w-1.5 h-1.5 rounded-full bg-accent mt-1.5 shrink-0" />
+                <p className="text-xs uppercase tracking-[0.2em] text-ink-soft leading-relaxed">
+                  For the accountable handling of every order
+                </p>
+              </div>
+            )}
 
             {/* nav arrows, top-right above the cards */}
             <div className="hidden md:flex items-center gap-3">

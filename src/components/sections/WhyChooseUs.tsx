@@ -11,37 +11,37 @@ const REASONS = [
     num: "01",
     tag: "Reliable Supplier Network",
     title: "Reliable Supplier Network",
-    copy: "Access a trusted network of carefully selected and verified manufacturers that match your product and business requirements.",
+    copy: "As a trusted Global Sourcing Company, we provide access to a Verified Supplier Network of carefully selected manufacturers that match your product specifications, quality standards, and business requirements.",
   },
   {
     num: "02",
     tag: "End-to-End Sourcing Support",
     title: "End-to-End Sourcing Support",
-    copy: "From supplier identification and quotation management to production, quality control, shipping, and final delivery, we manage the entire sourcing process.",
+    copy: "Our comprehensive Product Sourcing Services cover every stage of the sourcing journey from Supplier Identification and Supplier Verification Services to production coordination, Product Quality Inspection, Shipping & Logistics Services, and final delivery.",
   },
   {
     num: "03",
     tag: "Transparent Communication",
     title: "Transparent Communication",
-    copy: "Stay informed at every stage with regular updates, clear reporting, and dedicated support throughout your sourcing journey.",
+    copy: "We believe successful sourcing is built on trust and transparency. Receive regular updates, clear reporting, and dedicated support throughout your procurement journey from our experienced Global Sourcing Partner team.",
   },
   {
     num: "04",
     tag: "Competitive Price Comparison",
     title: "Competitive Price Comparison",
-    copy: "We obtain multiple supplier quotations, compare commercial offers, and negotiate the best possible pricing and terms on your behalf.",
+    copy: "We obtain quotations from multiple suppliers, perform detailed Quotation Comparison, and negotiate the best commercial terms to help you achieve cost-effective sourcing solutions without compromising quality.",
   },
   {
     num: "05",
     tag: "Quality Assurance",
     title: "Quality Assurance",
-    copy: "We coordinate product sampling, production monitoring, factory inspections, and pre-shipment quality checks to ensure your expectations are met.",
+    copy: "Our quality-focused approach includes Factory Audit Services, Production Monitoring, and Product Quality Inspection to ensure every product meets your specifications before shipment.",
   },
   {
     num: "06",
     tag: "Comprehensive Logistics Support",
     title: "Comprehensive Logistics Support",
-    copy: "We manage shipping, documentation, customs clearance support, and transportation to ensure smooth and timely delivery.",
+    copy: "From shipping coordination and documentation to customs assistance and transportation, our End-to-End Sourcing Services ensure smooth, efficient, and timely product delivery worldwide.",
   },
 ];
 

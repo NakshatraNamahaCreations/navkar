@@ -115,7 +115,7 @@ function MarqueeRow({
   );
 }
 
-export default function Categories() {
+export default function Categories({ hideHeading = false }: { hideHeading?: boolean } = {}) {
   const root = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -152,18 +152,20 @@ export default function Categories() {
       ref={root}
       className="relative overflow-hidden bg-canvas py-24 md:py-32"
     >
-      <div className="relative z-10 max-w-2xl mx-auto text-center mb-14 md:mb-16 px-6 md:px-10">
-        <span className="categories-eyebrow inline-flex items-center rounded-full border border-line bg-canvas px-4 py-2 text-[11px] uppercase tracking-[0.2em] text-ink-soft">
-          What we source
-        </span>
-        <h2 className="categories-heading font-display font-bold leading-[1.05] text-4xl md:text-6xl text-ink mt-5 mb-5">
-          Categories <span className="text-accent">we cater to.</span>
-        </h2>
-        <p className="categories-copy text-ink-soft text-base md:text-lg leading-relaxed">
-          Eleven sourcing lines in continuous motion — bulk hardware to
-          boutique jewellery, each with its own vetted factory bench.
-        </p>
-      </div>
+      {!hideHeading && (
+        <div className="relative z-10 max-w-2xl mx-auto text-center mb-14 md:mb-16 px-6 md:px-10">
+          <span className="categories-eyebrow inline-flex items-center rounded-full border border-line bg-canvas px-4 py-2 text-[11px] uppercase tracking-[0.2em] text-ink-soft">
+            What we source
+          </span>
+          <h2 className="categories-heading font-display font-bold leading-[1.05] text-4xl md:text-6xl text-ink mt-5 mb-5">
+            Categories <span className="text-accent">we cater to.</span>
+          </h2>
+          <p className="categories-copy text-ink-soft text-base md:text-lg leading-relaxed">
+            Eleven sourcing lines in continuous motion — bulk hardware to
+            boutique jewellery, each with its own vetted factory bench.
+          </p>
+        </div>
+      )}
 
       <div className="categories-rows relative z-10 flex flex-col gap-3 sm:gap-4">
         <MarqueeRow items={ROW_1} direction="left" speed={38} />

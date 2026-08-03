@@ -37,8 +37,22 @@ export default function SmoothScrollProvider({
     const onPreloaderDone = () => ScrollTrigger.refresh();
     window.addEventListener("site-preloader-done", onPreloaderDone);
 
+    // second safety net: images/videos further down the page (esp. the
+    // footer, the very last element) can keep changing total document
+    // height well after the preloader clears, which leaves late-mounting
+    // ScrollTriggers (like the footer's) computed against a too-short
+    // page and their trigger point never gets crossed. Recompute again
+    // once every resource has actually finished loading.
+    const onWindowLoad = () => ScrollTrigger.refresh();
+    if (document.readyState === "complete") {
+      onWindowLoad();
+    } else {
+      window.addEventListener("load", onWindowLoad);
+    }
+
     return () => {
       window.removeEventListener("site-preloader-done", onPreloaderDone);
+      window.removeEventListener("load", onWindowLoad);
       gsap.ticker.remove((time) => {
         lenis.raf(time * 1000);
       });

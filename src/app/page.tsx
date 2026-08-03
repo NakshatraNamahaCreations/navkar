@@ -2,7 +2,7 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import VideoSlideHero from "@/components/sections/VideoSlideHero";
 import TrustedBy from "@/components/sections/TrustedBy";
-import Plans from "@/components/sections/Plans";
+import ServicesShowcase from "@/components/sections/ServicesShowcase";
 import Process from "@/components/sections/Process";
 import Challenges from "@/components/sections/Challenges";
 import Categories from "@/components/sections/Categories";
@@ -23,7 +23,7 @@ export default function Home() {
         <Challenges />
         <Categories />
         <WhoWeWorkWith />
-        <Plans />
+        <ServicesShowcase hideDetailRail hideCta />
         <Consultation />
         <Testimonials />
       </main>

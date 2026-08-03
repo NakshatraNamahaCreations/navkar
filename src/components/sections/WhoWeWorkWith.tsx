@@ -48,7 +48,7 @@ const AUDIENCES = [
     ),
   },
   {
-    label: "Corporate Procurement",
+    label: "Corporate Procurement Teams",
     icon: (
       <path
         d="M4 21V9l8-5 8 5v12M4 21h16M9 21v-6h6v6M9 12h.01M15 12h.01M12 12h.01M9 9h.01M15 9h.01"
@@ -61,7 +61,7 @@ const AUDIENCES = [
     icon: <path d="M3 17l6-6 4 4 8-8M21 7v6M21 7h-6" strokeLinejoin="round" />,
   },
   {
-    label: "Private-Label Brands",
+    label: "Private Label Brands",
     icon: (
       <path
         d="M12 2l1.8 3.6L18 6l-3 3.3.7 4.2L12 11.8 8.3 13.5 9 9.3 6 6l4.2-.4L12 2zM6 21h12"
@@ -275,20 +275,27 @@ export default function WhoWeWorkWith() {
 
         <h2 className="wwww-heading font-display font-black leading-[1.15] sm:leading-[1.1] text-[1.75rem] sm:text-4xl md:text-5xl mb-4 sm:mb-6 px-2">
           <span className="split-line block overflow-hidden">
-            <span className="block text-canvas">Types of</span>
+            <span className="block text-canvas">Sourcing Solutions</span>
           </span>
           <span className="split-line block overflow-hidden">
             <span className="block bg-gradient-to-r from-accent-soft to-accent bg-clip-text text-transparent">
-              Businesses We Serve
+              for Every Business
             </span>
           </span>
         </h2>
 
         <p className="wwww-sub text-[13px] sm:text-sm md:text-base text-canvas/60 leading-relaxed px-2">
-          From a first production run to an established supply chain, the
-          desk flexes to how you already operate.
+          At Navkar Global Sourcing, we provide reliable sourcing solutions
+          for businesses of all sizes across a wide range of industries.
+          Whether you&apos;re launching a new product, expanding your supply
+          chain, or sourcing from China, we help you connect with verified
+          manufacturers and simplify the procurement process.
         </p>
       </div>
+
+      <p className="relative z-10 text-center text-xs sm:text-sm uppercase tracking-[0.2em] text-canvas/50 mb-6 sm:mb-8">
+        We Work With:
+      </p>
 
       <div className="wwww-grid relative z-10 max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-5 sm:gap-y-8 gap-x-6 md:gap-x-8">
         {AUDIENCES.map((a) => (

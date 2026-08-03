@@ -1,17 +1,18 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import EnquiryModal from "@/components/EnquiryModal";
 
-const SECTIONS = [
-  { id: "hero", label: "Home", num: "01" },
-  { id: "about", label: "About Us", num: "02" },
-  { id: "plans", label: "Services", num: "03" },
-  { id: "process", label: "Sourcing Process", num: "04" },
-  { id: "categories", label: "Product Categories", num: "05" },
-  { id: "categories", label: "Gallery", num: "06" },
-  { id: "consultation", label: "Blogs", num: "07" },
-  { id: "consultation", label: "Contact Us", num: "08" },
+const NAV_LINKS = [
+  { href: "/", label: "Home", num: "01" },
+  { href: "/about-us", label: "About Us", num: "02" },
+  { href: "/services", label: "Services", num: "03" },
+  { href: "/sourcing-process", label: "Sourcing Process", num: "04" },
+  { href: "/product-categories", label: "Product Categories", num: "05" },
+  { href: "/gallery", label: "Gallery", num: "06" },
+  { href: "/blogs", label: "Blogs", num: "07" },
+  { href: "/contact-us", label: "Contact Us", num: "08" },
 ];
 
 export default function Nav() {
@@ -30,7 +31,10 @@ export default function Nav() {
 
     const remeasureMax = () => {
       maxScroll = doc.scrollHeight - doc.clientHeight;
-      heroHeight = document.getElementById("hero")?.offsetHeight ?? 40;
+      heroHeight =
+        document.getElementById("hero")?.offsetHeight ??
+        document.querySelector<HTMLElement>("[data-page-hero]")?.offsetHeight ??
+        40;
     };
     remeasureMax();
 
@@ -57,10 +61,7 @@ export default function Nav() {
     };
   }, []);
 
-  const goTo = (id: string) => {
-    setOpen(false);
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-  };
+  const closeMenu = () => setOpen(false);
 
   return (
     <>
@@ -80,10 +81,7 @@ export default function Nav() {
             past it into the next section — the row is sized to fully
             contain the larger logo either way */}
         <div className="relative flex items-center justify-between px-6 md:px-10 py-2 md:py-3">
-          <button
-            onClick={() => goTo("hero")}
-            className="relative flex items-center"
-          >
+          <Link href="/" className="relative flex items-center">
             {/* solid white backdrop behind the logo so it always pops with
                 full contrast, even over the busiest part of the video —
                 a soft-edged pill with real depth (shadow + faint ring)
@@ -98,9 +96,9 @@ export default function Nav() {
             <img
               src="/navkar-logo-trimmed.png"
               alt="Navkar Global Sourcing"
-              className="relative h-16 md:h-20 w-auto object-contain"
+              className="relative h-20 md:h-24 w-auto object-contain"
             />
-          </button>
+          </Link>
 
           <button
             onClick={() => setOpen(true)}
@@ -143,7 +141,7 @@ export default function Nav() {
       >
         <div className="flex items-center justify-between px-6 py-5 shrink-0">
           <img
-            src="/Navkar final logo .png"
+            src="/navkar-logo-trimmed.png"
             alt="Navkar Global Sourcing"
             className="h-16 w-auto object-contain"
           />
@@ -157,14 +155,15 @@ export default function Nav() {
         </div>
 
         <nav className="flex-1 min-h-0 flex flex-col px-6 pt-4 gap-1 overflow-y-auto">
-          {SECTIONS.filter((s) => s.label !== "Home").map((s) => (
-            <button
+          {NAV_LINKS.filter((s) => s.label !== "Home").map((s) => (
+            <Link
               key={s.num}
-              onClick={() => goTo(s.id)}
+              href={s.href}
+              onClick={closeMenu}
               className="text-left py-2.5 text-base font-medium text-ink hover:text-accent transition-colors duration-200"
             >
               {s.label}
-            </button>
+            </Link>
           ))}
         </nav>
 
