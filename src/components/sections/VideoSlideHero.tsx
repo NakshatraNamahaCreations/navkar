@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import Link from "next/link";
 
 const SLIDES = [
   {
@@ -9,7 +10,9 @@ const SLIDES = [
     description:
       "At Navkar Global Sourcing, we help businesses source high-quality products at competitive prices from China. As a trusted Global Sourcing Company, we provide reliable Product Sourcing Services that cover every stage of procurement from supplier identification and quotation comparison to quality assurance, Shipping & Logistics Services, and timely delivery ensuring a seamless and efficient sourcing experience.",
     primaryCta: "Start Your Enquiry",
+    primaryHref: "/contact-us",
     secondaryCta: "Explore Services",
+    secondaryHref: "/services",
     video: "/videos/12028871_1920_1080_24fps.mp4",
   },
   {
@@ -18,7 +21,9 @@ const SLIDES = [
     description:
       "Navkar Global Sourcing is a trusted Global Sourcing Company connecting businesses with verified manufacturers and suppliers worldwide. As an experienced China Sourcing Company, we simplify international procurement through transparent sourcing, dependable supplier management, and efficient Global Sourcing Solutions, ensuring quality, reliability, and on-time delivery for every project.",
     primaryCta: "Find a Supplier",
+    primaryHref: "/contact-us",
     secondaryCta: "View Our Process",
+    secondaryHref: "/sourcing-process",
     video: "/videos/step-04-verification.mp4",
   },
   {
@@ -27,7 +32,9 @@ const SLIDES = [
     description:
       "Partner with Navkar Global Sourcing, a reliable Global Sourcing Company, to unlock global sourcing opportunities. We help businesses source quality products from verified manufacturers in China through comprehensive Supplier Verification Services, Product Quality Inspection, competitive price negotiation, and End-to-End Sourcing Services, delivering a smooth procurement journey from factory to destination.",
     primaryCta: "Discuss Your Requirement",
+    primaryHref: "/contact-us",
     secondaryCta: "Contact Our Team",
+    secondaryHref: "/contact-us",
     video: "/videos/step-13-shipping.mp4",
   },
 ];
@@ -156,7 +163,7 @@ export default function VideoSlideHero() {
         </p>
 
         {/* headline: left-aligned block, stacked onto 3 lines */}
-        <div className="absolute inset-x-0 top-0 z-10 flex items-center px-6 md:px-10 pt-36 md:pt-40 h-[62%] md:h-[65%]">
+        <div className="absolute inset-x-0 top-0 z-10 flex flex-col justify-center gap-8 px-6 md:px-10 pt-36 md:pt-40 h-[62%] md:h-[65%]">
           <h1 className="max-w-2xl font-banner font-semibold leading-[1.05] text-[11vw] md:text-[3.6vw] overflow-hidden">
             {SLIDES[active].titleParts.map((part, i) => (
               <span key={i} className="block overflow-hidden">
@@ -172,6 +179,24 @@ export default function VideoSlideHero() {
               </span>
             ))}
           </h1>
+
+          <div
+            className="overflow-hidden transition-transform duration-700 ease-out"
+            style={{
+              transform: entered ? "translateY(0%)" : "translateY(150%)",
+              transitionDelay: "1150ms",
+            }}
+          >
+            <Link
+              href={SLIDES[active].primaryHref}
+              className="inline-flex items-center gap-3 rounded-full bg-canvas text-ink pl-6 pr-2 py-2 text-xs uppercase tracking-[0.15em] font-medium hover:bg-accent-soft transition-colors duration-300"
+            >
+              {SLIDES[active].primaryCta}
+              <span className="w-9 h-9 rounded-full bg-gradient-to-br from-accent-soft to-accent text-canvas flex items-center justify-center text-sm">
+                ↗
+              </span>
+            </Link>
+          </div>
         </div>
 
         {/* bottom-left: counter + arrows */}
@@ -203,14 +228,12 @@ export default function VideoSlideHero() {
           <p className="text-xs md:text-sm text-canvas/75 leading-relaxed mb-2">
             {SLIDES[active].description}
           </p>
-          <button
-            onClick={() =>
-              document.getElementById("process")?.scrollIntoView({ behavior: "smooth" })
-            }
+          <Link
+            href={SLIDES[active].secondaryHref}
             className="text-[11px] uppercase tracking-[0.2em] text-accent-soft hover:text-canvas transition-colors duration-300"
           >
             {SLIDES[active].secondaryCta} →
-          </button>
+          </Link>
         </div>
 
         {/* slide progress dashes */}
