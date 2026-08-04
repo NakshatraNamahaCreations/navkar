@@ -8,7 +8,7 @@ import Challenges from "@/components/sections/Challenges";
 export const metadata = {
   title: "Product Categories | Navkar Global Sourcing",
   description:
-    "Eleven sourcing lines in continuous motion — bulk hardware to boutique jewellery, each with its own vetted factory bench.",
+    "From bulk hardware to boutique jewellery, source confidently across every product category with verified factories, competitive pricing, and dedicated quality control.",
 };
 
 export default function ProductCategoriesPage() {
@@ -21,7 +21,7 @@ export default function ProductCategoriesPage() {
           eyebrow="Product Categories"
           title="Categories"
           accentWord="we cater to."
-          copy="Eleven sourcing lines in continuous motion — bulk hardware to boutique jewellery, each with its own vetted factory bench."
+          copy="From bulk hardware to boutique jewellery, source confidently across every product category with verified factories, competitive pricing, and dedicated quality control."
         />
         <CategoriesCarousel />
         <CategoriesDetail />

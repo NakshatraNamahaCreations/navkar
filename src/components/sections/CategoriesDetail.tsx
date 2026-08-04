@@ -76,6 +76,12 @@ const CATEGORIES = [
     src: "/hardware.webp",
     items: ["Fasteners", "Hand Tools", "Power Tool Accessories", "Door & Cabinet Hardware", "Plumbing Fittings", "Safety Equipment"],
   },
+  {
+    label: "Other",
+    sub: "Custom & niche requests",
+    src: pexels(3862627),
+    items: ["Custom Products", "Niche Categories", "Private Label", "Sample Development", "Seasonal Items", "Specialty Sourcing"],
+  },
 ];
 
 export default function CategoriesDetail() {
@@ -102,6 +108,25 @@ export default function CategoriesDetail() {
     }, root);
     return () => ctx.revert();
   }, []);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.from(".cd-chip", {
+        opacity: 0,
+        y: 14,
+        duration: 0.5,
+        stagger: 0.05,
+        ease: "power3.out",
+      });
+      gsap.from(".cd-photo-info", {
+        opacity: 0,
+        x: -16,
+        duration: 0.6,
+        ease: "power3.out",
+      });
+    }, root);
+    return () => ctx.revert();
+  }, [active]);
 
   const current = CATEGORIES[active];
 
@@ -132,10 +157,9 @@ export default function CategoriesDetail() {
           </h2>
         </div>
 
-        <div className="relative md:min-h-[52rem]">
-        <div className="cd-panel grid md:grid-cols-[280px_1fr] gap-3 md:gap-4 items-start md:sticky md:top-28">
+        <div className="cd-panel grid md:grid-cols-[280px_1fr] gap-3 md:gap-4 items-start">
           {/* left rail: category selector */}
-          <div className="flex md:flex-col gap-2 overflow-x-auto md:overflow-visible pb-2 md:pb-0 -mx-1 px-1 md:mx-0 md:px-0 md:max-h-[calc(100vh-9rem)] md:overflow-y-auto">
+          <div className="flex md:flex-col gap-2 overflow-x-auto md:overflow-visible pb-2 md:pb-0 -mx-1 px-1 md:mx-0 md:px-0">
             {CATEGORIES.map((c, i) => (
               <button
                 key={c.label}
@@ -168,52 +192,54 @@ export default function CategoriesDetail() {
             ))}
           </div>
 
-          {/* right panel: photo + sub-category chips */}
-          <div
-            key={active}
-            className="rounded-3xl bg-canvas-deep p-5 md:p-7 grid md:grid-cols-[22rem_1fr] gap-6 md:gap-8 items-center"
-          >
-            <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden ring-1 ring-line shadow-[0_20px_45px_-24px_rgba(14,31,28,0.35)]">
-              <img
-                src={current.src}
-                alt={current.label}
-                decoding="async"
-                className="absolute inset-0 h-full w-full object-cover brightness-[1.04] saturate-[1.05]"
-              />
-              <div
-                aria-hidden
-                className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/5 to-transparent"
-              />
-              <div className="absolute inset-x-0 bottom-0 p-5">
-                <p className="text-[10px] uppercase tracking-[0.2em] text-white/70 [text-shadow:0_1px_4px_rgba(0,0,0,0.5)] mb-1.5">
+          {/* right panel: inset thumbnail + info header, then sub-category chips */}
+          <div className="relative overflow-hidden rounded-3xl bg-ink shadow-[0_35px_80px_-30px_rgba(14,31,28,0.5)] md:sticky md:top-28">
+            <div key={active} className="cd-photo-info flex items-center gap-5 md:gap-7 p-5 md:p-7">
+              <div className="relative w-32 h-32 md:w-44 md:h-44 rounded-2xl overflow-hidden ring-1 ring-white/10 shrink-0">
+                <img
+                  src={current.src}
+                  alt={current.label}
+                  decoding="async"
+                  className="absolute inset-0 h-full w-full object-cover object-center brightness-[1.02] saturate-[1.08]"
+                />
+              </div>
+              <div className="flex-1 min-w-0">
+                <span className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] text-accent-soft mb-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-accent-soft" />
                   {current.sub}
-                </p>
-                <p className="font-display text-2xl font-bold text-white tracking-tight [text-shadow:0_1px_6px_rgba(0,0,0,0.5)]">
+                </span>
+                <p className="font-display text-2xl md:text-4xl font-bold text-white tracking-tight">
                   {current.label}
                 </p>
               </div>
+              <span className="hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm ring-1 ring-white/20 font-mono text-sm text-white shrink-0">
+                {String(active + 1).padStart(2, "0")}
+              </span>
             </div>
 
-            <div>
-              <p className="text-[11px] uppercase tracking-[0.15em] text-ink-soft/70 mb-5">
-                Sub-categories we source
-              </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+            <div className="bg-canvas-deep p-5 md:p-7">
+              <div className="flex items-center gap-3 mb-6">
+                <span className="h-px flex-1 bg-line" />
+                <p className="text-[11px] uppercase tracking-[0.2em] text-ink-soft/70 shrink-0">
+                  Sub-categories we source
+                </p>
+                <span className="h-px flex-1 bg-line" />
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                 {current.items.map((item, idx) => (
-                  <span
-                    key={item}
-                    className="flex items-center gap-3 rounded-xl border border-line bg-canvas px-4 py-3 text-[13px] text-ink transition-colors duration-300 hover:border-accent/40"
+                  <div
+                    key={`${active}-${item}`}
+                    className="cd-chip group flex items-center gap-3.5 rounded-2xl border border-line bg-canvas px-4 py-3.5 transition-all duration-300 hover:border-accent/50 hover:-translate-y-0.5 hover:shadow-[0_12px_28px_-14px_rgba(20,40,50,0.3)]"
                   >
-                    <span className="flex items-center justify-center w-5 h-5 rounded-full bg-accent/10 text-accent text-[10px] font-mono shrink-0">
-                      {idx + 1}
+                    <span className="flex items-center justify-center w-8 h-8 rounded-full bg-accent/10 text-accent text-xs font-mono font-semibold shrink-0 transition-colors duration-300 group-hover:bg-accent group-hover:text-canvas">
+                      {String(idx + 1).padStart(2, "0")}
                     </span>
-                    {item}
-                  </span>
+                    <span className="text-[13px] font-medium text-ink">{item}</span>
+                  </div>
                 ))}
               </div>
             </div>
           </div>
-        </div>
         </div>
       </div>
     </section>

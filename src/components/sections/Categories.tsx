@@ -24,6 +24,7 @@ const ROW_2 = [
   { label: "Footwear & Bags", sub: "Leather & performance", src: "/WhatsApp Image 2026-08-01 at 18.36.53.jpeg" },
   { label: "Stationery", sub: "Paper & desk supply", src: "/stationary.webp" },
   { label: "Hardware", sub: "Fasteners & tools", src: "/hardware.webp" },
+  { label: "Other", sub: "Custom & niche requests", src: pexels(3862627) },
 ];
 
 function Card({
@@ -161,8 +162,9 @@ export default function Categories({ hideHeading = false }: { hideHeading?: bool
             Categories <span className="text-accent">we cater to.</span>
           </h2>
           <p className="categories-copy text-ink-soft text-base md:text-lg leading-relaxed">
-            Eleven sourcing lines in continuous motion — bulk hardware to
-            boutique jewellery, each with its own vetted factory bench.
+            From bulk hardware to boutique jewellery, source confidently
+            across every product category with verified factories,
+            competitive pricing, and dedicated quality control.
           </p>
         </div>
       )}
@@ -172,15 +174,6 @@ export default function Categories({ hideHeading = false }: { hideHeading?: bool
         <MarqueeRow items={ROW_2} direction="right" speed={32} />
       </div>
 
-      {/* edge fades so cards dissolve into the canvas instead of hard-cutting */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-y-0 left-0 w-16 sm:w-32 z-20 bg-gradient-to-r from-canvas to-transparent"
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-y-0 right-0 w-16 sm:w-32 z-20 bg-gradient-to-l from-canvas to-transparent"
-      />
     </section>
   );
 }

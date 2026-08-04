@@ -21,6 +21,7 @@ const CATEGORIES = [
   { label: "Footwear & Bags", sub: "Leather & performance", src: "/WhatsApp Image 2026-08-01 at 18.36.53.jpeg" },
   { label: "Stationery", sub: "Paper & desk supply", src: "/stationary.webp" },
   { label: "Hardware", sub: "Fasteners & tools", src: "/hardware.webp" },
+  { label: "Other", sub: "Custom & niche requests", src: pexels(3862627) },
 ];
 
 export default function CategoriesCarousel() {
@@ -108,15 +109,6 @@ export default function CategoriesCarousel() {
             })}
           </div>
 
-          {/* edge fades so cards dissolve into the background instead of hard-cutting */}
-          <div
-            aria-hidden
-            className="pointer-events-none absolute inset-y-0 left-0 w-16 sm:w-32 bg-gradient-to-r from-canvas-deep to-transparent"
-          />
-          <div
-            aria-hidden
-            className="pointer-events-none absolute inset-y-0 right-0 w-16 sm:w-32 bg-gradient-to-l from-canvas-deep to-transparent"
-          />
         </div>
 
         <div className="relative z-10 max-w-2xl mx-auto text-center">
@@ -128,7 +120,7 @@ export default function CategoriesCarousel() {
             Behind every category there are vetted factories. Real partners.
           </p>
           <h2 className="cat-heading font-display font-bold leading-[1.15] text-2xl md:text-4xl text-ink">
-            Eleven categories, one sourcing desk
+            Twelve categories, one sourcing desk
             <br className="hidden sm:block" /> that brings them to life.
           </h2>
         </div>
