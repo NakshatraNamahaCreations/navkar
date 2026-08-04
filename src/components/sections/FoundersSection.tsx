@@ -64,15 +64,6 @@ export default function FoundersSection() {
         ease: "power3.out",
         scrollTrigger: { trigger: ".commitment-heading", start: "top 88%" },
       });
-
-      gsap.from(".commitment-stat", {
-        opacity: 0,
-        y: 24,
-        duration: 0.8,
-        stagger: 0.1,
-        ease: "power3.out",
-        scrollTrigger: { trigger: ".commitment-stats", start: "top 90%" },
-      });
     }, root);
 
     return () => ctx.revert();
@@ -139,10 +130,32 @@ export default function FoundersSection() {
       <section className="relative overflow-hidden bg-ink py-24 md:py-32 px-6 md:px-10">
         <div
           aria-hidden
+          className="pointer-events-none absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: "url('/cargo-ship-sailing-ocean.jpg')" }}
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 bg-ink/55"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink via-ink/45 to-ink/25"
+        />
+        <div
+          aria-hidden
           className="pointer-events-none absolute -bottom-40 left-1/2 -translate-x-1/2 w-[50rem] h-[50rem] rounded-full bg-[radial-gradient(circle,rgba(79,179,166,0.14),transparent_70%)] blur-3xl"
         />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 flex items-center justify-center"
+        >
+          <div className="w-full max-w-4xl h-[26rem] rounded-full bg-ink/55 blur-3xl" />
+        </div>
 
-        <div className="relative z-10 max-w-3xl mx-auto text-center mb-16">
+        <div
+          className="relative z-10 max-w-3xl mx-auto text-center mb-16"
+          style={{ textShadow: "0 2px 16px rgba(0,0,0,0.5)" }}
+        >
           <span className="commitment-fade inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.25em] text-accent-soft mb-5">
             <span className="w-1.5 h-1.5 rounded-full bg-accent-soft" />
             Our Commitment
@@ -160,7 +173,7 @@ export default function FoundersSection() {
             </span>
           </h2>
 
-          <p className="commitment-fade text-sm md:text-base text-canvas/60 leading-relaxed max-w-2xl mx-auto">
+          <p className="commitment-fade text-sm md:text-base text-canvas/90 leading-relaxed max-w-2xl mx-auto">
             Parshwa Shah and Monty Mehta bring expertise across consumer
             goods, fashion, industrial manufacturing, and global procurement.
             Their shared mission is simple: to help businesses source
@@ -168,7 +181,7 @@ export default function FoundersSection() {
             through trusted manufacturing partnerships.
           </p>
 
-          <p className="commitment-fade mt-5 text-sm md:text-base text-canvas/60 leading-relaxed max-w-2xl mx-auto">
+          <p className="commitment-fade mt-5 text-sm md:text-base text-canvas/90 leading-relaxed max-w-2xl mx-auto">
             Today, Navkar Sourcing serves as a reliable bridge between global
             buyers and verified manufacturers, delivering sourcing solutions
             that emphasize quality, transparency, efficiency, and long-term
@@ -176,33 +189,6 @@ export default function FoundersSection() {
             with suppliers — we build partnerships that drive lasting
             success.
           </p>
-        </div>
-
-        <div className="commitment-stats relative z-10 max-w-3xl mx-auto grid grid-cols-3 gap-6 pt-10 border-t border-canvas/10">
-          <div className="commitment-stat text-center">
-            <p className="font-display text-4xl md:text-5xl font-black text-canvas">
-              33+
-            </p>
-            <p className="mt-2 text-[11px] md:text-xs uppercase tracking-[0.15em] text-canvas/50">
-              Combined years
-            </p>
-          </div>
-          <div className="commitment-stat text-center">
-            <p className="font-display text-4xl md:text-5xl font-black text-canvas">
-              2
-            </p>
-            <p className="mt-2 text-[11px] md:text-xs uppercase tracking-[0.15em] text-canvas/50">
-              Founders
-            </p>
-          </div>
-          <div className="commitment-stat text-center">
-            <p className="font-display text-4xl md:text-5xl font-black text-canvas">
-              4+
-            </p>
-            <p className="mt-2 text-[11px] md:text-xs uppercase tracking-[0.15em] text-canvas/50">
-              Industries served
-            </p>
-          </div>
         </div>
       </section>
     </div>

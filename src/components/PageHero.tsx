@@ -78,7 +78,7 @@ export default function PageHero({
 
   const titleEl = (
     <h1
-      className={`page-hero-title font-display font-bold leading-[1.05] text-4xl md:text-6xl mb-6 ${
+      className={`page-hero-title font-banner font-bold leading-[1.05] text-4xl md:text-6xl mb-6 ${
         isDark ? "text-canvas" : "text-ink"
       } ${variant === "editorial" ? "md:text-7xl" : ""}`}
     >

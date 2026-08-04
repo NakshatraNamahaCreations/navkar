@@ -20,10 +20,6 @@ export default function SourcingProcessPage() {
           title="How we"
           accentWord="work together."
           copy="For the accountable handling of every order — twelve steps, one desk, from your first enquiry to final delivery."
-          meta={[
-            { value: "12", label: "Steps" },
-            { value: "01", label: "Single point of contact" },
-          ]}
         />
         <Process hideHeading />
       </main>

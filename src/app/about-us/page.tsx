@@ -1,6 +1,7 @@
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
+import WhyChooseUsTiles from "@/components/sections/WhyChooseUsTiles";
 import FoundersSection from "@/components/sections/FoundersSection";
 
 export const metadata = {
@@ -20,12 +21,9 @@ export default function AboutUsPage() {
           title="The people behind"
           accentWord="Navkar Global Sourcing."
           copy="Successful sourcing is built on trust, transparency, and long-term partnerships. These values form the foundation of our company and the leadership behind it."
-          meta={[
-            { value: "2", label: "Founders" },
-            { value: "33+", label: "Combined years" },
-          ]}
         />
         <FoundersSection />
+        <WhyChooseUsTiles />
       </main>
       <Footer />
     </div>

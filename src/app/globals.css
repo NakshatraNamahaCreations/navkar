@@ -46,6 +46,10 @@ body {
   font-family: var(--font-display), sans-serif;
 }
 
+.font-banner {
+  font-family: var(--font-banner), sans-serif;
+}
+
 .split-line {
   overflow: hidden;
   display: block;

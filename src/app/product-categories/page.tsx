@@ -1,7 +1,8 @@
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
-import Categories from "@/components/sections/Categories";
+import CategoriesCarousel from "@/components/sections/CategoriesCarousel";
+import CategoriesDetail from "@/components/sections/CategoriesDetail";
 import Challenges from "@/components/sections/Challenges";
 
 export const metadata = {
@@ -16,17 +17,14 @@ export default function ProductCategoriesPage() {
       <Nav />
       <main className="flex flex-col flex-1">
         <PageHero
-          variant="light"
+          variant="centered"
           eyebrow="Product Categories"
           title="Categories"
           accentWord="we cater to."
           copy="Eleven sourcing lines in continuous motion — bulk hardware to boutique jewellery, each with its own vetted factory bench."
-          meta={[
-            { value: "11", label: "Category lines" },
-            { value: "600+", label: "Audited manufacturers" },
-          ]}
         />
-        <Categories hideHeading />
+        <CategoriesCarousel />
+        <CategoriesDetail />
         <Challenges />
       </main>
       <Footer />

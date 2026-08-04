@@ -20,10 +20,6 @@ export default function GalleryPage() {
           title="A look inside"
           accentWord="our sourcing world."
           copy="Product categories, factory partners, and the work behind every shipment."
-          meta={[
-            { value: "11", label: "Categories on file" },
-            { value: "40+", label: "Countries served" },
-          ]}
         />
         <GalleryGrid />
       </main>

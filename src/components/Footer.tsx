@@ -1,18 +1,21 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const QUICK_LINKS = [
-  { label: "Home", href: "#hero" },
-  { label: "About Us", href: "#about" },
-  { label: "Services", href: "#plans" },
-  { label: "Sourcing Process", href: "#process" },
-  { label: "Product Categories", href: "#categories" },
-  { label: "Contact Us", href: "#consultation" },
+  { label: "Home", href: "/" },
+  { label: "About Us", href: "/about-us" },
+  { label: "Services", href: "/services" },
+  { label: "Sourcing Process", href: "/sourcing-process" },
+  { label: "Product Categories", href: "/product-categories" },
+  { label: "Gallery", href: "/gallery" },
+  { label: "Blogs", href: "/blogs" },
+  { label: "Contact Us", href: "/contact-us" },
 ];
 
 const SERVICES = [
@@ -183,19 +186,19 @@ export default function Footer() {
             </p>
           </div>
 
-          <a
-            href="#consultation"
+          <Link
+            href="/contact-us"
             className="footer-cta group shrink-0 inline-flex items-center gap-3 rounded-full bg-canvas text-ink pl-6 pr-2 py-2 text-xs uppercase tracking-[0.15em] font-medium shadow-[0_20px_50px_-15px_rgba(79,179,166,0.45)] hover:shadow-[0_24px_60px_-12px_rgba(79,179,166,0.6)] hover:bg-accent-soft transition-all duration-300"
           >
             Begin Enquiry
             <span className="w-9 h-9 rounded-full bg-gradient-to-br from-accent-soft to-accent text-canvas flex items-center justify-center text-sm transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:rotate-45">
               ↗
             </span>
-          </a>
+          </Link>
         </div>
 
         {/* link columns */}
-        <div className="footer-cols grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-12 pb-14 pt-2 border-t border-canvas/10">
+        <div className="footer-cols grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-12 pb-16 md:pb-20 pt-12 md:pt-14 border-t border-canvas/10">
           <div className="footer-col">
             <span className="inline-flex items-center rounded-[1.5rem] bg-white px-4 py-2 mb-4 shadow-[0_10px_30px_-8px_rgba(0,0,0,0.4)]">
               <img
@@ -229,12 +232,12 @@ export default function Footer() {
             <ul className="flex flex-col gap-3">
               {QUICK_LINKS.map((link) => (
                 <li key={link.label}>
-                  <a
+                  <Link
                     href={link.href}
                     className="text-sm text-canvas/80 hover:text-accent-soft transition-colors duration-300"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -246,8 +249,13 @@ export default function Footer() {
             </p>
             <ul className="flex flex-col gap-3">
               {SERVICES.map((s) => (
-                <li key={s} className="text-sm text-canvas/80">
-                  {s}
+                <li key={s}>
+                  <Link
+                    href="/services"
+                    className="text-sm text-canvas/80 hover:text-accent-soft transition-colors duration-300"
+                  >
+                    {s}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -295,20 +303,9 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* giant watermark wordmark — sized in vw so it always spans the
-          viewport width without ever clipping, at any breakpoint */}
-      <div className="relative z-10 w-full overflow-hidden pointer-events-none select-none py-6 md:py-10 px-4">
-        <p
-          className="text-center font-display font-bold uppercase text-canvas/20 whitespace-nowrap leading-none"
-          style={{ fontSize: "9.2vw" }}
-        >
-          Navkar Global Sourcing
-        </p>
-      </div>
-
       {/* bottom bar */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-10">
-        <div className="py-6 pb-24 md:pb-6 flex flex-col md:flex-row items-center justify-between gap-3 text-[11px] uppercase tracking-[0.1em] text-canvas/40 text-center md:text-left border-t border-canvas/10">
+        <div className="py-8 pb-24 md:pb-8 flex flex-col md:flex-row items-center justify-between gap-3 text-[11px] uppercase tracking-[0.1em] text-canvas/40 text-center md:text-left border-t border-canvas/10">
           <span>&#169; {new Date().getFullYear()} Navkar Global Sourcing. All rights reserved.</span>
           <div className="flex items-center gap-5">
             <a href="#" className="text-canvas/40 hover:text-accent-soft transition-colors">

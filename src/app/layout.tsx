@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
 import SmoothScrollProvider from "@/components/SmoothScrollProvider";
 import SitePreloader from "@/components/SitePreloader";
@@ -17,6 +17,12 @@ const interBody = Inter({
   weight: ["300", "400", "500", "600"],
 });
 
+const poppins = Poppins({
+  variable: "--font-banner",
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+});
+
 export const metadata: Metadata = {
   title: "Navkar Global: Global Product Sourcing",
   description:
@@ -31,7 +37,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${interBody.variable} h-full antialiased`}
+      className={`${inter.variable} ${interBody.variable} ${poppins.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col bg-canvas text-ink">

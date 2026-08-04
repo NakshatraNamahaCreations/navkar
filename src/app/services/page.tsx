@@ -21,12 +21,8 @@ export default function ServicesPage() {
           title="Four ways to source,"
           accentWord="one accountable desk."
           copy="Pick the plan that matches where you are in the sourcing journey, from a supplier-in-hand check to a full on-the-ground sourcing desk."
-          meta={[
-            { value: "4", label: "Service tiers" },
-            { value: "1", label: "Accountable desk" },
-          ]}
         />
-        <ServicesShowcase />
+        <ServicesShowcase hideDetailRail hideCta />
         <WhoWeWorkWith />
       </main>
       <Footer />
