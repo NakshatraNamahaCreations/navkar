@@ -15,7 +15,7 @@ const POSTS = [
     date: "March 12, 2026",
     title: "How to Vet a Manufacturer Before You Place Your First Order",
     excerpt:
-      "Choosing the wrong factory is the single most expensive mistake in global sourcing. Here's the verification checklist a Global Sourcing Company runs before any purchase order goes out — from business license checks to on-site factory audits.",
+      "Choosing the wrong factory is the single most expensive mistake in global sourcing. Here's the verification checklist a Global Sourcing Company runs before any purchase order goes out, from business license checks to on-site factory audits.",
     src: pexels(3862627),
   },
   {
@@ -23,7 +23,7 @@ const POSTS = [
     date: "March 5, 2026",
     title: "What a Pre-Shipment Inspection Actually Checks",
     excerpt:
-      "Product Quality Inspection isn't a single pass/fail stamp — it covers workmanship, function testing, packaging, and quantity verification. A breakdown of what happens on the factory floor before your goods are cleared to ship.",
+      "Product Quality Inspection isn't a single pass/fail stamp: it covers workmanship, function testing, packaging, and quantity verification. A breakdown of what happens on the factory floor before your goods are cleared to ship.",
     src: pexels(3846508),
   },
   {
@@ -31,7 +31,7 @@ const POSTS = [
     date: "February 21, 2026",
     title: "MOQ Negotiation: What's Actually Flexible with Suppliers",
     excerpt:
-      "Minimum order quantities are rarely as fixed as suppliers first quote. We break down the levers that move MOQ — tooling costs, off-season timing, and material batch sizes — and how a sourcing partner negotiates on your behalf.",
+      "Minimum order quantities are rarely as fixed as suppliers first quote. We break down the levers that move MOQ (tooling costs, off-season timing, and material batch sizes) and how a sourcing partner negotiates on your behalf.",
     src: pexels(3183197),
   },
   {
@@ -47,7 +47,7 @@ const POSTS = [
     date: "January 28, 2026",
     title: "Red Flags That Signal a Fraudulent or Unreliable Supplier",
     excerpt:
-      "From mismatched company registration details to suspiciously low quotes, we outline the warning signs that separate legitimate manufacturers from trading companies posing as factories — and how supplier verification catches them early.",
+      "From mismatched company registration details to suspiciously low quotes, we outline the warning signs that separate legitimate manufacturers from trading companies posing as factories, and how supplier verification catches them early.",
     src: pexels(3184292),
   },
   {
@@ -55,7 +55,7 @@ const POSTS = [
     date: "January 14, 2026",
     title: "A Complete Guide to Landed Cost When Importing from China",
     excerpt:
-      "The factory quote is never the full picture. This guide walks through every cost layer — freight, duties, customs clearance, and inland transport — so you can compare supplier quotes on a true apples-to-apples basis.",
+      "The factory quote is never the full picture. This guide walks through every cost layer (freight, duties, customs clearance, and inland transport) so you can compare supplier quotes on a true apples-to-apples basis.",
     src: pexels(6694543),
   },
 ];

@@ -140,11 +140,13 @@ export default function Nav() {
         }`}
       >
         <div className="flex items-center justify-between px-6 py-5 shrink-0">
-          <img
-            src="/navkar-logo-trimmed.png"
-            alt="Navkar Global Sourcing"
-            className="h-16 w-auto object-contain"
-          />
+          <Link href="/" onClick={closeMenu} className="flex items-center">
+            <img
+              src="/navkar-logo-trimmed.png"
+              alt="Navkar Global Sourcing"
+              className="h-16 w-auto object-contain"
+            />
+          </Link>
           <button
             onClick={() => setOpen(false)}
             aria-label="Close menu"
@@ -155,7 +157,7 @@ export default function Nav() {
         </div>
 
         <nav className="flex-1 min-h-0 flex flex-col px-6 pt-4 gap-1 overflow-y-auto">
-          {NAV_LINKS.filter((s) => s.label !== "Home").map((s) => (
+          {NAV_LINKS.map((s) => (
             <Link
               key={s.num}
               href={s.href}

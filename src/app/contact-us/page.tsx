@@ -7,7 +7,7 @@ import FAQ from "@/components/sections/FAQ";
 export const metadata = {
   title: "Contact Us | Navkar Global Sourcing",
   description:
-    "Get in touch with Navkar Global Sourcing — share your product requirement and our team will help you find the right supplier.",
+    "Get in touch with Navkar Global Sourcing. Share your product requirement and our team will help you find the right supplier.",
 };
 
 export default function ContactUsPage() {

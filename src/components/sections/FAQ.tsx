@@ -9,11 +9,11 @@ gsap.registerPlugin(ScrollTrigger);
 const FAQS = [
   {
     q: "How does the sourcing process work with Navkar Global Sourcing?",
-    a: "You share your product requirement — specifications, quantity, and target price. Our team identifies and verifies suitable manufacturers, collects and compares quotations, and manages the process through production, quality inspection, and shipping until your order reaches you.",
+    a: "You share your product requirement: specifications, quantity, and target price. Our team identifies and verifies suitable manufacturers, collects and compares quotations, and manages the process through production, quality inspection, and shipping until your order reaches you.",
   },
   {
     q: "Is there a minimum order quantity (MOQ)?",
-    a: "MOQ depends on the supplier and product category, not on us. Many factories have flexible MOQs based on material batch sizes and tooling costs — we negotiate this on your behalf and let you know what's realistically achievable before you commit.",
+    a: "MOQ depends on the supplier and product category, not on us. Many factories have flexible MOQs based on material batch sizes and tooling costs, and we negotiate this on your behalf and let you know what's realistically achievable before you commit.",
   },
   {
     q: "How do you verify suppliers before recommending them?",
@@ -37,7 +37,7 @@ const FAQS = [
   },
   {
     q: "Which product categories do you source?",
-    a: "We source across eleven core categories — toys, clothing, jewellery, furniture, accessories, electronics, machinery, home decor, footwear & bags, stationery, and hardware — each with its own vetted factory network.",
+    a: "We source across eleven core categories (toys, clothing, jewellery, furniture, accessories, electronics, machinery, home decor, footwear & bags, stationery, and hardware), each with its own vetted factory network.",
   },
 ];
 

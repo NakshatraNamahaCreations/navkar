@@ -8,7 +8,7 @@ import Challenges from "@/components/sections/Challenges";
 export const metadata = {
   title: "Product Categories | Navkar Global Sourcing",
   description:
-    "From bulk hardware to boutique jewellery, source confidently across every product category with verified factories, competitive pricing, and dedicated quality control.",
+    "From everyday essentials to specialized products, Navkar Global Sourcing connects you with verified manufacturers across every product category, backed by competitive pricing, dependable Supplier Verification Services, and dedicated Product Quality Inspection at every stage.",
 };
 
 export default function ProductCategoriesPage() {
@@ -21,7 +21,7 @@ export default function ProductCategoriesPage() {
           eyebrow="Product Categories"
           title="Categories"
           accentWord="we cater to."
-          copy="From bulk hardware to boutique jewellery, source confidently across every product category with verified factories, competitive pricing, and dedicated quality control."
+          copy="From everyday essentials to specialized products, Navkar Global Sourcing connects you with verified manufacturers, competitive pricing, and dedicated quality inspection at every stage."
         />
         <CategoriesCarousel />
         <CategoriesDetail />

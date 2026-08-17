@@ -14,6 +14,21 @@ const SUBJECTS = [
   "Shipping & Logistics",
 ];
 
+const COUNTRY_CODES = [
+  { code: "+91", country: "India" },
+  { code: "+1", country: "USA/Canada" },
+  { code: "+44", country: "UK" },
+  { code: "+971", country: "UAE" },
+  { code: "+61", country: "Australia" },
+  { code: "+65", country: "Singapore" },
+  { code: "+86", country: "China" },
+  { code: "+49", country: "Germany" },
+  { code: "+33", country: "France" },
+  { code: "+81", country: "Japan" },
+  { code: "+966", country: "Saudi Arabia" },
+  { code: "+27", country: "South Africa" },
+];
+
 const DETAILS = [
   {
     label: "Address",
@@ -55,9 +70,47 @@ const DETAILS = [
   },
 ];
 
+type FormErrors = {
+  name?: string;
+  email?: string;
+  phone?: string;
+  message?: string;
+};
+
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+function validateField(name: string, value: string): string | undefined {
+  const trimmed = value.trim();
+  switch (name) {
+    case "name":
+      if (!trimmed) return "Please enter your name.";
+      if (trimmed.length < 2) return "Name must be at least 2 characters.";
+      return undefined;
+    case "email":
+      if (!trimmed) return "Please enter your email address.";
+      if (!EMAIL_PATTERN.test(trimmed)) return "Enter a valid email address.";
+      return undefined;
+    case "phone": {
+      if (!trimmed) return "Please enter your phone number.";
+      const digits = trimmed.replace(/\D/g, "");
+      if (digits.length < 7 || digits.length > 12) {
+        return "Enter a valid phone number.";
+      }
+      return undefined;
+    }
+    case "message":
+      if (!trimmed) return "Please tell us what you're sourcing.";
+      if (trimmed.length < 10) return "Please add a few more details.";
+      return undefined;
+    default:
+      return undefined;
+  }
+}
+
 export default function ContactForm() {
   const root = useRef<HTMLDivElement>(null);
   const [submitted, setSubmitted] = useState(false);
+  const [errors, setErrors] = useState<FormErrors>({});
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -72,8 +125,23 @@ export default function ContactForm() {
     return () => ctx.revert();
   }, []);
 
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    const error = validateField(name, value);
+    setErrors((prev) => ({ ...prev, [name]: error }));
+  };
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const nextErrors: FormErrors = {
+      name: validateField("name", String(formData.get("name") ?? "")),
+      email: validateField("email", String(formData.get("email") ?? "")),
+      phone: validateField("phone", String(formData.get("phone") ?? "")),
+      message: validateField("message", String(formData.get("message") ?? "")),
+    };
+    setErrors(nextErrors);
+    if (Object.values(nextErrors).some(Boolean)) return;
     setSubmitted(true);
   };
 
@@ -106,14 +174,14 @@ export default function ContactForm() {
             {submitted ? (
               <div className="rounded-2xl border border-accent/30 bg-accent/5 p-8 text-center">
                 <p className="font-display text-lg font-semibold text-ink mb-2">
-                  Thank you — we&apos;ve received your message.
+                  Thank you. We&apos;ve received your message.
                 </p>
                 <p className="text-sm text-ink-soft">
                   Our team will reach out shortly.
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+              <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-5">
                 <div className="grid sm:grid-cols-2 gap-5">
                   <div className="flex flex-col gap-2">
                     <label
@@ -128,8 +196,20 @@ export default function ContactForm() {
                       type="text"
                       required
                       placeholder="Your name"
-                      className="rounded-xl border border-line bg-canvas px-4 py-3 text-sm text-ink placeholder:text-ink-soft/50 outline-none transition-colors duration-300 focus:border-accent"
+                      aria-invalid={Boolean(errors.name)}
+                      aria-describedby={errors.name ? "cf-name-error" : undefined}
+                      onBlur={handleBlur}
+                      className={`rounded-xl border bg-canvas px-4 py-3 text-sm text-ink placeholder:text-ink-soft/50 outline-none transition-colors duration-300 ${
+                        errors.name
+                          ? "border-red-400 focus:border-red-400"
+                          : "border-line focus:border-accent"
+                      }`}
                     />
+                    {errors.name && (
+                      <p id="cf-name-error" className="text-xs text-red-500">
+                        {errors.name}
+                      </p>
+                    )}
                   </div>
                   <div className="flex flex-col gap-2">
                     <label
@@ -144,8 +224,20 @@ export default function ContactForm() {
                       type="email"
                       required
                       placeholder="you@company.com"
-                      className="rounded-xl border border-line bg-canvas px-4 py-3 text-sm text-ink placeholder:text-ink-soft/50 outline-none transition-colors duration-300 focus:border-accent"
+                      aria-invalid={Boolean(errors.email)}
+                      aria-describedby={errors.email ? "cf-email-error" : undefined}
+                      onBlur={handleBlur}
+                      className={`rounded-xl border bg-canvas px-4 py-3 text-sm text-ink placeholder:text-ink-soft/50 outline-none transition-colors duration-300 ${
+                        errors.email
+                          ? "border-red-400 focus:border-red-400"
+                          : "border-line focus:border-accent"
+                      }`}
                     />
+                    {errors.email && (
+                      <p id="cf-email-error" className="text-xs text-red-500">
+                        {errors.email}
+                      </p>
+                    )}
                   </div>
                 </div>
 
@@ -157,13 +249,41 @@ export default function ContactForm() {
                     >
                       Phone Number
                     </label>
-                    <input
-                      id="cf-phone"
-                      name="phone"
-                      type="tel"
-                      placeholder="+91 00000 00000"
-                      className="rounded-xl border border-line bg-canvas px-4 py-3 text-sm text-ink placeholder:text-ink-soft/50 outline-none transition-colors duration-300 focus:border-accent"
-                    />
+                    <div className="flex gap-2">
+                      <select
+                        id="cf-country-code"
+                        name="countryCode"
+                        defaultValue="+91"
+                        aria-label="Country code"
+                        className="rounded-xl border border-line bg-canvas px-2.5 py-3 text-sm text-ink outline-none transition-colors duration-300 focus:border-accent shrink-0 w-[5.5rem]"
+                      >
+                        {COUNTRY_CODES.map((c) => (
+                          <option key={c.code} value={c.code}>
+                            {c.code} {c.country}
+                          </option>
+                        ))}
+                      </select>
+                      <input
+                        id="cf-phone"
+                        name="phone"
+                        type="tel"
+                        required
+                        placeholder="00000 00000"
+                        aria-invalid={Boolean(errors.phone)}
+                        aria-describedby={errors.phone ? "cf-phone-error" : undefined}
+                        onBlur={handleBlur}
+                        className={`flex-1 min-w-0 rounded-xl border bg-canvas px-4 py-3 text-sm text-ink placeholder:text-ink-soft/50 outline-none transition-colors duration-300 ${
+                          errors.phone
+                            ? "border-red-400 focus:border-red-400"
+                            : "border-line focus:border-accent"
+                        }`}
+                      />
+                    </div>
+                    {errors.phone && (
+                      <p id="cf-phone-error" className="text-xs text-red-500">
+                        {errors.phone}
+                      </p>
+                    )}
                   </div>
                   <div className="flex flex-col gap-2">
                     <label
@@ -200,8 +320,20 @@ export default function ContactForm() {
                     required
                     rows={5}
                     placeholder="Tell us about the product, quantity, and timeline..."
-                    className="rounded-xl border border-line bg-canvas px-4 py-3 text-sm text-ink placeholder:text-ink-soft/50 outline-none transition-colors duration-300 focus:border-accent resize-none"
+                    aria-invalid={Boolean(errors.message)}
+                    aria-describedby={errors.message ? "cf-message-error" : undefined}
+                    onBlur={handleBlur}
+                    className={`rounded-xl border bg-canvas px-4 py-3 text-sm text-ink placeholder:text-ink-soft/50 outline-none transition-colors duration-300 resize-none ${
+                      errors.message
+                        ? "border-red-400 focus:border-red-400"
+                        : "border-line focus:border-accent"
+                    }`}
                   />
+                  {errors.message && (
+                    <p id="cf-message-error" className="text-xs text-red-500">
+                      {errors.message}
+                    </p>
+                  )}
                 </div>
 
                 <button

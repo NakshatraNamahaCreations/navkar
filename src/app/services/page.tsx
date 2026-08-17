@@ -7,7 +7,7 @@ import WhoWeWorkWith from "@/components/sections/WhoWeWorkWith";
 export const metadata = {
   title: "Services | Navkar Global Sourcing",
   description:
-    "Four ways to source, one accountable desk — explore Navkar Global Sourcing's plans and who we work with.",
+    "Four ways to source, one accountable desk. Explore Navkar Global Sourcing's plans and who we work with.",
 };
 
 export default function ServicesPage() {

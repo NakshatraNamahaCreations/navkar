@@ -6,7 +6,7 @@ import Process from "@/components/sections/Process";
 export const metadata = {
   title: "Sourcing Process | Navkar Global Sourcing",
   description:
-    "From client enquiry to final delivery — the 12-step sourcing process behind every order at Navkar Global Sourcing.",
+    "From client enquiry to final delivery: the 12-step sourcing process behind every order at Navkar Global Sourcing.",
 };
 
 export default function SourcingProcessPage() {
@@ -19,7 +19,7 @@ export default function SourcingProcessPage() {
           eyebrow="Sourcing Process"
           title="How we"
           accentWord="work together."
-          copy="For the accountable handling of every order — twelve steps, one desk, from your first enquiry to final delivery."
+          copy="For the accountable handling of every order: twelve steps, one desk, from your first enquiry to final delivery."
         />
         <Process hideHeading />
       </main>

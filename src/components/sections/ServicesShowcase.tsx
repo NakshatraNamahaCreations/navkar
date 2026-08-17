@@ -30,7 +30,7 @@ const PLANS = [
     num: "02",
     name: "Pro",
     tagline: "If you don't have a supplier yet.",
-    blurb: "Our most-booked desk — full sourcing from a cold start to a verified factory.",
+    blurb: "Our most-booked desk: full sourcing from a cold start to a verified factory.",
     features: [
       "Product Categorization",
       "Supplier Sourcing",
@@ -49,7 +49,7 @@ const PLANS = [
     num: "03",
     name: "Custom",
     tagline: "Bundled solutions, quoted case-to-case.",
-    blurb: "For requirements that don't fit a template — scoped and quoted directly.",
+    blurb: "For requirements that don't fit a template, scoped and quoted directly.",
     features: [
       "Tailor-Made Sourcing Solutions",
       "Import & Logistics Support",
@@ -68,7 +68,7 @@ const PLANS = [
     num: "04",
     name: "Custom Pro",
     tagline: "For clients travelling to source themselves.",
-    blurb: "Boots on the ground alongside you — audits, translation, and factory visits.",
+    blurb: "Boots on the ground alongside you: audits, translation, and factory visits.",
     features: [
       "Business Travel Assistance",
       "Supplier Audits & Verification",
@@ -337,7 +337,7 @@ export default function ServicesShowcase({
             </h2>
             <p className="text-sm md:text-base text-ink-soft leading-relaxed mb-8">
               Tell us where you are in the sourcing journey and we&apos;ll point
-              you to the right desk — no obligation, no jargon.
+              you to the right desk, no obligation, no jargon.
             </p>
             <a
               href="/contact-us"

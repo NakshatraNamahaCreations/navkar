@@ -24,7 +24,7 @@ const nextDelay = () => {
 const RAW_TAGS = [
   { label: "Fraudulent Suppliers", x: -200, y: -108, rot: -21 },
   { label: "Hidden Costs", x: 0, y: -154, rot: 0 },
-  { label: "MOQ — Minimum Order Quantity", x: 200, y: -108, rot: 21 },
+  { label: "MOQ (Minimum Order Quantity)", x: 200, y: -108, rot: 21 },
   { label: "Ever-Changing Regulations", x: -333, y: 22, rot: -28 },
   { label: "Quality Control Processes", x: -280, y: -156, rot: -17 },
   { label: "Negotiating Payment Terms", x: -108, y: -269, rot: -6 },

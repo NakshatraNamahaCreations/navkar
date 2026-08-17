@@ -6,17 +6,18 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
+const pexels = (id: number, w = 900) =>
+  `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=${w}`;
+
 const TILES = [
-  { label: "Toys", sub: "Bricks, plush & RC", src: "/toys.webp" },
-  { label: "Jewellery", sub: "Fashion & fine stone", src: "/WhatsApp Image 2026-08-01 at 18.24.25.jpeg" },
-  { label: "Furniture", sub: "Wood & upholstery", src: "/WhatsApp Image 2026-08-01 at 18.35.28.jpeg" },
-  { label: "Electronics", sub: "Consumer & OEM", src: "/WhatsApp Image 2026-08-01 at 18.35.27.jpeg" },
-  { label: "Accessories", sub: "Leather & silver", src: "/accessories.webp" },
-  { label: "Machinery", sub: "Industrial & vehicles", src: "/WhatsApp Image 2026-08-01 at 18.35.52.jpeg" },
-  { label: "Home Decor", sub: "Interiors & gifting", src: "/WhatsApp Image 2026-08-01 at 18.35.29.jpeg" },
-  { label: "Footwear & Bags", sub: "Leather & performance", src: "/WhatsApp Image 2026-08-01 at 18.36.53.jpeg" },
-  { label: "Stationery", sub: "Paper & desk supply", src: "/stationary.webp" },
-  { label: "Hardware", sub: "Fasteners & tools", src: "/hardware.webp" },
+  { label: "Supplier Sourcing", sub: "Identification & shortlisting", src: pexels(3183197) },
+  { label: "Factory Audits", sub: "On-site verification", src: pexels(3862627) },
+  { label: "Production Floor", sub: "Manufacturing in progress", src: pexels(3846508) },
+  { label: "Quality Inspection", sub: "Pre-shipment checks", src: pexels(3184292) },
+  { label: "Packing & Labeling", sub: "Export-ready preparation", src: pexels(4481259) },
+  { label: "Documentation", sub: "Compliance & paperwork", src: pexels(6694543) },
+  { label: "Shipping & Logistics", sub: "Sea & air freight", src: "/cargo-ship-sailing-ocean.jpg" },
+  { label: "Our Team", sub: "Coordinating every order", src: pexels(3182773) },
 ];
 
 export default function GalleryGrid() {

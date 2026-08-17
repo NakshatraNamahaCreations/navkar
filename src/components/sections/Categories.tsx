@@ -162,9 +162,9 @@ export default function Categories({ hideHeading = false }: { hideHeading?: bool
             Categories <span className="text-accent">we cater to.</span>
           </h2>
           <p className="categories-copy text-ink-soft text-base md:text-lg leading-relaxed">
-            From bulk hardware to boutique jewellery, source confidently
-            across every product category with verified factories,
-            competitive pricing, and dedicated quality control.
+            From everyday essentials to specialized products, Navkar Global
+            Sourcing connects you with verified manufacturers, competitive
+            pricing, and dedicated quality inspection at every stage.
           </p>
         </div>
       )}

@@ -286,7 +286,7 @@ function TestimonialCard({
           }`}
           style={{ letterSpacing: "-0.005em" }}
         >
-          — {name}, {role}
+          {name}, {role}
         </div>
       </div>
     </div>
