@@ -32,7 +32,7 @@ const COUNTRY_CODES = [
 const DETAILS = [
   {
     label: "Address",
-    value: "12-A, Mahendra Industrial Premises, Sion East, Mumbai – 400022",
+    value: "Innov8 Solitaire Corporate Park, 7th Floor, S-11, Unit No. 1171 & 1172, Andheri (E), Mumbai – 400093",
     icon: (
       <path
         d="M12 21s7-6.5 7-11.5a7 7 0 10-14 0C5 14.5 12 21 12 21z"
@@ -56,9 +56,22 @@ const DETAILS = [
     ),
   },
   {
-    label: "Phone",
-    value: "+91 98925 75304",
-    href: "tel:+919892575304",
+    label: "Parshwa Shah",
+    value: "+91 99872 67555",
+    href: "tel:+919987267555",
+    icon: (
+      <path
+        d="M6 3h4l2 5-2.5 1.5a11 11 0 005 5L16 12l5 2v4a2 2 0 01-2 2C9.5 20 4 14.5 4 5a2 2 0 012-2z"
+        stroke="currentColor"
+        strokeWidth="1.4"
+        strokeLinejoin="round"
+      />
+    ),
+  },
+  {
+    label: "Monty Mehta",
+    value: "+91 81089 24986",
+    href: "tel:+918108924986",
     icon: (
       <path
         d="M6 3h4l2 5-2.5 1.5a11 11 0 005 5L16 12l5 2v4a2 2 0 01-2 2C9.5 20 4 14.5 4 5a2 2 0 012-2z"

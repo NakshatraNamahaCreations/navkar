@@ -271,9 +271,9 @@ export default function Footer() {
                   Address
                 </p>
                 <p className="text-sm text-canvas/80 leading-relaxed">
-                  12-A, Mahendra Industrial Premises,
+                  Innov8 Solitaire Corporate Park, 7th Floor, S-11,
                   <br />
-                  Sion East, Mumbai – 400022
+                  Unit No. 1171 &amp; 1172, Andheri (E), Mumbai – 400093
                 </p>
               </div>
               <div>
@@ -289,13 +289,24 @@ export default function Footer() {
               </div>
               <div>
                 <p className="text-[10px] uppercase tracking-[0.15em] text-canvas/40 mb-1">
-                  Phone
+                  Parshwa Shah
                 </p>
                 <a
-                  href="tel:+919892575304"
+                  href="tel:+919987267555"
                   className="text-sm text-canvas/80 hover:text-accent-soft transition-colors duration-300"
                 >
-                  +91 98925 75304
+                  +91 99872 67555
+                </a>
+              </div>
+              <div>
+                <p className="text-[10px] uppercase tracking-[0.15em] text-canvas/40 mb-1">
+                  Monty Mehta
+                </p>
+                <a
+                  href="tel:+918108924986"
+                  className="text-sm text-canvas/80 hover:text-accent-soft transition-colors duration-300"
+                >
+                  +91 81089 24986
                 </a>
               </div>
             </div>

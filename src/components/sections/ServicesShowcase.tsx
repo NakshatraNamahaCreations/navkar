@@ -18,6 +18,16 @@ const PLANS = [
       "Receiving Products",
       "Counting Quantity",
     ],
+    question: "Have your own supplier but need a trusted partner?",
+    description:
+      "Our Basic Sourcing Services Plan is designed for clients who already identified their supplier and require support with one specific sourcing service. We act as your representative, coordinating directly with your supplier to ensure the selected service is executed professionally and efficiently.",
+    idealFor: [
+      "Already have your supplier or factory identified",
+      "Require only one basic sourcing service",
+      "Need a reliable partner to coordinate with your supplier",
+      "Want greater confidence and transparency before products are shipped",
+    ],
+    closingLine: "Your Supplier. Our Support. Your Peace of Mind.",
     icon: (
       <>
         <path d="M6 3h9l3 3v15H6V3z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />
@@ -84,6 +94,8 @@ const PLANS = [
   },
 ];
 
+const AUTOPLAY_MS = 3800;
+
 export default function ServicesShowcase({
   hideDetailRail = false,
   hideCta = false,
@@ -93,6 +105,36 @@ export default function ServicesShowcase({
 } = {}) {
   const root = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(1);
+  const [slide, setSlide] = useState(0);
+  const [perView, setPerView] = useState(3);
+  const pausedRef = useRef(false);
+
+  useEffect(() => {
+    const setFromWidth = () => {
+      const w = window.innerWidth;
+      setPerView(w < 640 ? 1 : w < 1024 ? 2 : 3);
+    };
+    setFromWidth();
+    window.addEventListener("resize", setFromWidth);
+    return () => window.removeEventListener("resize", setFromWidth);
+  }, []);
+
+  const maxSlide = Math.max(0, PLANS.length - perView);
+
+  useEffect(() => {
+    setSlide((i) => Math.min(i, maxSlide));
+  }, [maxSlide]);
+
+  useEffect(() => {
+    const t = window.setInterval(() => {
+      if (pausedRef.current) return;
+      setSlide((i) => (i >= maxSlide ? 0 : i + 1));
+    }, AUTOPLAY_MS);
+    return () => window.clearInterval(t);
+  }, [maxSlide]);
+
+  const goSlide = (dir: 1 | -1) =>
+    setSlide((i) => Math.min(maxSlide, Math.max(0, i + dir)));
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -105,15 +147,12 @@ export default function ServicesShowcase({
         scrollTrigger: { trigger: ".svc-eyebrow", start: "top 85%" },
       });
 
-      gsap.utils.toArray<HTMLElement>(".svc-card").forEach((card, i) => {
-        gsap.from(card, {
-          opacity: 0,
-          y: 50,
-          duration: 0.8,
-          delay: i * 0.08,
-          ease: "power3.out",
-          scrollTrigger: { trigger: card, start: "top 90%" },
-        });
+      gsap.from(".svc-stage", {
+        opacity: 0,
+        y: 30,
+        duration: 0.8,
+        ease: "power3.out",
+        scrollTrigger: { trigger: ".svc-stage", start: "top 88%" },
       });
 
       gsap.from(".svc-cta", {
@@ -126,6 +165,8 @@ export default function ServicesShowcase({
     }, root);
     return () => ctx.revert();
   }, []);
+
+  const trackPercent = (100 / perView) * slide;
 
   return (
     <div ref={root}>
@@ -162,125 +203,178 @@ export default function ServicesShowcase({
           className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-canvas-deep to-transparent"
         />
 
-        <div className="relative z-10 max-w-2xl mx-auto text-center mb-16 md:mb-20">
-          <span className="svc-eyebrow inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.25em] text-accent mb-5">
-            <span className="w-1.5 h-1.5 rounded-full bg-accent" />
-            Compare Plans
-          </span>
-          <h2 className="svc-heading font-display font-bold leading-[1.1] text-3xl md:text-5xl text-ink">
-            Built for wherever you are
-            <br />
-            <span className="bg-gradient-to-r from-accent to-accent-soft bg-clip-text text-transparent">
-              in the sourcing journey.
+        <div className="relative z-10 max-w-6xl mx-auto flex flex-wrap items-end justify-between gap-6 mb-12 md:mb-16">
+          <div className="max-w-2xl">
+            <span className="svc-eyebrow inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.25em] text-accent mb-5">
+              <span className="w-1.5 h-1.5 rounded-full bg-accent" />
+              Compare Plans
             </span>
-          </h2>
+            <h2 className="svc-heading font-display font-bold leading-[1.1] text-3xl md:text-5xl text-ink">
+              Built for wherever you are
+              <br />
+              <span className="bg-gradient-to-r from-accent to-accent-soft bg-clip-text text-transparent">
+                in the sourcing journey.
+              </span>
+            </h2>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              onClick={() => goSlide(-1)}
+              aria-label="Previous plan"
+              className="grid place-items-center h-11 w-11 rounded-full border border-line text-ink-soft hover:border-ink hover:bg-ink hover:text-canvas transition-colors duration-300"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M15 18l-6-6 6-6" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+            <button
+              type="button"
+              onClick={() => goSlide(1)}
+              aria-label="Next plan"
+              className="grid place-items-center h-11 w-11 rounded-full border border-line text-ink-soft hover:border-ink hover:bg-ink hover:text-canvas transition-colors duration-300"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M9 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+          </div>
         </div>
 
-        <div className="relative z-10 max-w-6xl mx-auto grid sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6">
-          {PLANS.map((p) => (
-            <div
-              key={p.num}
-              onMouseEnter={() => setActive(PLANS.indexOf(p))}
-              className={`svc-card group relative flex flex-col rounded-3xl p-7 transition-all duration-400 ${
-                p.featured
-                  ? "bg-ink text-canvas lg:-translate-y-3 shadow-[0_30px_70px_-20px_rgba(15,118,110,0.45)] ring-1 ring-white/10"
-                  : "bg-white border border-line hover:-translate-y-1.5 hover:shadow-[0_25px_55px_-24px_rgba(20,40,50,0.25)] hover:border-accent/40"
-              }`}
-            >
-              {p.featured && (
-                <>
-                  <div
-                    aria-hidden
-                    className="pointer-events-none absolute -top-16 -right-16 w-48 h-48 rounded-full blur-3xl"
-                    style={{ background: "radial-gradient(circle, rgba(79,179,166,0.4), transparent 70%)" }}
-                  />
-                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-gradient-to-r from-accent to-accent-soft text-canvas text-[10px] uppercase tracking-[0.15em] font-semibold px-4 py-1.5 shadow-[0_8px_20px_-6px_rgba(15,118,110,0.6)]">
-                    Most Popular
-                  </span>
-                </>
-              )}
-
-              <div className="relative flex items-center justify-between mb-6">
-                <span
-                  className={`flex items-center justify-center w-12 h-12 rounded-2xl ${
-                    p.featured
-                      ? "bg-gradient-to-br from-accent-soft to-accent text-canvas"
-                      : "bg-accent/10 text-accent"
-                  }`}
-                >
-                  <svg viewBox="0 0 24 24" fill="none" className="w-[22px] h-[22px]">
-                    {p.icon}
-                  </svg>
-                </span>
-                <span
-                  className={`font-mono text-xs ${
-                    p.featured ? "text-canvas/40" : "text-ink-soft/40"
-                  }`}
-                >
-                  {p.num}
-                </span>
-              </div>
-
-              <h3 className="relative font-display text-xl font-bold mb-1.5">
-                {p.name}
-              </h3>
-              <p
-                className={`relative text-[13px] mb-5 ${
-                  p.featured ? "text-canvas/60" : "text-ink-soft"
-                }`}
-              >
-                {p.tagline}
-              </p>
-
+        <div
+          className="svc-stage relative z-10 max-w-6xl mx-auto overflow-hidden"
+          onMouseEnter={() => (pausedRef.current = true)}
+          onMouseLeave={() => (pausedRef.current = false)}
+        >
+          <div
+            className="flex transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] py-3"
+            style={{ transform: `translateX(-${trackPercent}%)` }}
+          >
+            {PLANS.map((p, i) => (
               <div
-                className={`relative h-px w-full mb-5 ${
-                  p.featured ? "bg-white/10" : "bg-line"
-                }`}
-              />
+                key={p.num}
+                className="shrink-0 px-2.5 md:px-3"
+                style={{ width: `${100 / perView}%` }}
+                onMouseEnter={() => setActive(i)}
+              >
+                <div
+                  className={`svc-card group relative flex flex-col h-full rounded-3xl p-7 transition-all duration-400 ${
+                    p.featured
+                      ? "bg-ink text-canvas shadow-[0_30px_70px_-20px_rgba(15,118,110,0.45)] ring-1 ring-white/10"
+                      : "bg-white border border-line hover:-translate-y-1.5 hover:shadow-[0_25px_55px_-24px_rgba(20,40,50,0.25)] hover:border-accent/40"
+                  }`}
+                >
+                  {p.featured && (
+                    <>
+                      <div
+                        aria-hidden
+                        className="pointer-events-none absolute -top-16 -right-16 w-48 h-48 rounded-full blur-3xl"
+                        style={{ background: "radial-gradient(circle, rgba(79,179,166,0.4), transparent 70%)" }}
+                      />
+                      <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-gradient-to-r from-accent to-accent-soft text-canvas text-[10px] uppercase tracking-[0.15em] font-semibold px-4 py-1.5 shadow-[0_8px_20px_-6px_rgba(15,118,110,0.6)]">
+                        Most Popular
+                      </span>
+                    </>
+                  )}
 
-              <ul className="relative flex flex-col gap-2.5 mb-7 flex-1">
-                {p.features.map((f) => (
-                  <li
-                    key={f}
-                    className={`flex items-start gap-2 text-[13px] leading-snug ${
-                      p.featured ? "text-canvas/85" : "text-ink-soft"
-                    }`}
-                  >
-                    <svg
-                      viewBox="0 0 20 20"
-                      fill="none"
-                      className={`w-4 h-4 mt-0.5 shrink-0 ${
-                        p.featured ? "text-accent-soft" : "text-accent"
+                  <div className="relative flex items-center justify-between mb-6">
+                    <span
+                      className={`flex items-center justify-center w-12 h-12 rounded-2xl ${
+                        p.featured
+                          ? "bg-gradient-to-br from-accent-soft to-accent text-canvas"
+                          : "bg-accent/10 text-accent"
                       }`}
                     >
-                      <circle cx="10" cy="10" r="9" stroke="currentColor" strokeWidth="1.4" />
-                      <path
-                        d="M6.5 10.2l2.2 2.2 4.8-5"
-                        stroke="currentColor"
-                        strokeWidth="1.4"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                    <span>{f}</span>
-                  </li>
-                ))}
-              </ul>
+                      <svg viewBox="0 0 24 24" fill="none" className="w-[22px] h-[22px]">
+                        {p.icon}
+                      </svg>
+                    </span>
+                    <span
+                      className={`font-mono text-xs ${
+                        p.featured ? "text-canvas/40" : "text-ink-soft/40"
+                      }`}
+                    >
+                      {p.num}
+                    </span>
+                  </div>
 
-              <a
-                href="#consultation"
-                className={`relative flex items-center justify-center gap-2 rounded-full py-3 text-xs uppercase tracking-[0.15em] font-medium transition-colors duration-300 ${
-                  p.featured
-                    ? "bg-canvas text-ink hover:bg-accent-soft"
-                    : "border border-line text-ink group-hover:border-ink"
-                }`}
-              >
-                Enquire
-                <span className="transition-transform duration-300 group-hover:translate-x-0.5">
-                  ↗
-                </span>
-              </a>
-            </div>
+                  <h3 className="relative font-display text-xl font-bold mb-1.5">
+                    {p.name}
+                  </h3>
+                  <p
+                    className={`relative text-[13px] mb-5 ${
+                      p.featured ? "text-canvas/60" : "text-ink-soft"
+                    }`}
+                  >
+                    {p.tagline}
+                  </p>
+
+                  <div
+                    className={`relative h-px w-full mb-5 ${
+                      p.featured ? "bg-white/10" : "bg-line"
+                    }`}
+                  />
+
+                  <ul className="relative flex flex-col gap-2.5 mb-7 flex-1">
+                    {p.features.map((f) => (
+                      <li
+                        key={f}
+                        className={`flex items-start gap-2 text-[13px] leading-snug ${
+                          p.featured ? "text-canvas/85" : "text-ink-soft"
+                        }`}
+                      >
+                        <svg
+                          viewBox="0 0 20 20"
+                          fill="none"
+                          className={`w-4 h-4 mt-0.5 shrink-0 ${
+                            p.featured ? "text-accent-soft" : "text-accent"
+                          }`}
+                        >
+                          <circle cx="10" cy="10" r="9" stroke="currentColor" strokeWidth="1.4" />
+                          <path
+                            d="M6.5 10.2l2.2 2.2 4.8-5"
+                            stroke="currentColor"
+                            strokeWidth="1.4"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                        <span>{f}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <a
+                    href="#consultation"
+                    className={`relative flex items-center justify-center gap-2 rounded-full py-3 text-xs uppercase tracking-[0.15em] font-medium transition-colors duration-300 ${
+                      p.featured
+                        ? "bg-canvas text-ink hover:bg-accent-soft"
+                        : "border border-line text-ink group-hover:border-ink"
+                    }`}
+                  >
+                    Enquire
+                    <span className="transition-transform duration-300 group-hover:translate-x-0.5">
+                      ↗
+                    </span>
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="relative z-10 max-w-6xl mx-auto mt-8 flex items-center justify-center gap-2">
+          {Array.from({ length: maxSlide + 1 }).map((_, i) => (
+            <button
+              key={i}
+              type="button"
+              onClick={() => setSlide(i)}
+              aria-label={`Show slide ${i + 1}`}
+              className={`h-1.5 rounded-full transition-all duration-300 ${
+                i === slide ? "w-8 bg-accent" : "w-1.5 bg-ink/15 hover:bg-ink/30"
+              }`}
+            />
           ))}
         </div>
       </section>

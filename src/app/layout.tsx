@@ -4,6 +4,7 @@ import "./globals.css";
 import SmoothScrollProvider from "@/components/SmoothScrollProvider";
 import SitePreloader from "@/components/SitePreloader";
 import BackToTop from "@/components/BackToTop";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 const inter = Inter({
   variable: "--font-display",
@@ -44,6 +45,7 @@ export default function RootLayout({
         <SitePreloader />
         <SmoothScrollProvider>{children}</SmoothScrollProvider>
         <BackToTop />
+        <WhatsAppButton />
       </body>
     </html>
   );
