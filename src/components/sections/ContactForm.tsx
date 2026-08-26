@@ -56,7 +56,7 @@ const DETAILS = [
     ),
   },
   {
-    label: "Parshwa Shah",
+    label: "Parshwa Shah (Founder)",
     value: "+91 99872 67555",
     href: "tel:+919987267555",
     icon: (
@@ -69,7 +69,7 @@ const DETAILS = [
     ),
   },
   {
-    label: "Monty Mehta",
+    label: "Monty Mehta (Co-Founder)",
     value: "+91 81089 24986",
     href: "tel:+918108924986",
     icon: (
