@@ -87,7 +87,7 @@ export const PLANS: Plan[] = [
     subtitle: "End-to-End Global Sourcing Services",
     intro: [
       "Looking for a reliable partner to manage your complete sourcing journey? Our Pro Global Sourcing Services Plan provides end-to-end sourcing support, from finding the right supplier to production, quality control, and shipment coordination.",
-      "Our team works as your dedicated global sourcing agent, helping you identify suitable manufacturers, evaluate suppliers, negotiate competitive prices, monitor production, inspect product quality, and coordinate the sourcing process.",
+      "Our team works as your dedicated global sourcing agent, helping you identify suitable manufacturers in China and other global markets, evaluate suppliers, negotiate competitive prices, monitor production, inspect product quality, and coordinate the sourcing process.",
     ],
     idealFor: [
       "Do not yet have a supplier or factory identified",
