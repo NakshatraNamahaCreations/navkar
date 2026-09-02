@@ -182,12 +182,12 @@ export default function FoundersSection() {
           </p>
 
           <p className="commitment-fade mt-5 text-sm md:text-base text-canvas/90 leading-relaxed max-w-2xl mx-auto">
-            Today, Navkar Sourcing serves as a reliable bridge between global
-            buyers and verified manufacturers, delivering sourcing solutions
-            that emphasize quality, transparency, efficiency, and long-term
-            value. At Navkar Sourcing, we don&apos;t just connect businesses
-            with suppliers. We build partnerships that drive lasting
-            success.
+            Today, Navkar Global Sourcing serves as a reliable bridge between
+            global buyers and verified manufacturers, delivering sourcing
+            solutions that emphasize quality, transparency, efficiency, and
+            long-term value. At Navkar Global Sourcing, we don&apos;t just
+            connect businesses with suppliers. We build partnerships that
+            drive lasting success.
           </p>
         </div>
       </section>
