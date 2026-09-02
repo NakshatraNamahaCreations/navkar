@@ -20,7 +20,7 @@ const STEPS = [
   },
   {
     title: "Supplier Identification",
-    copy: "We identify and evaluate manufacturers in China that match your product specifications, quality standards, order quantity, and delivery expectations through a structured Supplier Selection Process.",
+    copy: "We identify and evaluate manufacturers in China and other global markets that match your product specifications, quality standards, order quantity, and delivery expectations through a structured Supplier Selection Process.",
     icon: "search",
   },
   {
