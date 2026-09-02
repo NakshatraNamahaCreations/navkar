@@ -112,7 +112,7 @@ export default function ServicesShowcase({
   useEffect(() => {
     const setFromWidth = () => {
       const w = window.innerWidth;
-      setPerView(w < 640 ? 1 : w < 1024 ? 2 : 3);
+      setPerView(w < 640 ? 1 : w < 1024 ? 2 : w < 1280 ? 3 : 4);
     };
     setFromWidth();
     window.addEventListener("resize", setFromWidth);
@@ -203,7 +203,7 @@ export default function ServicesShowcase({
           className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-canvas-deep to-transparent"
         />
 
-        <div className="relative z-10 max-w-6xl mx-auto flex flex-wrap items-end justify-between gap-6 mb-12 md:mb-16">
+        <div className="relative z-10 max-w-7xl mx-auto flex flex-wrap items-end justify-between gap-6 mb-12 md:mb-16">
           <div className="max-w-2xl">
             <span className="svc-eyebrow inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.25em] text-accent mb-5">
               <span className="w-1.5 h-1.5 rounded-full bg-accent" />
@@ -218,32 +218,34 @@ export default function ServicesShowcase({
             </h2>
           </div>
 
-          <div className="flex items-center gap-3">
-            <button
-              type="button"
-              onClick={() => goSlide(-1)}
-              aria-label="Previous plan"
-              className="grid place-items-center h-11 w-11 rounded-full border border-line text-ink-soft hover:border-ink hover:bg-ink hover:text-canvas transition-colors duration-300"
-            >
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M15 18l-6-6 6-6" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </button>
-            <button
-              type="button"
-              onClick={() => goSlide(1)}
-              aria-label="Next plan"
-              className="grid place-items-center h-11 w-11 rounded-full border border-line text-ink-soft hover:border-ink hover:bg-ink hover:text-canvas transition-colors duration-300"
-            >
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M9 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </button>
-          </div>
+          {maxSlide > 0 && (
+            <div className="flex items-center gap-3">
+              <button
+                type="button"
+                onClick={() => goSlide(-1)}
+                aria-label="Previous plan"
+                className="grid place-items-center h-11 w-11 rounded-full border border-line text-ink-soft hover:border-ink hover:bg-ink hover:text-canvas transition-colors duration-300"
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M15 18l-6-6 6-6" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+              <button
+                type="button"
+                onClick={() => goSlide(1)}
+                aria-label="Next plan"
+                className="grid place-items-center h-11 w-11 rounded-full border border-line text-ink-soft hover:border-ink hover:bg-ink hover:text-canvas transition-colors duration-300"
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M9 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+            </div>
+          )}
         </div>
 
         <div
-          className="svc-stage relative z-10 max-w-6xl mx-auto overflow-hidden"
+          className="svc-stage relative z-10 max-w-7xl mx-auto overflow-hidden"
           onMouseEnter={() => (pausedRef.current = true)}
           onMouseLeave={() => (pausedRef.current = false)}
         >
@@ -364,19 +366,21 @@ export default function ServicesShowcase({
           </div>
         </div>
 
-        <div className="relative z-10 max-w-6xl mx-auto mt-8 flex items-center justify-center gap-2">
-          {Array.from({ length: maxSlide + 1 }).map((_, i) => (
-            <button
-              key={i}
-              type="button"
-              onClick={() => setSlide(i)}
-              aria-label={`Show slide ${i + 1}`}
-              className={`h-1.5 rounded-full transition-all duration-300 ${
-                i === slide ? "w-8 bg-accent" : "w-1.5 bg-ink/15 hover:bg-ink/30"
-              }`}
-            />
-          ))}
-        </div>
+        {maxSlide > 0 && (
+          <div className="relative z-10 max-w-7xl mx-auto mt-8 flex items-center justify-center gap-2">
+            {Array.from({ length: maxSlide + 1 }).map((_, i) => (
+              <button
+                key={i}
+                type="button"
+                onClick={() => setSlide(i)}
+                aria-label={`Show slide ${i + 1}`}
+                className={`h-1.5 rounded-full transition-all duration-300 ${
+                  i === slide ? "w-8 bg-accent" : "w-1.5 bg-ink/15 hover:bg-ink/30"
+                }`}
+              />
+            ))}
+          </div>
+        )}
       </section>
 
       {/* detail rail: a slimmer, editorial follow-up that expands on
