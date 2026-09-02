@@ -22,7 +22,7 @@ export default function ServicesPage() {
           accentWord="one accountable desk."
           copy="Pick the plan that matches where you are in the sourcing journey, from a supplier-in-hand check to a full on-the-ground sourcing desk."
         />
-        <ServicesShowcase hideDetailRail hideCta />
+        <ServicesShowcase hideCta />
         <WhoWeWorkWith />
       </main>
       <Footer />
