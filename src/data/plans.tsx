@@ -37,7 +37,7 @@ export const PLANS: Plan[] = [
     subtitle: "Professional Support for Your Existing Supplier",
     intro: [
       "Already have a supplier or factory but need professional assistance? Our Basic Global Sourcing Services Plan is designed for businesses that have identified their supplier and require support with one specific sourcing service.",
-      "We act as your trusted representative, coordinating directly with your supplier and helping ensure that the selected international sourcing service is completed professionally and efficiently.",
+      "We act as your trusted representative, coordinating directly with your supplier in China and other global markets and helping ensure that the selected international sourcing service is completed professionally and efficiently.",
     ],
     idealFor: [
       "Already have a supplier or manufacturer identified",
@@ -140,7 +140,7 @@ export const PLANS: Plan[] = [
     planTitle: "Custom Sourcing Plan",
     subtitle: "Flexible Global Sourcing Services for Your Business",
     intro: [
-      "Every business has different sourcing requirements. Our Custom Global Sourcing Services Plan is designed for clients who already have a supplier or manufacturer but need professional support with multiple sourcing activities.",
+      "Every business has different sourcing requirements. Our Custom Global Sourcing Services Plan is designed for clients who already have a supplier or manufacturer in China and other global markets but need professional support with multiple sourcing activities.",
       "Instead of choosing a complete sourcing package, you can select and combine the services that match your specific product, supplier, and business requirements.",
     ],
     idealFor: [
@@ -191,7 +191,7 @@ export const PLANS: Plan[] = [
     planTitle: "Custom Pro Sourcing Plan",
     subtitle: "On-the-Ground Support When You Travel to Source",
     intro: [
-      "Planning to travel and source directly with your suppliers? Our Custom Pro Global Sourcing Services Plan gives you a trusted partner on the ground, helping you navigate factory visits, negotiations, and supplier meetings with confidence.",
+      "Planning to travel and source directly with your suppliers in China and other global markets? Our Custom Pro Global Sourcing Services Plan gives you a trusted partner on the ground, helping you navigate factory visits, negotiations, and supplier meetings with confidence.",
       "Our team accompanies and supports you throughout your sourcing trip, handling language barriers, coordination, and verification so you can focus on building the right supplier relationships.",
     ],
     idealFor: [
