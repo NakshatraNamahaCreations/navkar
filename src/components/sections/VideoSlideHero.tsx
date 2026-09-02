@@ -8,7 +8,7 @@ const SLIDES = [
     kicker: "Global Product Sourcing Studio",
     titleParts: ["Shaping", "the future of", "global sourcing."],
     description:
-      "At Navkar Global Sourcing, we help businesses source high-quality products at competitive prices from China. As a trusted Global Sourcing Company, we provide reliable Product Sourcing Services that cover every stage of procurement from supplier identification and quotation comparison to quality assurance, Shipping & Logistics Services, and timely delivery ensuring a seamless and efficient sourcing experience.",
+      "At Navkar Global Sourcing, we help businesses source high-quality products at competitive prices worldwide. As a trusted Global Sourcing Company, we provide reliable Product Sourcing Services that cover every stage of procurement from supplier identification and quotation comparison to quality assurance, Shipping & Logistics Services, and timely delivery ensuring a seamless and efficient sourcing experience.",
     primaryCta: "Start Your Enquiry",
     primaryHref: "/contact-us",
     secondaryCta: "Explore Services",
@@ -19,7 +19,7 @@ const SLIDES = [
     kicker: "From Factory Floor to Your Shelf",
     titleParts: ["Sourcing Excellence,", "Delivering", "Globally"],
     description:
-      "Navkar Global Sourcing is a trusted Global Sourcing Company connecting businesses with verified manufacturers and suppliers worldwide. As an experienced China Sourcing Company, we simplify international procurement through transparent sourcing, dependable supplier management, and efficient Global Sourcing Solutions, ensuring quality, reliability, and on-time delivery for every project.",
+      "Navkar Global Sourcing is a trusted Global Sourcing Company connecting businesses with verified manufacturers and suppliers worldwide. As Navkar Global Sourcing, we simplify international procurement through transparent sourcing, dependable supplier management, and efficient Global Sourcing Solutions, ensuring quality, reliability, and on-time delivery for every project.",
     primaryCta: "Find a Supplier",
     primaryHref: "/contact-us",
     secondaryCta: "View Our Process",
@@ -30,7 +30,7 @@ const SLIDES = [
     kicker: "18 Years of Sourcing Relationships",
     titleParts: ["Empowering Businesses", "Through", "Smart Sourcing"],
     description:
-      "Partner with Navkar Global Sourcing, a reliable Global Sourcing Company, to unlock global sourcing opportunities. We help businesses source quality products from verified manufacturers in China through comprehensive Supplier Verification Services, Product Quality Inspection, competitive price negotiation, and End-to-End Sourcing Services, delivering a smooth procurement journey from factory to destination.",
+      "Partner with Navkar Global Sourcing, a reliable Global Sourcing Company, to unlock global sourcing opportunities. We help businesses source quality products from verified manufacturers worldwide through comprehensive Supplier Verification Services, Product Quality Inspection, competitive price negotiation, and End-to-End Sourcing Services, delivering a smooth procurement journey from factory to destination.",
     primaryCta: "Discuss Your Requirement",
     primaryHref: "/contact-us",
     secondaryCta: "Contact Our Team",
