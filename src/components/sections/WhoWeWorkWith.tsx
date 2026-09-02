@@ -288,8 +288,9 @@ export default function WhoWeWorkWith() {
           At Navkar Global Sourcing, we provide reliable sourcing solutions
           for businesses of all sizes across a wide range of industries.
           Whether you&apos;re launching a new product, expanding your supply
-          chain, or sourcing from China, we help you connect with verified
-          manufacturers and simplify the procurement process.
+          chain, or sourcing from China and other global markets, we help
+          you connect with verified manufacturers and simplify the
+          procurement process.
         </p>
       </div>
 
