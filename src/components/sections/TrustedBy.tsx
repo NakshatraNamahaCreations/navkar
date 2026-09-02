@@ -9,8 +9,8 @@ gsap.registerPlugin(ScrollTrigger);
 const STATS = [
   { value: "18+", label: "Years of Experience" },
   { value: "600+", label: "Audited Manufacturers" },
-  { value: "18K+", label: "Units Shipped Annually" },
-  { value: "40+", label: "Countries Served" },
+  { value: "5K+", label: "Units Shipped Annually" },
+  { value: "10+", label: "Countries Served" },
 ];
 
 const PILLARS = [
