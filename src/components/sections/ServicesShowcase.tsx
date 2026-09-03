@@ -178,7 +178,7 @@ export default function ServicesShowcase({
                 <div
                   className={`svc-card group relative flex flex-col h-full rounded-3xl p-7 transition-all duration-400 ${
                     p.featured
-                      ? "bg-ink text-canvas shadow-[0_30px_70px_-20px_rgba(15,118,110,0.45)] ring-1 ring-white/10"
+                      ? "bg-ink text-canvas shadow-[0_30px_70px_-20px_rgba(15,118,110,0.45)] ring-1 ring-white/10 hover:-translate-y-1.5 hover:ring-accent/50 hover:shadow-[0_35px_80px_-16px_rgba(15,118,110,0.65)]"
                       : "bg-white text-ink border border-line hover:-translate-y-1.5 hover:bg-ink hover:text-canvas hover:border-ink hover:shadow-[0_30px_70px_-20px_rgba(15,118,110,0.45)]"
                   }`}
                 >
