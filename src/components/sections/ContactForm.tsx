@@ -57,6 +57,54 @@ const DETAILS = [
   },
 ];
 
+const SOCIALS = [
+  {
+    name: "Instagram",
+    href: "#",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" className="w-4 h-4">
+        <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" strokeWidth="1.6" />
+        <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1.6" />
+        <circle cx="17.2" cy="6.8" r="1" fill="currentColor" />
+      </svg>
+    ),
+  },
+  {
+    name: "Facebook",
+    href: "#",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" className="w-4 h-4">
+        <path
+          d="M14 9h2.5V5.5H14c-2 0-3.5 1.5-3.5 3.5v2H8v3.5h2.5V21H14v-6.5h2.3l.4-3.5H14V9z"
+          fill="currentColor"
+        />
+      </svg>
+    ),
+  },
+  {
+    name: "LinkedIn",
+    href: "#",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" className="w-4 h-4">
+        <path
+          d="M6.94 5a1.94 1.94 0 11-3.88 0 1.94 1.94 0 013.88 0zM3.5 8.75h3.4V20h-3.4V8.75zM9.9 8.75h3.26v1.54h.05c.45-.86 1.56-1.77 3.22-1.77 3.45 0 4.08 2.27 4.08 5.22V20h-3.4v-5.63c0-1.34-.02-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97V20H9.9V8.75z"
+          fill="currentColor"
+        />
+      </svg>
+    ),
+  },
+  {
+    name: "YouTube",
+    href: "#",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" className="w-4 h-4">
+        <rect x="2.5" y="6" width="19" height="12" rx="3.5" stroke="currentColor" strokeWidth="1.6" />
+        <path d="M10.5 9.5l5 2.5-5 2.5v-5z" fill="currentColor" />
+      </svg>
+    ),
+  },
+];
+
 type FormErrors = {
   name?: string;
   email?: string;
@@ -459,6 +507,24 @@ export default function ContactForm() {
             </div>
 
             <div className="relative z-10 mt-10 pt-6 border-t border-canvas/10">
+              <p className="text-[11px] uppercase tracking-[0.15em] text-canvas/40 mb-3">
+                Follow Us
+              </p>
+              <div className="flex items-center gap-2.5">
+                {SOCIALS.map((s) => (
+                  <a
+                    key={s.name}
+                    href={s.href}
+                    aria-label={s.name}
+                    className="w-8 h-8 rounded-full border border-canvas/20 flex items-center justify-center text-canvas/70 hover:border-accent-soft hover:text-accent-soft hover:bg-accent-soft/10 transition-colors duration-300"
+                  >
+                    {s.icon}
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            <div className="relative z-10 mt-8 pt-6 border-t border-canvas/10">
               <p className="text-[11px] uppercase tracking-[0.15em] text-canvas/40 mb-1">
                 Response Time
               </p>
