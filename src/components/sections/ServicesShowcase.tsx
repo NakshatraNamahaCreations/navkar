@@ -239,6 +239,10 @@ export default function ServicesShowcase({
                     ))}
                   </ul>
 
+                  <p className="relative text-[11px] leading-snug text-red-500/90 mb-4 transition-colors duration-400 group-hover:text-red-400">
+                    {p.fee === "Let's connect" ? p.fee : `** ${p.fee} **`}
+                  </p>
+
                   <Link
                     href={`/services/${p.slug}`}
                     className="relative flex items-center justify-center gap-1.5 mb-3 text-[11px] uppercase tracking-[0.15em] font-medium hover:underline underline-offset-4 text-ink-soft transition-colors duration-400 group-hover:text-canvas/70"
