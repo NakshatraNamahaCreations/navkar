@@ -19,13 +19,13 @@ const FOUNDERS = [
     ],
   },
   {
-    name: "Monty Mehta",
+    name: "Monty M Mehta",
     role: "Co-Founder",
     years: "17+",
-    field: "Steel processing & steel cutting",
+    field: "Steel Manufacturing, Alloy & Ferrous Material, Industrial Machinery & AI Automation Expert",
     paragraphs: [
-      "As Co-Founder, Monty Mehta plays a pivotal role in strengthening supplier partnerships, driving business development, and ensuring exceptional client experiences throughout the sourcing journey.",
-      "With 17+ years of entrepreneurial experience in the steel processing and steel cutting industry, Monty possesses extensive expertise in manufacturing operations, supplier negotiations, procurement, and project execution. His practical business acumen and solution-oriented mindset help clients navigate the complexities of global sourcing with confidence.",
+      "As Co-Founder, Monty Mehta plays a pivotal role in strengthening industrial supplier partnerships, driving business development, and ensuring exceptional client experiences throughout the sourcing journey with technical expertise.",
+      "With 17+ years of entrepreneurial experience in the steel processing, trading, and manufacturing industry, Monty possesses extensive expertise in manufacturing operations, industrial automations, intelligent systems, material negotiations, procurement, and project execution. His practical business acumen and solution-oriented mindset help clients navigate the complexities of global sourcing with confidence.",
       "Committed to transparency, operational efficiency, and long-term collaboration, Monty works closely with suppliers and customers alike to deliver high-quality products, competitive pricing, and seamless procurement experiences.",
     ],
   },
