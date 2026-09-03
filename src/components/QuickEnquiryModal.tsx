@@ -24,9 +24,13 @@ const labelClass = "block text-xs font-medium uppercase tracking-[0.12em] text-i
 export default function QuickEnquiryModal({
   open,
   onClose,
+  planName,
 }: {
   open: boolean;
   onClose: () => void;
+  /** when opened from a specific plan card, pre-fills the requirement
+   *  field and shows which plan the enquiry is about */
+  planName?: string;
 }) {
   const [form, setForm] = useState<FormState>(INITIAL_STATE);
   const [submitted, setSubmitted] = useState(false);
@@ -38,6 +42,15 @@ export default function QuickEnquiryModal({
       document.body.style.overflow = "";
     };
   }, [open]);
+
+  useEffect(() => {
+    if (open && planName) {
+      setForm((f) => ({
+        ...f,
+        requirement: f.requirement || `Interested in the ${planName} plan.`,
+      }));
+    }
+  }, [open, planName]);
 
   useEffect(() => {
     if (!open) {
@@ -84,7 +97,7 @@ export default function QuickEnquiryModal({
             <div>
               <span className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.25em] text-accent-soft mb-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-accent-soft" />
-                Quick Enquiry
+                {planName ? `${planName} Plan Enquiry` : "Quick Enquiry"}
               </span>
               <h2
                 id="quick-enquiry-modal-title"

@@ -23,6 +23,7 @@ export default function Nav() {
   const [open, setOpen] = useState(false);
   const [enquiryOpen, setEnquiryOpen] = useState(false);
   const [quickEnquiryOpen, setQuickEnquiryOpen] = useState(false);
+  const [quickEnquiryPlan, setQuickEnquiryPlan] = useState<string | undefined>(undefined);
   const [progress, setProgress] = useState(0);
   const [scrolled, setScrolled] = useState(false);
 
@@ -34,7 +35,10 @@ export default function Nav() {
     let timer: ReturnType<typeof setTimeout> | undefined;
     const trigger = () => {
       sessionStorage.setItem(AUTO_ENQUIRY_SESSION_KEY, "1");
-      timer = setTimeout(() => setQuickEnquiryOpen(true), AUTO_ENQUIRY_DELAY_MS);
+      timer = setTimeout(() => {
+        setQuickEnquiryPlan(undefined);
+        setQuickEnquiryOpen(true);
+      }, AUTO_ENQUIRY_DELAY_MS);
     };
 
     window.addEventListener("site-preloader-done", trigger, { once: true });
@@ -42,6 +46,19 @@ export default function Nav() {
       window.removeEventListener("site-preloader-done", trigger);
       if (timer) clearTimeout(timer);
     };
+  }, []);
+
+  // a single shared quick-enquiry modal instance — anywhere in the site can
+  // open it (optionally pre-filled for a specific plan) via this event
+  // instead of mounting its own modal
+  useEffect(() => {
+    const onOpenQuickEnquiry = (e: Event) => {
+      const planName = (e as CustomEvent<{ planName?: string }>).detail?.planName;
+      setQuickEnquiryPlan(planName);
+      setQuickEnquiryOpen(true);
+    };
+    window.addEventListener("open-quick-enquiry", onOpenQuickEnquiry);
+    return () => window.removeEventListener("open-quick-enquiry", onOpenQuickEnquiry);
   }, []);
 
   useEffect(() => {
@@ -219,6 +236,7 @@ export default function Nav() {
       <QuickEnquiryModal
         open={quickEnquiryOpen}
         onClose={() => setQuickEnquiryOpen(false)}
+        planName={quickEnquiryPlan}
       />
     </>
   );
