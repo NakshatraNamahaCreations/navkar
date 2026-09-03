@@ -278,7 +278,7 @@ export default function Challenges() {
       <div className="challenges-watermark absolute top-8 md:top-16 left-0 right-0 overflow-hidden pointer-events-none select-none">
         <p
           className="font-display font-black uppercase text-ink/[0.035] whitespace-nowrap leading-none"
-          style={{ fontSize: "clamp(6rem, 18vw, 16rem)" }}
+          style={{ fontSize: "clamp(3rem, 18vw, 16rem)" }}
         >
           Challenges Challenges Challenges
         </p>

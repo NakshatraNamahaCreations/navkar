@@ -226,7 +226,7 @@ export default function Nav() {
           <div className="h-px bg-line" />
 
           <div className="flex flex-col gap-2 text-xs text-ink-soft">
-            <span>info@navkarglobal.com</span>
+            <span>sales@navkarglobalsourcing.com</span>
             <span>Global Sourcing Studio</span>
           </div>
         </div>
