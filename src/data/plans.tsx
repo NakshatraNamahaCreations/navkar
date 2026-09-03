@@ -36,7 +36,7 @@ export const PLANS: Plan[] = [
       "Random Inspection of Product",
       "Shipping and Logistics Arrangement",
     ],
-    fee: "Our service fee 5-7% or minimum $50 for any 1 of the above service",
+    fee: "Service Fee: 5-7% or min. $50",
     planTitle: "Basic Sourcing Plan",
     subtitle: "Professional Support for Your Existing Supplier",
     intro: [
@@ -87,7 +87,7 @@ export const PLANS: Plan[] = [
       "Shipping & Logistics Coordination",
       "Production Follow-Up",
     ],
-    fee: "Our service fee 8-10% of product value/service or minimum $300-500",
+    fee: "Service Fee: 8-10% or min. $300-500",
     featured: true,
     planTitle: "Pro Sourcing Plan",
     subtitle: "End-to-End Global Sourcing Services",
@@ -140,7 +140,7 @@ export const PLANS: Plan[] = [
       "Custom Product Support",
       "Shipment Consolidation",
     ],
-    fee: "Our service fee 8-10% of product value/service or minimum $300-500",
+    fee: "Service Fee: 8-10% or min. $300-500",
     planTitle: "Custom Sourcing Plan",
     subtitle: "Flexible Global Sourcing Services for Your Business",
     intro: [

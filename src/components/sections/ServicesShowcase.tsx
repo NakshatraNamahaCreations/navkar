@@ -245,21 +245,21 @@ export default function ServicesShowcase({
                     ))}
                   </ul>
 
-                  {p.fee === "Let's connect" ? (
-                    <Link
-                      href="/contact-us"
-                      className="relative inline-flex items-center gap-1.5 self-start mb-4 rounded-full bg-gradient-to-r from-accent to-accent-soft px-4 py-2 text-sm font-bold text-canvas shadow-[0_10px_24px_-8px_rgba(15,118,110,0.6)] transition-transform duration-300 hover:scale-105"
-                    >
-                      Let&apos;s Connect
-                      <span className="transition-transform duration-300 group-hover:translate-x-0.5">
-                        ↗
-                      </span>
-                    </Link>
-                  ) : (
-                    <p className="relative rounded-xl bg-red-500/10 px-3 py-2 text-[13px] font-semibold leading-snug text-red-600 mb-4 transition-colors duration-400 group-hover:bg-red-500/20 group-hover:text-red-300">
+                  {p.fee !== "Let's connect" && (
+                    <p className="relative rounded-xl bg-ink/5 px-3 py-2 text-[13px] font-semibold leading-snug text-ink mb-3 transition-colors duration-400 group-hover:bg-canvas/10 group-hover:text-canvas">
                       {p.fee}
                     </p>
                   )}
+
+                  <Link
+                    href="/contact-us"
+                    className="relative inline-flex items-center gap-1.5 self-start mb-4 rounded-full bg-gradient-to-r from-accent to-accent-soft px-4 py-2 text-sm font-bold text-canvas shadow-[0_10px_24px_-8px_rgba(15,118,110,0.6)] transition-transform duration-300 hover:scale-105"
+                  >
+                    Let&apos;s Connect
+                    <span className="transition-transform duration-300 group-hover:translate-x-0.5">
+                      ↗
+                    </span>
+                  </Link>
 
                   <Link
                     href={`/services/${p.slug}`}
