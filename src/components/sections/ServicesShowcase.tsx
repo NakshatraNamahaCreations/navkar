@@ -176,17 +176,13 @@ export default function ServicesShowcase({
                 onMouseEnter={() => setActive(i)}
               >
                 <div
-                  className={`svc-card group relative flex flex-col h-full rounded-3xl p-7 transition-all duration-400 ${
-                    p.featured
-                      ? "bg-ink text-canvas shadow-[0_30px_70px_-20px_rgba(15,118,110,0.45)] ring-1 ring-white/10 hover:-translate-y-1.5 hover:ring-accent/50 hover:shadow-[0_35px_80px_-16px_rgba(15,118,110,0.65)]"
-                      : "bg-white text-ink border border-line hover:-translate-y-1.5 hover:bg-ink hover:text-canvas hover:border-ink hover:shadow-[0_30px_70px_-20px_rgba(15,118,110,0.45)]"
-                  }`}
+                  className="svc-card group relative flex flex-col h-full rounded-3xl p-7 bg-white text-ink border border-line transition-all duration-400 hover:-translate-y-1.5 hover:bg-ink hover:text-canvas hover:border-ink hover:shadow-[0_30px_70px_-20px_rgba(15,118,110,0.45)]"
                 >
                   {p.featured && (
                     <>
                       <div
                         aria-hidden
-                        className="pointer-events-none absolute -top-16 -right-16 w-48 h-48 rounded-full blur-3xl"
+                        className="pointer-events-none absolute -top-16 -right-16 w-48 h-48 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-400"
                         style={{ background: "radial-gradient(circle, rgba(79,179,166,0.4), transparent 70%)" }}
                       />
                       <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-gradient-to-r from-accent to-accent-soft text-canvas text-[10px] uppercase tracking-[0.15em] font-semibold px-4 py-1.5 shadow-[0_8px_20px_-6px_rgba(15,118,110,0.6)]">
@@ -196,22 +192,12 @@ export default function ServicesShowcase({
                   )}
 
                   <div className="relative flex items-center justify-between mb-6">
-                    <span
-                      className={`flex items-center justify-center w-12 h-12 rounded-2xl transition-colors duration-400 ${
-                        p.featured
-                          ? "bg-gradient-to-br from-accent-soft to-accent text-canvas"
-                          : "bg-accent/10 text-accent group-hover:bg-gradient-to-br group-hover:from-accent-soft group-hover:to-accent group-hover:text-canvas"
-                      }`}
-                    >
+                    <span className="flex items-center justify-center w-12 h-12 rounded-2xl bg-accent/10 text-accent transition-colors duration-400 group-hover:bg-gradient-to-br group-hover:from-accent-soft group-hover:to-accent group-hover:text-canvas">
                       <svg viewBox="0 0 24 24" fill="none" className="w-[22px] h-[22px]">
                         {p.icon}
                       </svg>
                     </span>
-                    <span
-                      className={`font-mono text-xs transition-colors duration-400 ${
-                        p.featured ? "text-canvas/40" : "text-ink-soft/40 group-hover:text-canvas/40"
-                      }`}
-                    >
+                    <span className="font-mono text-xs text-ink-soft/40 transition-colors duration-400 group-hover:text-canvas/40">
                       {p.num}
                     </span>
                   </div>
@@ -222,34 +208,22 @@ export default function ServicesShowcase({
                   >
                     {p.name}
                   </Link>
-                  <p
-                    className={`relative text-[13px] mb-5 transition-colors duration-400 ${
-                      p.featured ? "text-canvas/60" : "text-ink-soft group-hover:text-canvas/60"
-                    }`}
-                  >
+                  <p className="relative text-[13px] mb-5 text-ink-soft transition-colors duration-400 group-hover:text-canvas/60">
                     {p.tagline}
                   </p>
 
-                  <div
-                    className={`relative h-px w-full mb-5 transition-colors duration-400 ${
-                      p.featured ? "bg-white/10" : "bg-line group-hover:bg-white/10"
-                    }`}
-                  />
+                  <div className="relative h-px w-full mb-5 bg-line transition-colors duration-400 group-hover:bg-white/10" />
 
                   <ul className="relative flex flex-col gap-2.5 mb-7 flex-1">
                     {p.features.map((f) => (
                       <li
                         key={f}
-                        className={`flex items-start gap-2 text-[13px] leading-snug transition-colors duration-400 ${
-                          p.featured ? "text-canvas/85" : "text-ink-soft group-hover:text-canvas/85"
-                        }`}
+                        className="flex items-start gap-2 text-[13px] leading-snug text-ink-soft transition-colors duration-400 group-hover:text-canvas/85"
                       >
                         <svg
                           viewBox="0 0 20 20"
                           fill="none"
-                          className={`w-4 h-4 mt-0.5 shrink-0 transition-colors duration-400 ${
-                            p.featured ? "text-accent-soft" : "text-accent group-hover:text-accent-soft"
-                          }`}
+                          className="w-4 h-4 mt-0.5 shrink-0 text-accent transition-colors duration-400 group-hover:text-accent-soft"
                         >
                           <circle cx="10" cy="10" r="9" stroke="currentColor" strokeWidth="1.4" />
                           <path
@@ -267,9 +241,7 @@ export default function ServicesShowcase({
 
                   <Link
                     href={`/services/${p.slug}`}
-                    className={`relative flex items-center justify-center gap-1.5 mb-3 text-[11px] uppercase tracking-[0.15em] font-medium hover:underline underline-offset-4 transition-colors duration-400 ${
-                      p.featured ? "text-canvas/70" : "text-ink-soft group-hover:text-canvas/70"
-                    }`}
+                    className="relative flex items-center justify-center gap-1.5 mb-3 text-[11px] uppercase tracking-[0.15em] font-medium hover:underline underline-offset-4 text-ink-soft transition-colors duration-400 group-hover:text-canvas/70"
                   >
                     View Full Details
                     <span>→</span>
@@ -277,11 +249,7 @@ export default function ServicesShowcase({
 
                   <a
                     href="#consultation"
-                    className={`relative flex items-center justify-center gap-2 rounded-full py-3 text-xs uppercase tracking-[0.15em] font-medium transition-colors duration-300 ${
-                      p.featured
-                        ? "bg-canvas text-ink hover:bg-accent-soft"
-                        : "border border-line text-ink group-hover:border-canvas group-hover:bg-canvas group-hover:text-ink"
-                    }`}
+                    className="relative flex items-center justify-center gap-2 rounded-full py-3 text-xs uppercase tracking-[0.15em] font-medium border border-line text-ink transition-colors duration-300 group-hover:border-canvas group-hover:bg-canvas group-hover:text-ink"
                   >
                     Enquire
                     <span className="transition-transform duration-300 group-hover:translate-x-0.5">
