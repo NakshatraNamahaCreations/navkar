@@ -16,7 +16,7 @@ export default function SourcingProcessPage() {
       <main className="flex flex-col flex-1">
         <PageHero
           variant="editorial"
-          eyebrow="Sourcing Process"
+          eyebrow="Simple Steps to Sourcing"
           title="How we"
           accentWord="work together."
           copy="For the accountable handling of every order: twelve steps, one desk, from your first enquiry to final delivery."

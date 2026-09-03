@@ -42,7 +42,7 @@ export default async function PlanPage({
       <main className="flex flex-col flex-1">
         <PageHero
           variant="centered"
-          eyebrow="Our Services"
+          eyebrow="Our Sourcing Plans as per Your Needs"
           title={plan.planTitle}
           copy={plan.tagline}
         />
