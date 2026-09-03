@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import EnquiryModal from "@/components/EnquiryModal";
+import QuickEnquiryModal from "@/components/QuickEnquiryModal";
 
 const NAV_LINKS = [
   { href: "/", label: "Home", num: "01" },
@@ -15,11 +16,33 @@ const NAV_LINKS = [
   { href: "/contact-us", label: "Contact Us", num: "08" },
 ];
 
+const AUTO_ENQUIRY_SESSION_KEY = "navkar-auto-enquiry-shown";
+const AUTO_ENQUIRY_DELAY_MS = 1000;
+
 export default function Nav() {
   const [open, setOpen] = useState(false);
   const [enquiryOpen, setEnquiryOpen] = useState(false);
+  const [quickEnquiryOpen, setQuickEnquiryOpen] = useState(false);
   const [progress, setProgress] = useState(0);
   const [scrolled, setScrolled] = useState(false);
+
+  // greet first-time-this-session visitors with a small enquiry form, once
+  // the brand preloader has finished so it doesn't stack on top of it
+  useEffect(() => {
+    if (sessionStorage.getItem(AUTO_ENQUIRY_SESSION_KEY)) return;
+
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    const trigger = () => {
+      sessionStorage.setItem(AUTO_ENQUIRY_SESSION_KEY, "1");
+      timer = setTimeout(() => setQuickEnquiryOpen(true), AUTO_ENQUIRY_DELAY_MS);
+    };
+
+    window.addEventListener("site-preloader-done", trigger, { once: true });
+    return () => {
+      window.removeEventListener("site-preloader-done", trigger);
+      if (timer) clearTimeout(timer);
+    };
+  }, []);
 
   useEffect(() => {
     const doc = document.documentElement;
@@ -193,6 +216,10 @@ export default function Nav() {
       </div>
 
       <EnquiryModal open={enquiryOpen} onClose={() => setEnquiryOpen(false)} />
+      <QuickEnquiryModal
+        open={quickEnquiryOpen}
+        onClose={() => setQuickEnquiryOpen(false)}
+      />
     </>
   );
 }
