@@ -146,6 +146,8 @@ export default function ContactForm() {
   const root = useRef<HTMLDivElement>(null);
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState<FormErrors>({});
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [countryCode, setCountryCode] = useState("+91");
   const [countryOpen, setCountryOpen] = useState(false);
   const countryRef = useRef<HTMLDivElement>(null);
@@ -181,7 +183,7 @@ export default function ContactForm() {
     setErrors((prev) => ({ ...prev, [name]: error }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const nextErrors: FormErrors = {
@@ -192,7 +194,27 @@ export default function ContactForm() {
     };
     setErrors(nextErrors);
     if (Object.values(nextErrors).some(Boolean)) return;
-    setSubmitted(true);
+
+    setSubmitError(null);
+    setSubmitting(true);
+    try {
+      const fields: Record<string, string> = {};
+      formData.forEach((value, key) => {
+        fields[key] = String(value);
+      });
+
+      const res = await fetch("/api/send-enquiry", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ formName: "Contact Form", fields }),
+      });
+      if (!res.ok) throw new Error("Request failed");
+      setSubmitted(true);
+    } catch {
+      setSubmitError("Something went wrong sending your message. Please try again or email us directly.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -439,11 +461,16 @@ export default function ContactForm() {
                   )}
                 </div>
 
+                {submitError && (
+                  <p className="text-xs text-red-500">{submitError}</p>
+                )}
+
                 <button
                   type="submit"
-                  className="mt-2 self-start inline-flex items-center gap-2 rounded-full bg-ink text-canvas px-7 py-3.5 text-xs uppercase tracking-[0.2em] font-medium hover:bg-accent transition-colors duration-300"
+                  disabled={submitting}
+                  className="mt-2 self-start inline-flex items-center gap-2 rounded-full bg-ink text-canvas px-7 py-3.5 text-xs uppercase tracking-[0.2em] font-medium hover:bg-accent transition-colors duration-300 disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  Submit Requirement
+                  {submitting ? "Sending…" : "Submit Requirement"}
                   <span>↗</span>
                 </button>
               </form>

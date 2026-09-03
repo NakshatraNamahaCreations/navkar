@@ -60,6 +60,8 @@ export default function EnquiryModal({
   const [form, setForm] = useState<FormState>(INITIAL_STATE);
   const [file, setFile] = useState<File | null>(null);
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   useEffect(() => {
     if (!open) return;
@@ -84,9 +86,38 @@ export default function EnquiryModal({
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => setForm((f) => ({ ...f, [key]: e.target.value }));
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setSubmitError(null);
+    setSubmitting(true);
+    try {
+      let attachment: { filename: string; contentBase64: string; contentType?: string } | undefined;
+      if (file) {
+        const dataUrl = await new Promise<string>((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve(reader.result as string);
+          reader.onerror = reject;
+          reader.readAsDataURL(file);
+        });
+        attachment = {
+          filename: file.name,
+          contentBase64: dataUrl.split(",")[1] ?? "",
+          contentType: file.type,
+        };
+      }
+
+      const res = await fetch("/api/send-enquiry", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ formName: "Sourcing Enquiry", fields: form, attachment }),
+      });
+      if (!res.ok) throw new Error("Request failed");
+      setSubmitted(true);
+    } catch {
+      setSubmitError("Something went wrong sending your enquiry. Please try again or email us directly.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -317,11 +348,16 @@ export default function EnquiryModal({
                 </div>
               </div>
 
+              {submitError && (
+                <p className="mt-4 text-sm text-red-500">{submitError}</p>
+              )}
+
               <button
                 type="submit"
-                className="mt-8 w-full md:w-auto inline-flex items-center justify-center gap-3 rounded-full bg-accent px-8 py-3.5 text-sm font-medium text-canvas hover:bg-accent-soft hover:text-ink transition-colors duration-300"
+                disabled={submitting}
+                className="mt-8 w-full md:w-auto inline-flex items-center justify-center gap-3 rounded-full bg-accent px-8 py-3.5 text-sm font-medium text-canvas hover:bg-accent-soft hover:text-ink transition-colors duration-300 disabled:opacity-60 disabled:cursor-not-allowed"
               >
-                Send Enquiry
+                {submitting ? "Sending…" : "Send Enquiry"}
                 <span className="flex items-center justify-center w-6 h-6 rounded-full bg-canvas text-ink text-xs">
                   →
                 </span>

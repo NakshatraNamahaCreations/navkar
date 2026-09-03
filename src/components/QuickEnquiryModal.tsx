@@ -34,6 +34,8 @@ export default function QuickEnquiryModal({
 }) {
   const [form, setForm] = useState<FormState>(INITIAL_STATE);
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   useEffect(() => {
     if (!open) return;
@@ -66,9 +68,26 @@ export default function QuickEnquiryModal({
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => setForm((f) => ({ ...f, [key]: e.target.value }));
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setSubmitError(null);
+    setSubmitting(true);
+    try {
+      const res = await fetch("/api/send-enquiry", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          formName: planName ? `${planName} Plan Quick Enquiry` : "Quick Enquiry",
+          fields: form,
+        }),
+      });
+      if (!res.ok) throw new Error("Request failed");
+      setSubmitted(true);
+    } catch {
+      setSubmitError("Something went wrong sending your enquiry. Please try again or email us directly.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -189,11 +208,16 @@ export default function QuickEnquiryModal({
                 />
               </div>
 
+              {submitError && (
+                <p className="text-sm text-red-500">{submitError}</p>
+              )}
+
               <button
                 type="submit"
-                className="mt-1 w-full inline-flex items-center justify-center gap-3 rounded-full bg-accent px-6 py-3 text-sm font-medium text-canvas hover:bg-accent-soft hover:text-ink transition-colors duration-300"
+                disabled={submitting}
+                className="mt-1 w-full inline-flex items-center justify-center gap-3 rounded-full bg-accent px-6 py-3 text-sm font-medium text-canvas hover:bg-accent-soft hover:text-ink transition-colors duration-300 disabled:opacity-60 disabled:cursor-not-allowed"
               >
-                Send Enquiry
+                {submitting ? "Sending…" : "Send Enquiry"}
                 <span className="flex items-center justify-center w-6 h-6 rounded-full bg-canvas text-ink text-xs">
                   →
                 </span>
