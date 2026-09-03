@@ -15,18 +15,18 @@ const SUBJECTS = [
 ];
 
 const COUNTRY_CODES = [
-  { code: "+91", country: "India" },
-  { code: "+1", country: "USA/Canada" },
-  { code: "+44", country: "UK" },
-  { code: "+971", country: "UAE" },
-  { code: "+61", country: "Australia" },
-  { code: "+65", country: "Singapore" },
-  { code: "+86", country: "China" },
-  { code: "+49", country: "Germany" },
-  { code: "+33", country: "France" },
-  { code: "+81", country: "Japan" },
-  { code: "+966", country: "Saudi Arabia" },
-  { code: "+27", country: "South Africa" },
+  { code: "+91", country: "India", iso2: "in" },
+  { code: "+1", country: "USA/Canada", iso2: "us" },
+  { code: "+44", country: "UK", iso2: "gb" },
+  { code: "+971", country: "UAE", iso2: "ae" },
+  { code: "+61", country: "Australia", iso2: "au" },
+  { code: "+65", country: "Singapore", iso2: "sg" },
+  { code: "+86", country: "China", iso2: "cn" },
+  { code: "+49", country: "Germany", iso2: "de" },
+  { code: "+33", country: "France", iso2: "fr" },
+  { code: "+81", country: "Japan", iso2: "jp" },
+  { code: "+966", country: "Saudi Arabia", iso2: "sa" },
+  { code: "+27", country: "South Africa", iso2: "za" },
 ];
 
 const DETAILS = [
@@ -124,6 +124,11 @@ export default function ContactForm() {
   const root = useRef<HTMLDivElement>(null);
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState<FormErrors>({});
+  const [countryCode, setCountryCode] = useState("+91");
+  const [countryOpen, setCountryOpen] = useState(false);
+  const countryRef = useRef<HTMLDivElement>(null);
+  const selectedCountry =
+    COUNTRY_CODES.find((c) => c.code === countryCode) ?? COUNTRY_CODES[0];
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -136,6 +141,16 @@ export default function ContactForm() {
       });
     }, root);
     return () => ctx.revert();
+  }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (countryRef.current && !countryRef.current.contains(e.target as Node)) {
+        setCountryOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   const handleBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -263,19 +278,72 @@ export default function ContactForm() {
                       Phone Number
                     </label>
                     <div className="flex gap-2">
-                      <select
-                        id="cf-country-code"
-                        name="countryCode"
-                        defaultValue="+91"
-                        aria-label="Country code"
-                        className="rounded-xl border border-line bg-canvas px-2.5 py-3 text-sm text-ink outline-none transition-colors duration-300 focus:border-accent shrink-0 w-[5.5rem]"
-                      >
-                        {COUNTRY_CODES.map((c) => (
-                          <option key={c.code} value={c.code}>
-                            {c.code} {c.country}
-                          </option>
-                        ))}
-                      </select>
+                      <div ref={countryRef} className="relative shrink-0">
+                        <input type="hidden" name="countryCode" value={countryCode} />
+                        <button
+                          type="button"
+                          id="cf-country-code"
+                          aria-label="Country code"
+                          aria-haspopup="listbox"
+                          aria-expanded={countryOpen}
+                          onClick={() => setCountryOpen((v) => !v)}
+                          className="flex items-center gap-1.5 rounded-xl border border-line bg-canvas px-2.5 py-3 text-sm text-ink outline-none transition-colors duration-300 focus:border-accent w-[5.5rem]"
+                        >
+                          <img
+                            src={`https://flagcdn.com/24x18/${selectedCountry.iso2}.png`}
+                            alt=""
+                            width={20}
+                            height={15}
+                            className="rounded-[2px] shrink-0"
+                          />
+                          <span className="truncate">{selectedCountry.code}</span>
+                          <svg
+                            width="10"
+                            height="10"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            className={`ml-auto shrink-0 transition-transform duration-200 ${countryOpen ? "rotate-180" : ""}`}
+                          >
+                            <path d="M6 9l6 6 6-6" strokeLinecap="round" strokeLinejoin="round" />
+                          </svg>
+                        </button>
+
+                        {countryOpen && (
+                          <ul
+                            role="listbox"
+                            className="absolute z-20 mt-1.5 max-h-64 w-56 overflow-y-auto rounded-xl border border-line bg-canvas py-1.5 shadow-[0_20px_45px_-15px_rgba(20,40,50,0.35)]"
+                          >
+                            {COUNTRY_CODES.map((c) => (
+                              <li key={c.code}>
+                                <button
+                                  type="button"
+                                  role="option"
+                                  aria-selected={c.code === countryCode}
+                                  onClick={() => {
+                                    setCountryCode(c.code);
+                                    setCountryOpen(false);
+                                  }}
+                                  className={`flex w-full items-center gap-2.5 px-3 py-2 text-left text-sm hover:bg-accent/10 transition-colors duration-150 ${
+                                    c.code === countryCode ? "bg-accent/10 text-accent" : "text-ink"
+                                  }`}
+                                >
+                                  <img
+                                    src={`https://flagcdn.com/24x18/${c.iso2}.png`}
+                                    alt=""
+                                    width={20}
+                                    height={15}
+                                    className="rounded-[2px] shrink-0"
+                                  />
+                                  <span className="font-medium">{c.code}</span>
+                                  <span className="text-ink-soft truncate">{c.country}</span>
+                                </button>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
                       <input
                         id="cf-phone"
                         name="phone"
