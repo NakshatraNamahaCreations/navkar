@@ -179,7 +179,7 @@ export default function ServicesShowcase({
                   className={`svc-card group relative flex flex-col h-full rounded-3xl p-7 transition-all duration-400 ${
                     p.featured
                       ? "bg-ink text-canvas shadow-[0_30px_70px_-20px_rgba(15,118,110,0.45)] ring-1 ring-white/10"
-                      : "bg-white border border-line hover:-translate-y-1.5 hover:shadow-[0_25px_55px_-24px_rgba(20,40,50,0.25)] hover:border-accent/40"
+                      : "bg-white text-ink border border-line hover:-translate-y-1.5 hover:bg-ink hover:text-canvas hover:border-ink hover:shadow-[0_30px_70px_-20px_rgba(15,118,110,0.45)]"
                   }`}
                 >
                   {p.featured && (
@@ -197,10 +197,10 @@ export default function ServicesShowcase({
 
                   <div className="relative flex items-center justify-between mb-6">
                     <span
-                      className={`flex items-center justify-center w-12 h-12 rounded-2xl ${
+                      className={`flex items-center justify-center w-12 h-12 rounded-2xl transition-colors duration-400 ${
                         p.featured
                           ? "bg-gradient-to-br from-accent-soft to-accent text-canvas"
-                          : "bg-accent/10 text-accent"
+                          : "bg-accent/10 text-accent group-hover:bg-gradient-to-br group-hover:from-accent-soft group-hover:to-accent group-hover:text-canvas"
                       }`}
                     >
                       <svg viewBox="0 0 24 24" fill="none" className="w-[22px] h-[22px]">
@@ -208,8 +208,8 @@ export default function ServicesShowcase({
                       </svg>
                     </span>
                     <span
-                      className={`font-mono text-xs ${
-                        p.featured ? "text-canvas/40" : "text-ink-soft/40"
+                      className={`font-mono text-xs transition-colors duration-400 ${
+                        p.featured ? "text-canvas/40" : "text-ink-soft/40 group-hover:text-canvas/40"
                       }`}
                     >
                       {p.num}
@@ -223,16 +223,16 @@ export default function ServicesShowcase({
                     {p.name}
                   </Link>
                   <p
-                    className={`relative text-[13px] mb-5 ${
-                      p.featured ? "text-canvas/60" : "text-ink-soft"
+                    className={`relative text-[13px] mb-5 transition-colors duration-400 ${
+                      p.featured ? "text-canvas/60" : "text-ink-soft group-hover:text-canvas/60"
                     }`}
                   >
                     {p.tagline}
                   </p>
 
                   <div
-                    className={`relative h-px w-full mb-5 ${
-                      p.featured ? "bg-white/10" : "bg-line"
+                    className={`relative h-px w-full mb-5 transition-colors duration-400 ${
+                      p.featured ? "bg-white/10" : "bg-line group-hover:bg-white/10"
                     }`}
                   />
 
@@ -240,15 +240,15 @@ export default function ServicesShowcase({
                     {p.features.map((f) => (
                       <li
                         key={f}
-                        className={`flex items-start gap-2 text-[13px] leading-snug ${
-                          p.featured ? "text-canvas/85" : "text-ink-soft"
+                        className={`flex items-start gap-2 text-[13px] leading-snug transition-colors duration-400 ${
+                          p.featured ? "text-canvas/85" : "text-ink-soft group-hover:text-canvas/85"
                         }`}
                       >
                         <svg
                           viewBox="0 0 20 20"
                           fill="none"
-                          className={`w-4 h-4 mt-0.5 shrink-0 ${
-                            p.featured ? "text-accent-soft" : "text-accent"
+                          className={`w-4 h-4 mt-0.5 shrink-0 transition-colors duration-400 ${
+                            p.featured ? "text-accent-soft" : "text-accent group-hover:text-accent-soft"
                           }`}
                         >
                           <circle cx="10" cy="10" r="9" stroke="currentColor" strokeWidth="1.4" />
@@ -267,8 +267,8 @@ export default function ServicesShowcase({
 
                   <Link
                     href={`/services/${p.slug}`}
-                    className={`relative flex items-center justify-center gap-1.5 mb-3 text-[11px] uppercase tracking-[0.15em] font-medium hover:underline underline-offset-4 ${
-                      p.featured ? "text-canvas/70" : "text-ink-soft"
+                    className={`relative flex items-center justify-center gap-1.5 mb-3 text-[11px] uppercase tracking-[0.15em] font-medium hover:underline underline-offset-4 transition-colors duration-400 ${
+                      p.featured ? "text-canvas/70" : "text-ink-soft group-hover:text-canvas/70"
                     }`}
                   >
                     View Full Details
@@ -280,7 +280,7 @@ export default function ServicesShowcase({
                     className={`relative flex items-center justify-center gap-2 rounded-full py-3 text-xs uppercase tracking-[0.15em] font-medium transition-colors duration-300 ${
                       p.featured
                         ? "bg-canvas text-ink hover:bg-accent-soft"
-                        : "border border-line text-ink group-hover:border-ink"
+                        : "border border-line text-ink group-hover:border-canvas group-hover:bg-canvas group-hover:text-ink"
                     }`}
                   >
                     Enquire
