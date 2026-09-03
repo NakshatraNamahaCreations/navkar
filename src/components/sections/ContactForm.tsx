@@ -55,32 +55,6 @@ const DETAILS = [
       />
     ),
   },
-  {
-    label: "Parshwa Shah (Founder)",
-    value: "+91 99872 67555",
-    href: "tel:+919987267555",
-    icon: (
-      <path
-        d="M6 3h4l2 5-2.5 1.5a11 11 0 005 5L16 12l5 2v4a2 2 0 01-2 2C9.5 20 4 14.5 4 5a2 2 0 012-2z"
-        stroke="currentColor"
-        strokeWidth="1.4"
-        strokeLinejoin="round"
-      />
-    ),
-  },
-  {
-    label: "Monty Mehta (Co-Founder)",
-    value: "+91 81089 24986",
-    href: "tel:+918108924986",
-    icon: (
-      <path
-        d="M6 3h4l2 5-2.5 1.5a11 11 0 005 5L16 12l5 2v4a2 2 0 01-2 2C9.5 20 4 14.5 4 5a2 2 0 012-2z"
-        stroke="currentColor"
-        strokeWidth="1.4"
-        strokeLinejoin="round"
-      />
-    ),
-  },
 ];
 
 type FormErrors = {
@@ -192,7 +166,7 @@ export default function ContactForm() {
               Send a Message
             </span>
             <h2 className="font-display font-bold text-2xl md:text-3xl text-ink mb-2">
-              Tell us what you&apos;re sourcing.
+              Looking to Source? Let&apos;s Connect.
             </h2>
             <p className="text-sm text-ink-soft leading-relaxed mb-8 max-w-md">
               Share a few details and our team will get back to you within
