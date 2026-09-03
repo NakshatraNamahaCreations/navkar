@@ -17,7 +17,7 @@ export default function ServicesPage() {
       <main className="flex flex-col flex-1">
         <PageHero
           variant="centered"
-          eyebrow="Our Services"
+          eyebrow="Our Sourcing Plans as per Your Needs"
           title="Four ways to source,"
           accentWord="one accountable desk."
           copy="Pick the plan that matches where you are in the sourcing journey, from a supplier-in-hand check to a full on-the-ground sourcing desk across China and other global markets."
