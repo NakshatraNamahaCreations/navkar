@@ -6,7 +6,7 @@ import Link from "next/link";
 const SLIDES = [
   {
     kicker: "Global Product Sourcing Studio",
-    titleParts: ["Shaping", "the future of", "global sourcing."],
+    titleParts: ["Shaping", "The Future Of", "Global Sourcing."],
     description:
       "At Navkar Global Sourcing, we help businesses source high-quality products at competitive prices from China and other global markets. As a trusted Global Sourcing Company, we provide reliable Product Sourcing Services that cover every stage of procurement from supplier identification and quotation comparison to quality assurance, Shipping & Logistics Services, and timely delivery ensuring a seamless and efficient sourcing experience.",
     primaryCta: "Start Your Enquiry",
@@ -164,7 +164,7 @@ export default function VideoSlideHero() {
 
         {/* headline: left-aligned block, stacked onto 3 lines */}
         <div className="absolute inset-x-0 top-0 z-10 flex flex-col justify-center gap-8 px-6 md:px-10 pt-36 md:pt-40 h-[62%] md:h-[65%]">
-          <h1 className="max-w-2xl font-banner font-semibold uppercase leading-[1.05] text-[11vw] md:text-[3.6vw] overflow-hidden">
+          <h1 className="max-w-2xl font-banner font-semibold leading-[1.05] text-[11vw] md:text-[3.6vw] overflow-hidden">
             {SLIDES[active].titleParts.map((part, i) => (
               <span key={i} className="block overflow-hidden">
                 <span
