@@ -289,6 +289,28 @@ export default function Footer() {
                   sales@navkarglobalsourcing.com
                 </a>
               </div>
+              <div>
+                <p className="text-[10px] uppercase tracking-[0.15em] text-canvas/40 mb-1">
+                  Parshwa Shah (Founder)
+                </p>
+                <a
+                  href="tel:+919987267555"
+                  className="text-sm text-canvas/80 hover:text-accent-soft transition-colors duration-300"
+                >
+                  +91 99872 67555
+                </a>
+              </div>
+              <div>
+                <p className="text-[10px] uppercase tracking-[0.15em] text-canvas/40 mb-1">
+                  Monty Mehta (Co-Founder)
+                </p>
+                <a
+                  href="tel:+918108924986"
+                  className="text-sm text-canvas/80 hover:text-accent-soft transition-colors duration-300"
+                >
+                  +91 81089 24986
+                </a>
+              </div>
             </div>
           </div>
         </div>
