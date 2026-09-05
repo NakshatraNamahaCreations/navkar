@@ -291,7 +291,7 @@ export default function Footer() {
               </div>
               <div>
                 <p className="text-[10px] uppercase tracking-[0.15em] text-canvas/40 mb-1">
-                  Parshwa Shah (Founder)
+                  Parshwa Shah
                 </p>
                 <a
                   href="tel:+919987267555"
@@ -302,7 +302,7 @@ export default function Footer() {
               </div>
               <div>
                 <p className="text-[10px] uppercase tracking-[0.15em] text-canvas/40 mb-1">
-                  Monty Mehta (Co-Founder)
+                  Monty Mehta
                 </p>
                 <a
                   href="tel:+918108924986"
