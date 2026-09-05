@@ -54,16 +54,12 @@ const SOCIALS = [
     ),
   },
   {
-    name: "X",
-    href: "#",
+    name: "YouTube",
+    href: "https://youtube.com/@navkarglobalsourcing?si=A-VZvwbvuxICdBcD",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" className="w-4 h-4">
-        <path
-          d="M4 4l16 16M20 4L4 20"
-          stroke="currentColor"
-          strokeWidth="1.8"
-          strokeLinecap="round"
-        />
+        <rect x="2.5" y="6" width="19" height="12" rx="3.5" stroke="currentColor" strokeWidth="1.6" />
+        <path d="M10.5 9.5l5 2.5-5 2.5v-5z" fill="currentColor" />
       </svg>
     ),
   },
