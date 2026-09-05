@@ -60,7 +60,7 @@ const DETAILS = [
 const SOCIALS = [
   {
     name: "Instagram",
-    href: "#",
+    href: "https://www.instagram.com/navkarglobalsourcing?igsi=YWZ1bXVyajA2em5j&utm_source=qr",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" className="w-4 h-4">
         <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" strokeWidth="1.6" />
@@ -71,7 +71,7 @@ const SOCIALS = [
   },
   {
     name: "Facebook",
-    href: "#",
+    href: "https://www.facebook.com/share/1Q7d2Sg8y3/?mibextid=wwXIfr",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" className="w-4 h-4">
         <path
@@ -83,7 +83,7 @@ const SOCIALS = [
   },
   {
     name: "LinkedIn",
-    href: "#",
+    href: "https://www.linkedin.com/company/navkarglobalsourcing/",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" className="w-4 h-4">
         <path
@@ -95,7 +95,7 @@ const SOCIALS = [
   },
   {
     name: "YouTube",
-    href: "#",
+    href: "https://youtube.com/@navkarglobalsourcing?si=A-VZvwbvuxICdBcD",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" className="w-4 h-4">
         <rect x="2.5" y="6" width="19" height="12" rx="3.5" stroke="currentColor" strokeWidth="1.6" />
@@ -542,6 +542,8 @@ export default function ContactForm() {
                   <a
                     key={s.name}
                     href={s.href}
+                    target={s.href !== "#" ? "_blank" : undefined}
+                    rel={s.href !== "#" ? "noopener noreferrer" : undefined}
                     aria-label={s.name}
                     className="w-8 h-8 rounded-full border border-canvas/20 flex items-center justify-center text-canvas/70 hover:border-accent-soft hover:text-accent-soft hover:bg-accent-soft/10 transition-colors duration-300"
                   >
