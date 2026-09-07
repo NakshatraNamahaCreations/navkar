@@ -245,11 +245,9 @@ export default function ServicesShowcase({
                     ))}
                   </ul>
 
-                  {p.fee !== "Let's connect" && (
-                    <p className="relative rounded-xl bg-ink/5 px-3 py-2 text-[13px] font-semibold leading-snug text-ink mb-3 transition-colors duration-400 group-hover:bg-canvas/10 group-hover:text-canvas">
-                      {p.fee}
-                    </p>
-                  )}
+                  <p className="relative rounded-xl bg-ink/5 px-2.5 py-2 text-center text-[11.5px] sm:text-[12px] font-semibold leading-snug whitespace-nowrap text-ink mb-3 transition-colors duration-400 group-hover:bg-canvas/10 group-hover:text-canvas">
+                    {p.fee}
+                  </p>
 
                   <Link
                     href="/contact-us"

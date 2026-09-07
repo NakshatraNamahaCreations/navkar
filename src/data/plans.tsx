@@ -189,7 +189,7 @@ export const PLANS: Plan[] = [
       "Product Discovery",
       "Group Tour",
     ],
-    fee: "Let's connect",
+    fee: "Price upon request",
     planTitle: "Business Tour Plan",
     subtitle: "On-the-Ground Support When You Travel to Source",
     intro: [

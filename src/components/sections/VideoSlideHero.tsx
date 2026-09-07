@@ -158,7 +158,7 @@ export default function VideoSlideHero() {
           }
         `}</style>
 
-        <p className="absolute top-28 md:top-32 right-6 md:right-10 z-10 text-[11px] uppercase tracking-[0.3em] text-canvas/60 text-right max-w-[220px]">
+        <p className="absolute top-28 md:top-32 right-6 md:right-10 z-10 text-[11px] uppercase tracking-[0.3em] text-canvas/60 text-left max-w-[220px]">
           {SLIDES[active].kicker}
         </p>
 
@@ -224,7 +224,7 @@ export default function VideoSlideHero() {
 
         {/* bottom-right: caption + read more, kept clear of the floating
             chat widget (and its hover tooltip) which also anchors to this corner */}
-        <div className="absolute bottom-24 md:bottom-28 right-6 md:right-10 z-10 max-w-[260px] md:max-w-[400px] text-right hidden sm:block">
+        <div className="absolute bottom-24 md:bottom-28 right-6 md:right-10 z-10 max-w-[260px] md:max-w-[400px] text-left hidden sm:block">
           <p className="text-xs md:text-sm text-canvas/75 leading-relaxed mb-2">
             {SLIDES[active].description}
           </p>

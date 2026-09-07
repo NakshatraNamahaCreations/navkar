@@ -84,7 +84,7 @@ export default function Consultation({ hideHeading = false }: { hideHeading?: bo
             Submit Your Requirement
           </a>
           <a
-            href="#plans"
+            href="tel:+919987267555"
             className="px-8 py-4 border border-line text-xs uppercase tracking-[0.25em] rounded-full hover:border-ink transition-colors duration-500"
           >
             Speak to a Sourcing Expert

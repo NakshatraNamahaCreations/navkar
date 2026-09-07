@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { SEND_ENQUIRY_URL } from "@/lib/api";
 
 const CATEGORIES = [
   "Toys",
@@ -107,7 +106,7 @@ export default function EnquiryModal({
         };
       }
 
-      const res = await fetch(SEND_ENQUIRY_URL, {
+      const res = await fetch("/api/send-enquiry", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ formName: "Sourcing Enquiry", fields: form, attachment }),
