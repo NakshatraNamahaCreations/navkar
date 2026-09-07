@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SEND_ENQUIRY_URL } from "@/lib/api";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -203,7 +204,7 @@ export default function ContactForm() {
         fields[key] = String(value);
       });
 
-      const res = await fetch("/api/send-enquiry", {
+      const res = await fetch(SEND_ENQUIRY_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ formName: "Contact Form", fields }),
