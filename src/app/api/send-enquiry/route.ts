@@ -10,6 +10,23 @@ type EnquiryPayload = {
   };
 };
 
+function corsHeaders() {
+  return {
+    "Access-Control-Allow-Origin": process.env.CORS_ALLOW_ORIGIN || "*",
+    "Access-Control-Allow-Methods": "POST, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type",
+    Vary: "Origin",
+  };
+}
+
+function jsonWithCors(body: unknown, init?: { status?: number }) {
+  return Response.json(body, { status: init?.status, headers: corsHeaders() });
+}
+
+export async function OPTIONS() {
+  return new Response(null, { status: 204, headers: corsHeaders() });
+}
+
 let cachedTransporter: nodemailer.Transporter | null = null;
 
 function getTransporter() {
@@ -46,12 +63,12 @@ export async function POST(request: Request) {
   try {
     payload = await request.json();
   } catch {
-    return Response.json({ error: "Invalid request body." }, { status: 400 });
+    return jsonWithCors({ error: "Invalid request body." }, { status: 400 });
   }
 
   const { formName, fields, attachment } = payload;
   if (!formName || !fields || typeof fields !== "object") {
-    return Response.json(
+    return jsonWithCors(
       { error: "Missing formName or fields." },
       { status: 400 }
     );
@@ -83,7 +100,7 @@ export async function POST(request: Request) {
   const recipient = process.env.MAIL_TO || "sales@navkarglobalsourcing.com";
 
   if (attachment?.contentBase64 && attachment.contentBase64.length > 10_000_000) {
-    return Response.json(
+    return jsonWithCors(
       { error: "Attachment is too large (max ~7MB)." },
       { status: 413 }
     );
@@ -117,10 +134,10 @@ export async function POST(request: Request) {
         : undefined,
     });
 
-    return Response.json({ ok: true });
+    return jsonWithCors({ ok: true });
   } catch (err) {
     console.error("send-enquiry error:", err);
-    return Response.json(
+    return jsonWithCors(
       { error: "Failed to send email. Please try again later." },
       { status: 500 }
     );
