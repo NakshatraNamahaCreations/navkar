@@ -6,7 +6,16 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const FOUNDERS = [
+type Founder = {
+  name: string;
+  role: string;
+  years: string;
+  field: string;
+  paragraphs: string[];
+  photo?: string;
+};
+
+const FOUNDERS: Founder[] = [
   {
     name: "Parshwa Shah",
     role: "Founder",
@@ -21,6 +30,7 @@ const FOUNDERS = [
   {
     name: "Monty M Mehta",
     role: "Co-Founder",
+    photo: "/monty-m-mehta.jpg",
     years: "17+",
     field: "Steel Manufacturing, Alloy & Ferrous Material, Industrial Machinery & AI Automation Expert",
     paragraphs: [
@@ -83,12 +93,20 @@ export default function FoundersSection() {
             >
               <div className="w-full md:w-[280px] shrink-0">
                 <div className="relative rounded-3xl overflow-hidden aspect-[4/5] bg-gradient-to-br from-accent-soft to-accent flex items-center justify-center shadow-[0_30px_60px_-24px_rgba(32,57,74,0.45)]">
-                  <span className="font-display text-7xl font-black text-canvas/90">
-                    {f.name
-                      .split(" ")
-                      .map((n) => n[0])
-                      .join("")}
-                  </span>
+                  {f.photo ? (
+                    <img
+                      src={f.photo}
+                      alt={f.name}
+                      className="absolute inset-0 h-full w-full object-cover object-top"
+                    />
+                  ) : (
+                    <span className="font-display text-7xl font-black text-canvas/90">
+                      {f.name
+                        .split(" ")
+                        .map((n) => n[0])
+                        .join("")}
+                    </span>
+                  )}
                 </div>
                 <div className="mt-5 flex items-center gap-4 text-center md:text-left justify-center md:justify-start">
                   <span className="font-mono text-3xl font-bold text-accent">
