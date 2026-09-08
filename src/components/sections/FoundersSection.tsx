@@ -23,7 +23,7 @@ const FOUNDERS: Founder[] = [
     field: "Garment, fashion accessories & consumer goods",
     paragraphs: [
       "Parshwa Shah founded Navkar Global Sourcing with a clear vision: to simplify global sourcing and make it more reliable, transparent, and accessible for businesses of all sizes. Having witnessed the challenges companies face in identifying trustworthy manufacturers, ensuring consistent product quality, and managing international procurement, he established Navkar Global Sourcing as a dependable sourcing partner that businesses can trust.",
-      "With 16+ years of entrepreneurial experience in the garment, fashion accessories, and consumer goods industries, Parshwa brings a deep understanding of manufacturing, supplier management, procurement, and international trade. His strategic approach, combined with a strong commitment to quality, integrity, and customer satisfaction, enables clients to source confidently while building resilient supply chains.",
+      "With 16+ years of entrepreneurial experience in the garment, fashion accessories, and home & lifestyle industries, Parshwa brings a deep understanding of manufacturing, supplier management, procurement, and international trade. His strategic approach, combined with a strong commitment to quality, integrity, and customer satisfaction, enables clients to source confidently while building resilient supply chains.",
       "Parshwa believes that successful sourcing goes beyond transactions. It is about building lasting relationships that create value for both clients and manufacturing partners.",
     ],
   },
