@@ -19,6 +19,7 @@ const FOUNDERS: Founder[] = [
   {
     name: "Parshwa Shah",
     role: "Founder",
+    photo: "/parshwa-shah.jpg",
     years: "16+",
     field: "Garment, fashion accessories & consumer goods",
     paragraphs: [
