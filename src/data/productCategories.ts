@@ -12,5 +12,5 @@ export const PRODUCT_CATEGORIES = [
   "Footwear & Bags",
   "Stationery",
   "Hardware",
-  "Other",
+  "Others",
 ] as const;
