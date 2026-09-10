@@ -176,7 +176,6 @@ export default function QuickEnquiryModal({
                   type="text"
                   value={form.fullName}
                   onChange={update("fullName")}
-                  placeholder="Jane Doe"
                   className={inputClass}
                 />
               </div>
@@ -187,7 +186,6 @@ export default function QuickEnquiryModal({
                   type="tel"
                   value={form.phone}
                   onChange={update("phone")}
-                  placeholder="+1 555 000 0000"
                   className={inputClass}
                 />
               </div>
@@ -198,12 +196,11 @@ export default function QuickEnquiryModal({
                   type="email"
                   value={form.email}
                   onChange={update("email")}
-                  placeholder="jane@company.com"
                   className={inputClass}
                 />
               </div>
               <div>
-                <label className={labelClass}>What Are You Sourcing?</label>
+                <label className={labelClass}>What Are We Sourcing For?</label>
                 <div className="relative">
                   <select
                     required
@@ -213,9 +210,7 @@ export default function QuickEnquiryModal({
                       form.productCategory ? "" : "text-ink-soft/50"
                     }`}
                   >
-                    <option value="" disabled>
-                      Select a product category
-                    </option>
+                    <option value="" disabled />
                     {PRODUCT_CATEGORIES.map((c) => (
                       <option key={c} value={c} className="text-ink">
                         {c}
@@ -241,7 +236,6 @@ export default function QuickEnquiryModal({
                   required
                   value={form.requirement}
                   onChange={update("requirement")}
-                  placeholder="Quantity, timeline, specifications..."
                   rows={3}
                   className={`${inputClass} resize-none`}
                 />
