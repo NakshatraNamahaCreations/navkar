@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { whatsappLink } from "@/data/contact";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -82,6 +83,16 @@ export default function Consultation({ hideHeading = false }: { hideHeading?: bo
             className="px-8 py-4 bg-ink text-canvas text-xs uppercase tracking-[0.25em] rounded-full hover:bg-accent transition-colors duration-500"
           >
             Submit Your Requirement
+          </a>
+          <a
+            href={whatsappLink(
+              "Hi Navkar Global Sourcing, I'd like to speak to a sourcing expert."
+            )}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-8 py-4 border border-line text-xs uppercase tracking-[0.25em] rounded-full hover:border-ink transition-colors duration-500"
+          >
+            Speak to a Sourcing Expert
           </a>
         </div>
       </div>

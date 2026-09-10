@@ -1,9 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
-const WHATSAPP_NUMBER = "919987267555";
-const WHATSAPP_MESSAGE = "Hi Navkar Global Sourcing, I'd like to know more about your sourcing services.";
+import { whatsappLink } from "@/data/contact";
 
 export default function WhatsAppButton() {
   const [entered, setEntered] = useState(false);
@@ -14,7 +12,7 @@ export default function WhatsAppButton() {
     return () => clearTimeout(t);
   }, []);
 
-  const href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
+  const href = whatsappLink();
 
   return (
     <a
