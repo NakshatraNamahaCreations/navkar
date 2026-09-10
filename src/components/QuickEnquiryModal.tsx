@@ -236,12 +236,12 @@ export default function QuickEnquiryModal({
                 </div>
               </div>
               <div>
-                <label className={labelClass}>What Are You Sourcing?</label>
+                <label className={labelClass}>Requirement Details</label>
                 <textarea
                   required
                   value={form.requirement}
                   onChange={update("requirement")}
-                  placeholder="Product, quantity, timeline..."
+                  placeholder="Quantity, timeline, specifications..."
                   rows={3}
                   className={`${inputClass} resize-none`}
                 />
