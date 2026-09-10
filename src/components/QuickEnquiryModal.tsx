@@ -203,7 +203,7 @@ export default function QuickEnquiryModal({
                 />
               </div>
               <div>
-                <label className={labelClass}>Product Category</label>
+                <label className={labelClass}>What Are You Sourcing?</label>
                 <div className="relative">
                   <select
                     required
