@@ -2,21 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { SEND_ENQUIRY_URL } from "@/lib/api";
-
-const CATEGORIES = [
-  "Toys",
-  "Clothing",
-  "Jewellery",
-  "Furniture",
-  "Accessories",
-  "Electronics",
-  "Machinery",
-  "Home Decor",
-  "Footwear & Bags",
-  "Stationery",
-  "Hardware",
-  "Other",
-];
+import { PRODUCT_CATEGORIES } from "@/data/productCategories";
 
 type FormState = {
   fullName: string;
@@ -263,7 +249,7 @@ export default function EnquiryModal({
                     <option value="" disabled>
                       Select a category
                     </option>
-                    {CATEGORIES.map((c) => (
+                    {PRODUCT_CATEGORIES.map((c) => (
                       <option key={c} value={c}>
                         {c}
                       </option>

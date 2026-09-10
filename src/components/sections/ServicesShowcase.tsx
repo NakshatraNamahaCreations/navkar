@@ -24,12 +24,6 @@ export default function ServicesShowcase({
   const [perView, setPerView] = useState(3);
   const pausedRef = useRef(false);
 
-  const openPlanEnquiry = (planName: string) => {
-    window.dispatchEvent(
-      new CustomEvent("open-quick-enquiry", { detail: { planName } })
-    );
-  };
-
   useEffect(() => {
     const setFromWidth = () => {
       const w = window.innerWidth;
@@ -266,17 +260,6 @@ export default function ServicesShowcase({
                     View Full Details
                     <span>→</span>
                   </Link>
-
-                  <button
-                    type="button"
-                    onClick={() => openPlanEnquiry(p.name)}
-                    className="relative flex items-center justify-center gap-2 rounded-full py-3 text-xs uppercase tracking-[0.15em] font-medium border border-line text-ink transition-colors duration-300 group-hover:border-canvas group-hover:bg-canvas group-hover:text-ink"
-                  >
-                    Enquire
-                    <span className="transition-transform duration-300 group-hover:translate-x-0.5">
-                      ↗
-                    </span>
-                  </button>
                 </div>
               </div>
             ))}

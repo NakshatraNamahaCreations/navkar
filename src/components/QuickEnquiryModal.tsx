@@ -2,11 +2,13 @@
 
 import { useEffect, useState } from "react";
 import { SEND_ENQUIRY_URL } from "@/lib/api";
+import { PRODUCT_CATEGORIES } from "@/data/productCategories";
 
 type FormState = {
   fullName: string;
   phone: string;
   email: string;
+  productCategory: string;
   requirement: string;
 };
 
@@ -14,6 +16,7 @@ const INITIAL_STATE: FormState = {
   fullName: "",
   phone: "",
   email: "",
+  productCategory: "",
   requirement: "",
 };
 
@@ -66,7 +69,9 @@ export default function QuickEnquiryModal({
   }, [open]);
 
   const update = (key: keyof FormState) => (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => setForm((f) => ({ ...f, [key]: e.target.value }));
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -196,6 +201,39 @@ export default function QuickEnquiryModal({
                   placeholder="jane@company.com"
                   className={inputClass}
                 />
+              </div>
+              <div>
+                <label className={labelClass}>Product Category</label>
+                <div className="relative">
+                  <select
+                    required
+                    value={form.productCategory}
+                    onChange={update("productCategory")}
+                    className={`${inputClass} appearance-none pr-10 ${
+                      form.productCategory ? "" : "text-ink-soft/50"
+                    }`}
+                  >
+                    <option value="" disabled>
+                      Select a product category
+                    </option>
+                    {PRODUCT_CATEGORIES.map((c) => (
+                      <option key={c} value={c} className="text-ink">
+                        {c}
+                      </option>
+                    ))}
+                  </select>
+                  <span className="pointer-events-none absolute inset-y-0 right-4 flex items-center text-ink-soft">
+                    <svg viewBox="0 0 20 20" fill="none" className="w-4 h-4">
+                      <path
+                        d="M6 8l4 4 4-4"
+                        stroke="currentColor"
+                        strokeWidth="1.6"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </span>
+                </div>
               </div>
               <div>
                 <label className={labelClass}>What Are You Sourcing?</label>
