@@ -117,15 +117,31 @@ export default function CategoriesDetail() {
         duration: 0.5,
         stagger: 0.05,
         ease: "power3.out",
+        clearProps: "opacity,transform",
       });
       gsap.from(".cd-photo-info", {
         opacity: 0,
         x: -16,
         duration: 0.6,
         ease: "power3.out",
+        clearProps: "opacity,transform",
       });
     }, root);
-    return () => ctx.revert();
+
+    // this entrance tween isn't tied to a ScrollTrigger, so it competes
+    // with the page's own Lenis-driven rAF loop right as it initializes —
+    // on the last row of chips that can stall the tween a few percent
+    // short of its target and leave them faded forever. Force the final
+    // state after the animation should be long done, so a stalled tween
+    // never leaves chips looking semi-transparent.
+    const settle = setTimeout(() => {
+      gsap.set(".cd-chip, .cd-photo-info", { clearProps: "opacity,transform" });
+    }, 900);
+
+    return () => {
+      clearTimeout(settle);
+      ctx.revert();
+    };
   }, [active]);
 
   const current = CATEGORIES[active];
