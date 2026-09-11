@@ -278,7 +278,11 @@ export default function WhoWeWorkWith() {
             <span className="block text-canvas">Sourcing Solutions</span>
           </span>
           <span className="split-line block overflow-hidden py-1">
-            <span className="block bg-gradient-to-r from-accent-soft to-accent bg-clip-text text-transparent">
+            {/* --accent is a dark navy meant for backgrounds/buttons, not
+                text on this section's dark bg — using it as the gradient's
+                end stop faded "Business" to near-invisible against bg-ink.
+                Keep both stops light so the whole phrase stays legible. */}
+            <span className="block bg-gradient-to-r from-accent-soft to-canvas bg-clip-text text-transparent">
               for Every Business
             </span>
           </span>

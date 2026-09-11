@@ -94,7 +94,16 @@ export default function PageHero({
           {accentWord && (
             <>
               {" "}
-              <span className="bg-gradient-to-r from-accent-soft to-accent bg-clip-text text-transparent">
+              {/* --accent is a dark navy meant for backgrounds/buttons; on
+                  the dark variants here it fades the tail of accentWord to
+                  near-invisible against the page's own dark bg. Fade to
+                  canvas (near-white) on dark, keep the darker accent as an
+                  endpoint only on the light variant where it stays legible. */}
+              <span
+                className={`bg-gradient-to-r from-accent-soft bg-clip-text text-transparent ${
+                  isDark ? "to-canvas" : "to-accent"
+                }`}
+              >
                 {accentWord}
               </span>
             </>
