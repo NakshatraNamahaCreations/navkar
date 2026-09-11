@@ -181,13 +181,13 @@ export default function FoundersSection() {
           </span>
 
           <h2 className="commitment-heading font-display font-bold leading-[1.1] text-3xl md:text-5xl text-canvas mb-6">
-            <span className="split-line block overflow-hidden">
+            <span className="split-line block overflow-hidden py-1">
               <span className="block">
                 Together, over{" "}
                 <span className="text-accent-soft">33 years</span>
               </span>
             </span>
-            <span className="split-line block overflow-hidden">
+            <span className="split-line block overflow-hidden py-1">
               <span className="block">of combined experience.</span>
             </span>
           </h2>

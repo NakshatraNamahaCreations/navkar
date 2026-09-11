@@ -255,7 +255,7 @@ export default function ServicesShowcase({
 
                   <Link
                     href={`/services/${p.slug}`}
-                    className="relative flex items-center justify-center gap-1.5 mb-3 text-[11px] uppercase tracking-[0.15em] font-medium hover:underline underline-offset-4 text-ink-soft transition-colors duration-400 group-hover:text-canvas/70"
+                    className="relative flex items-center justify-start gap-1.5 mb-3 text-[11px] uppercase tracking-[0.15em] font-medium hover:underline underline-offset-4 text-ink-soft transition-colors duration-400 group-hover:text-canvas/70"
                   >
                     View Full Details
                     <span>→</span>

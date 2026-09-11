@@ -288,7 +288,7 @@ export default function Challenges() {
         {/* header */}
         <div className="max-w-2xl mx-auto text-center mb-16 md:mb-20">
           <h2 className="challenges-heading font-display font-bold leading-[1.05] text-4xl md:text-6xl text-ink mb-6">
-            <span className="split-line">
+            <span className="split-line py-1">
               <span>
                 Common Challenges{" "}
                 <span className="italic font-semibold text-accent">we Solve.</span>

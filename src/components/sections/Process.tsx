@@ -375,10 +375,10 @@ export default function Process({ hideHeading = false }: { hideHeading?: boolean
         <div className={`flex flex-col md:flex-row md:items-start md:justify-between gap-6 mb-16 md:mb-20 ${hideHeading ? "md:justify-end" : ""}`}>
           {!hideHeading && (
             <h2 className="process-heading font-display font-light leading-[1.05] text-5xl md:text-7xl max-w-xl">
-              <span className="split-line">
+              <span className="split-line py-1">
                 <span>How We</span>
               </span>
-              <span className="split-line">
+              <span className="split-line py-1">
                 <span>
                   <span className="font-semibold text-accent">Work</span> Together
                 </span>
@@ -418,6 +418,15 @@ export default function Process({ hideHeading = false }: { hideHeading?: boolean
 
         {/* horizontal drag/scroll carousel */}
         <div className="relative">
+          {/* the floating WhatsApp button sits fixed in this same bottom-right
+              corner on mobile, right on top of whichever card the track
+              happens to rest on — fade the track's edge into the page
+              background there so text recedes under it instead of just
+              being abruptly covered */}
+          <div
+            aria-hidden
+            className="md:hidden pointer-events-none absolute inset-y-0 right-0 w-20 z-10 bg-gradient-to-l from-[#eef0f0] to-transparent"
+          />
           <div
             ref={trackRef}
             className="process-track flex gap-4 md:gap-5 overflow-x-auto pb-8 -mx-6 px-6 md:-mx-10 md:px-10"

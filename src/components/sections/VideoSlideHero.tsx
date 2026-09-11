@@ -175,9 +175,13 @@ export default function VideoSlideHero() {
           <p className="md:absolute md:top-32 md:right-10 md:max-w-[220px] text-[10px] md:text-[11px] uppercase tracking-[0.25em] md:tracking-[0.3em] text-canvas/80 md:text-canvas/60 text-left [text-shadow:0_1px_4px_rgba(0,0,0,0.7)] md:[text-shadow:none]">
             {SLIDES[active].kicker}
           </p>
-          <h1 className="max-w-2xl font-banner font-semibold leading-[1.08] text-[8.5vw] md:text-[3.6vw] overflow-hidden">
+          <h1 className="max-w-2xl font-banner font-semibold leading-[1.2] text-[8.5vw] md:text-[3.6vw]">
+            {/* each line's mask box is sized off leading-[1.2], not the
+                glyph's true height — a tighter leading here clips
+                descenders (g, y, p) on words like "Empowering" and
+                "Delivering" whenever they land at the end of a line */}
             {SLIDES[active].titleParts.map((part, i) => (
-              <span key={i} className="block overflow-hidden">
+              <span key={i} className="block overflow-hidden py-1 -my-1">
                 <span
                   className="block transition-transform duration-700 ease-out"
                   style={{

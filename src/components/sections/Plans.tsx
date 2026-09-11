@@ -213,10 +213,10 @@ export default function Plans({ hideHeading = false }: { hideHeading?: boolean }
             </div>
 
             <h2 className="plans-heading font-display font-light leading-[1.05] text-4xl md:text-6xl text-center max-w-3xl mx-auto mb-8">
-              <span className="split-line">
+              <span className="split-line py-1">
                 <span>Four ways to source,</span>
               </span>
-              <span className="split-line">
+              <span className="split-line py-1">
                 <span>
                   one <span className="font-semibold text-accent">accountable</span> desk.
                 </span>

@@ -274,10 +274,10 @@ export default function WhoWeWorkWith() {
         </div>
 
         <h2 className="wwww-heading font-display font-black leading-[1.15] sm:leading-[1.1] text-[1.75rem] sm:text-4xl md:text-5xl mb-4 sm:mb-6 px-2">
-          <span className="split-line block overflow-hidden">
+          <span className="split-line block overflow-hidden py-1">
             <span className="block text-canvas">Sourcing Solutions</span>
           </span>
-          <span className="split-line block overflow-hidden">
+          <span className="split-line block overflow-hidden py-1">
             <span className="block bg-gradient-to-r from-accent-soft to-accent bg-clip-text text-transparent">
               for Every Business
             </span>

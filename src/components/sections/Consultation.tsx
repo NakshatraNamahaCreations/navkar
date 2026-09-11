@@ -60,10 +60,10 @@ export default function Consultation({ hideHeading = false }: { hideHeading?: bo
             </div>
 
             <h2 className="font-display font-light leading-[1.05] text-[9vw] md:text-[4.6vw]">
-              <span className="consult-line block overflow-hidden">
+              <span className="consult-line block overflow-hidden py-1">
                 <span>Looking for the Right</span>
               </span>
-              <span className="consult-line block overflow-hidden font-medium text-accent">
+              <span className="consult-line block overflow-hidden py-1 font-medium text-accent">
                 <span>Product or Supplier?</span>
               </span>
             </h2>

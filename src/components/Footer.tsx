@@ -169,10 +169,10 @@ export default function Footer() {
               Navkar Global Sourcing
             </span>
             <h2 className="footer-headline font-display text-4xl md:text-5xl font-semibold leading-[1.1]">
-              <span className="split-line block overflow-hidden">
+              <span className="split-line block overflow-hidden py-1">
                 <span className="block">Trade that feels like</span>
               </span>
-              <span className="split-line block overflow-hidden">
+              <span className="split-line block overflow-hidden py-1">
                 <span className="block text-accent-soft">business.</span>
               </span>
             </h2>
