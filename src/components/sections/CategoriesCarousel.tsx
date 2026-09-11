@@ -27,6 +27,9 @@ const CATEGORIES = [
 export default function CategoriesCarousel() {
   const root = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
+  const tweenRef = useRef<gsap.core.Tween | null>(null);
+  const distanceRef = useRef(0);
+  const manualRef = useRef(false);
 
   useEffect(() => {
     const track = trackRef.current;
@@ -38,16 +41,41 @@ export default function CategoriesCarousel() {
     if (reduced) return;
 
     const distance = track.scrollWidth / 2;
+    distanceRef.current = distance;
     const tween = gsap.fromTo(
       track,
       { x: 0 },
       { x: -distance, duration: 42, ease: "none", repeat: -1 }
     );
+    tweenRef.current = tween;
 
     return () => {
       tween.kill();
     };
   }, []);
+
+  // manual step once the user takes the wheel via the arrows below — the
+  // duplicated card list makes the track exactly 2x one full set wide, so
+  // wrapping the x position by that distance keeps the loop seamless
+  const step = (dir: 1 | -1) => {
+    const track = trackRef.current;
+    const distance = distanceRef.current;
+    if (!track || !distance) return;
+
+    if (!manualRef.current) {
+      manualRef.current = true;
+      tweenRef.current?.pause();
+    }
+
+    const card = track.firstElementChild as HTMLElement | null;
+    const cardStep = card ? card.getBoundingClientRect().width : 300;
+    const current = Number(gsap.getProperty(track, "x"));
+    let next = current - dir * cardStep;
+    if (next <= -distance) next += distance;
+    if (next > 0) next -= distance;
+
+    gsap.to(track, { x: next, duration: 0.5, ease: "power3.out", overwrite: true });
+  };
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -75,7 +103,25 @@ export default function CategoriesCarousel() {
       className="relative overflow-hidden bg-canvas-deep py-24 md:py-32 px-6 md:px-10"
     >
       <div className="relative z-10 max-w-[90rem] mx-auto">
-        <div className="cat-stage relative overflow-hidden pt-10 pb-16 md:pt-16 md:pb-20">
+        <div className="flex items-center justify-end gap-2 px-3 md:px-4">
+          <button
+            type="button"
+            onClick={() => step(-1)}
+            aria-label="Previous category"
+            className="w-9 h-9 rounded-full border border-ink/15 flex items-center justify-center text-ink hover:bg-ink hover:text-canvas hover:border-ink transition-colors duration-300"
+          >
+            ←
+          </button>
+          <button
+            type="button"
+            onClick={() => step(1)}
+            aria-label="Next category"
+            className="w-9 h-9 rounded-full border border-ink/15 flex items-center justify-center text-ink hover:bg-ink hover:text-canvas hover:border-ink transition-colors duration-300"
+          >
+            →
+          </button>
+        </div>
+        <div className="cat-stage relative overflow-hidden pt-4 pb-16 md:pt-6 md:pb-20">
           <div ref={trackRef} className="flex w-max">
             {[...CATEGORIES, ...CATEGORIES].map((c, i) => {
               return (
