@@ -111,6 +111,13 @@ export default function VideoSlideHero() {
               />
               <div className="absolute inset-0 bg-[linear-gradient(115deg,rgba(14,31,28,0.85)_10%,rgba(14,31,28,0.35)_50%,rgba(14,31,28,0.15)_100%)]" />
               <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(14,31,28,0.85)_0%,rgba(14,31,28,0.1)_35%,rgba(14,31,28,0.05)_60%,rgba(14,31,28,0.55)_100%)]" />
+              {/* the shared vertical gradient above goes nearly transparent
+                  through its middle band, which is exactly where the
+                  headline sits once the layout is compressed to a single
+                  mobile column — busy footage (containers, machinery)
+                  shows straight through the text there. Add a dedicated,
+                  mobile-only scrim over that zone for reliable contrast. */}
+              <div className="md:hidden absolute inset-x-0 top-0 h-[72%] bg-[linear-gradient(0deg,rgba(14,31,28,0.15)_0%,rgba(14,31,28,0.55)_55%,rgba(14,31,28,0.75)_100%)]" />
             </div>
           );
         })}
@@ -162,9 +169,13 @@ export default function VideoSlideHero() {
           {SLIDES[active].kicker}
         </p>
 
-        {/* headline: left-aligned block, stacked onto 3 lines */}
-        <div className="absolute inset-x-0 top-0 z-10 flex flex-col justify-center gap-8 px-6 md:px-10 pt-36 md:pt-40 h-[62%] md:h-[65%]">
-          <h1 className="max-w-2xl font-banner font-semibold leading-[1.05] text-[11vw] md:text-[3.6vw] overflow-hidden">
+        {/* headline: left-aligned block, stacked onto 3 lines. On narrow
+            phones a two-word title part (e.g. "Empowering Businesses")
+            wraps onto an extra line at 11vw, so the block needs both a
+            smaller font floor and more vertical room than the desktop
+            numbers alone would suggest, or the CTA button below clips it */}
+        <div className="absolute inset-x-0 top-0 z-10 flex flex-col justify-center gap-6 md:gap-8 px-6 md:px-10 pt-28 md:pt-40 h-[70%] md:h-[65%]">
+          <h1 className="max-w-2xl font-banner font-semibold leading-[1.05] text-[9vw] md:text-[3.6vw] overflow-hidden">
             {SLIDES[active].titleParts.map((part, i) => (
               <span key={i} className="block overflow-hidden">
                 <span
