@@ -120,7 +120,7 @@ export default function Nav() {
         {/* transparent over the hero banner, turns solid white once scrolled
             past it into the next section — the row is sized to fully
             contain the larger logo either way */}
-        <div className="relative flex items-center justify-between px-6 md:px-10 pt-4 pb-2 md:py-3">
+        <div className="relative flex items-center justify-between px-6 md:px-10 pt-4 pb-2 md:pt-5 md:pb-3">
           <Link href="/" className="relative flex items-center">
             {/* solid white backdrop behind the logo so it always pops with
                 full contrast, even over the busiest part of the video —
