@@ -24,7 +24,6 @@ export default function Nav() {
   const [enquiryOpen, setEnquiryOpen] = useState(false);
   const [quickEnquiryOpen, setQuickEnquiryOpen] = useState(false);
   const [quickEnquiryPlan, setQuickEnquiryPlan] = useState<string | undefined>(undefined);
-  const [progress, setProgress] = useState(0);
   const [scrolled, setScrolled] = useState(false);
 
   // greet first-time-this-session visitors with a small enquiry form, once
@@ -63,14 +62,12 @@ export default function Nav() {
 
   useEffect(() => {
     const doc = document.documentElement;
-    let maxScroll = doc.scrollHeight - doc.clientHeight;
     // header stays transparent for the full height of the hero banner and
     // only turns white once that's been scrolled past, into section 2 —
     // falls back to a small fixed threshold if #hero isn't found
     let heroHeight = 40;
 
     const remeasureMax = () => {
-      maxScroll = doc.scrollHeight - doc.clientHeight;
       heroHeight =
         document.getElementById("hero")?.offsetHeight ??
         document.querySelector<HTMLElement>("[data-page-hero]")?.offsetHeight ??
@@ -82,7 +79,6 @@ export default function Nav() {
     const update = () => {
       ticking = false;
       const top = doc.scrollTop;
-      setProgress(maxScroll > 0 ? top / maxScroll : 0);
       setScrolled(top > heroHeight - 80);
     };
 
@@ -161,8 +157,6 @@ export default function Nav() {
             </span>
           </button>
         </div>
-
-        <div className="absolute bottom-0 left-0 h-[2px] bg-accent transition-[width] duration-150" style={{ width: `${progress * 100}%` }} />
       </header>
 
       {/* backdrop */}
