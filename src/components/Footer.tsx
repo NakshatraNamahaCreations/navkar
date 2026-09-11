@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { PLANS } from "@/data/plans";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -18,21 +19,10 @@ const QUICK_LINKS = [
   { label: "Contact Us", href: "/contact-us" },
 ];
 
-{/* every one of these is covered by the Pro plan's own feature list and
-    "ideal for" copy (end-to-end sourcing, supplier verification,
-    competitive pricing, quality inspection, shipping & logistics
-    coordination) — it's the one plan page that's actually relevant to
-    all eight, not an arbitrary pick */}
-const SERVICES = [
-  "Product Sourcing",
-  "Supplier Identification",
-  "Supplier Verification",
-  "Factory Audit",
-  "Quotation Comparison",
-  "Price Negotiation",
-  "Quality Inspection",
-  "Shipping and Logistics",
-].map((label) => ({ label, href: "/services/pro" }));
+// the real plan lineup (Basic/Pro/Custom/Business Tour), each linking to
+// its own plan page, instead of generic feature names that all pointed
+// at the same /services/pro
+const SERVICES = PLANS.map((p) => ({ label: p.name, href: `/services/${p.slug}` }));
 
 const SOCIALS = [
   {
