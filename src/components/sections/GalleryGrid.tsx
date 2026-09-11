@@ -24,6 +24,9 @@ export default function GalleryGrid() {
   const root = useRef<HTMLDivElement>(null);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const trackRef = useRef<HTMLDivElement>(null);
+  const tweenRef = useRef<gsap.core.Tween | null>(null);
+  const distanceRef = useRef(0);
+  const resumeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     const track = trackRef.current;
@@ -35,11 +38,13 @@ export default function GalleryGrid() {
     if (reduced) return;
 
     const distance = track.scrollWidth / 2;
+    distanceRef.current = distance;
     const tween = gsap.fromTo(
       track,
       { x: 0 },
       { x: -distance, duration: 40, ease: "none", repeat: -1 }
     );
+    tweenRef.current = tween;
 
     const onEnter = () => tween.pause();
     const onLeave = () => tween.resume();
@@ -48,9 +53,36 @@ export default function GalleryGrid() {
 
     return () => {
       tween.kill();
+      tweenRef.current = null;
       track.removeEventListener("mouseenter", onEnter);
       track.removeEventListener("mouseleave", onLeave);
+      if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current);
     };
+  }, []);
+
+  const step = useCallback((dir: 1 | -1) => {
+    const track = trackRef.current;
+    const distance = distanceRef.current;
+    if (!track || !distance) return;
+
+    const card = track.children[0] as HTMLElement | undefined;
+    if (!card) return;
+    const gap = parseFloat(getComputedStyle(track).columnGap || "0");
+    const cardStep = card.offsetWidth + gap;
+
+    tweenRef.current?.pause();
+    const current = Number(gsap.getProperty(track, "x"));
+    let target = current - dir * cardStep;
+    // the track is two copies of TILES back to back so it can loop
+    // seamlessly — wrap into (-distance, 0] so manual paging never
+    // runs past the duplicated content
+    target = ((target % distance) + distance) % distance;
+    if (target > 0) target -= distance;
+
+    gsap.to(track, { x: target, duration: 0.5, ease: "power2.out" });
+
+    if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current);
+    resumeTimerRef.current = setTimeout(() => tweenRef.current?.resume(), 2500);
   }, []);
 
   useEffect(() => {
@@ -110,14 +142,39 @@ export default function GalleryGrid() {
         <rect width="100%" height="100%" fill="url(#gg-dots)" />
       </svg>
 
-      <div className="relative z-10 max-w-[90rem] mx-auto px-6 md:px-10 mb-12 md:mb-16 text-center">
-        <span className="gg-eyebrow inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.25em] text-accent mb-5 justify-center">
-          <span className="w-1.5 h-1.5 rounded-full bg-accent" />
-          The Work Behind Every Shipment
-        </span>
-        <h2 className="gg-heading font-display font-bold leading-[1.1] text-3xl md:text-5xl text-ink">
-          Real products, <span className="text-accent">real factories.</span>
-        </h2>
+      <div className="relative z-10 max-w-[90rem] mx-auto px-6 md:px-10 mb-12 md:mb-16 flex flex-wrap items-end justify-between gap-6 text-center sm:text-left">
+        <div className="mx-auto sm:mx-0">
+          <span className="gg-eyebrow inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.25em] text-accent mb-5 justify-center sm:justify-start">
+            <span className="w-1.5 h-1.5 rounded-full bg-accent" />
+            The Work Behind Every Shipment
+          </span>
+          <h2 className="gg-heading font-display font-bold leading-[1.1] text-3xl md:text-5xl text-ink">
+            Real products, <span className="text-accent">real factories.</span>
+          </h2>
+        </div>
+
+        <div className="mx-auto sm:mx-0 flex items-center gap-3">
+          <button
+            type="button"
+            onClick={() => step(-1)}
+            aria-label="Previous images"
+            className="grid place-items-center h-11 w-11 rounded-full border border-line text-ink-soft hover:border-ink hover:bg-ink hover:text-canvas transition-colors duration-300"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M15 18l-6-6 6-6" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </button>
+          <button
+            type="button"
+            onClick={() => step(1)}
+            aria-label="Next images"
+            className="grid place-items-center h-11 w-11 rounded-full border border-line text-ink-soft hover:border-ink hover:bg-ink hover:text-canvas transition-colors duration-300"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M9 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </button>
+        </div>
       </div>
 
       <div className="gg-stage relative">
