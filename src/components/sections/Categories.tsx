@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { forwardRef, useEffect, useImperativeHandle, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -61,16 +61,16 @@ function Card({
   );
 }
 
-function MarqueeRow({
-  items,
-  direction,
-  speed,
-}: {
-  items: typeof ROW_1;
-  direction: "left" | "right";
-  speed: number;
-}) {
+export type MarqueeRowHandle = { step: (dir: 1 | -1) => void };
+
+const MarqueeRow = forwardRef<
+  MarqueeRowHandle,
+  { items: typeof ROW_1; direction: "left" | "right"; speed: number }
+>(function MarqueeRow({ items, direction, speed }, ref) {
   const trackRef = useRef<HTMLDivElement>(null);
+  const tweenRef = useRef<gsap.core.Tween | null>(null);
+  const distanceRef = useRef(0);
+  const manualRef = useRef(false);
 
   useEffect(() => {
     const track = trackRef.current;
@@ -82,6 +82,7 @@ function MarqueeRow({
     if (reduced) return;
 
     const distance = track.scrollWidth / 2;
+    distanceRef.current = distance;
     const tween = gsap.fromTo(
       track,
       { x: direction === "left" ? 0 : -distance },
@@ -92,9 +93,12 @@ function MarqueeRow({
         repeat: -1,
       },
     );
+    tweenRef.current = tween;
 
     const onEnter = () => tween.pause();
-    const onLeave = () => tween.resume();
+    const onLeave = () => {
+      if (!manualRef.current) tween.resume();
+    };
     track.addEventListener("mouseenter", onEnter);
     track.addEventListener("mouseleave", onLeave);
 
@@ -105,6 +109,33 @@ function MarqueeRow({
     };
   }, [direction, speed]);
 
+  // "forward" always means advancing along this row's own configured
+  // direction, not a fixed screen direction — the two rows drift opposite
+  // ways on purpose, so a shared pair of arrows steps each one along its
+  // own path rather than both visually the same way
+  useImperativeHandle(ref, () => ({
+    step(dir) {
+      const track = trackRef.current;
+      const distance = distanceRef.current;
+      if (!track || !distance) return;
+
+      if (!manualRef.current) {
+        manualRef.current = true;
+        tweenRef.current?.pause();
+      }
+
+      const rowDir = direction === "left" ? 1 : -1;
+      const card = track.firstElementChild as HTMLElement | null;
+      const cardStep = card ? card.getBoundingClientRect().width + 16 : 260;
+      const current = Number(gsap.getProperty(track, "x"));
+      let next = current - dir * rowDir * cardStep;
+      if (next <= -distance) next += distance;
+      if (next > 0) next -= distance;
+
+      gsap.to(track, { x: next, duration: 0.5, ease: "power3.out", overwrite: true });
+    },
+  }));
+
   return (
     <div className="overflow-hidden">
       <div ref={trackRef} className="flex w-max gap-3 sm:gap-4">
@@ -114,10 +145,17 @@ function MarqueeRow({
       </div>
     </div>
   );
-}
+});
 
 export default function Categories({ hideHeading = false }: { hideHeading?: boolean } = {}) {
   const root = useRef<HTMLDivElement>(null);
+  const row1Ref = useRef<MarqueeRowHandle>(null);
+  const row2Ref = useRef<MarqueeRowHandle>(null);
+
+  const step = (dir: 1 | -1) => {
+    row1Ref.current?.step(dir);
+    row2Ref.current?.step(dir);
+  };
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -169,9 +207,28 @@ export default function Categories({ hideHeading = false }: { hideHeading?: bool
         </div>
       )}
 
+      <div className="relative z-10 flex items-center justify-end gap-2 max-w-[90rem] mx-auto px-6 md:px-10 mb-3 sm:mb-4">
+        <button
+          type="button"
+          onClick={() => step(-1)}
+          aria-label="Previous categories"
+          className="w-9 h-9 rounded-full border border-ink/15 flex items-center justify-center text-ink hover:bg-ink hover:text-canvas hover:border-ink transition-colors duration-300"
+        >
+          ←
+        </button>
+        <button
+          type="button"
+          onClick={() => step(1)}
+          aria-label="Next categories"
+          className="w-9 h-9 rounded-full border border-ink/15 flex items-center justify-center text-ink hover:bg-ink hover:text-canvas hover:border-ink transition-colors duration-300"
+        >
+          →
+        </button>
+      </div>
+
       <div className="categories-rows relative z-10 flex flex-col gap-3 sm:gap-4">
-        <MarqueeRow items={ROW_1} direction="left" speed={38} />
-        <MarqueeRow items={ROW_2} direction="right" speed={32} />
+        <MarqueeRow ref={row1Ref} items={ROW_1} direction="left" speed={38} />
+        <MarqueeRow ref={row2Ref} items={ROW_2} direction="right" speed={32} />
       </div>
 
     </section>
