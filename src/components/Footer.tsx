@@ -292,7 +292,14 @@ export default function Footer() {
           <div className="flex items-center gap-5">
             <span>
               Crafted by{" "}
-              <span className="text-canvas/60">Nakshatra Namaha Creations</span>
+              <a
+                href="https://www.nakshatranamahacreations.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-canvas/60 hover:text-canvas transition-colors duration-300"
+              >
+                Nakshatra Namaha Creations
+              </a>
             </span>
           </div>
         </div>
