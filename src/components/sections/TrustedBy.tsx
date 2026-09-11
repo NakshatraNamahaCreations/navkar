@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -118,9 +119,9 @@ export default function TrustedBy() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-start">
-          <h2 className="trusted-headline font-display text-5xl sm:text-6xl md:text-7xl font-black leading-[0.95] text-ink flex flex-wrap gap-x-[0.25em]">
+          <h2 className="trusted-headline font-display text-5xl sm:text-6xl md:text-7xl font-black leading-[1.15] text-ink flex flex-wrap gap-x-[0.25em]">
             {["Your", "Reliable", "Global", "Sourcing", "Partner"].map((word, i) => (
-              <span key={i} className="inline-block overflow-hidden align-top">
+              <span key={i} className="inline-block overflow-hidden align-top py-1">
                 <span className="trusted-headline-word inline-block">{word}</span>
               </span>
             ))}
@@ -145,15 +146,15 @@ export default function TrustedBy() {
               easier, safer, and more transparent.
             </p>
 
-            <a
-              href="#why-choose-us"
+            <Link
+              href="/about-us"
               className="trusted-cta mt-8 inline-flex items-center gap-3 rounded-full bg-ink text-canvas pl-6 pr-2 py-2 text-sm font-medium hover:bg-ink/90 transition-colors duration-300"
             >
               Know More About Us
               <span className="flex items-center justify-center w-8 h-8 rounded-full bg-canvas text-ink">
                 →
               </span>
-            </a>
+            </Link>
           </div>
         </div>
 

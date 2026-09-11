@@ -175,33 +175,7 @@ export default function Testimonials() {
         </div>
 
         {/* ---------- Footer CTAs ---------- */}
-        <div className="mt-10 sm:mt-14 flex flex-col-reverse gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex flex-wrap items-center gap-2.5">
-            <a
-              href="#plans"
-              className="group inline-flex items-center gap-2 rounded-full bg-ink text-canvas px-4 sm:px-5 py-2.5 text-[13px] font-semibold transition-colors duration-300 hover:bg-accent"
-            >
-              See all clients
-              <svg
-                width="12"
-                height="12"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                className="transition-transform group-hover:translate-x-0.5"
-              >
-                <path d="M5 12h14M13 5l7 7-7 7" />
-              </svg>
-            </a>
-            <a
-              href="#consultation"
-              className="inline-flex items-center gap-2 rounded-full border border-line text-ink px-4 sm:px-5 py-2.5 text-[13px] font-semibold transition-colors duration-300 hover:border-ink hover:bg-ink hover:text-canvas"
-            >
-              Share yours
-            </a>
-          </div>
-
+        <div className="mt-10 sm:mt-14 flex flex-col-reverse gap-4 sm:flex-row sm:items-center sm:justify-end">
           <div className="text-[12px] leading-tight text-ink-soft sm:text-right">
             <span>Trusted across electronics, textiles, industrial and more.</span>
             <span className="mx-1.5 text-ink/25">·</span>

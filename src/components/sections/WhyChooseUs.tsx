@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -168,12 +169,12 @@ export default function WhyChooseUs() {
               factory audits to freight, we run the systems that get your
               products made and delivered.
             </p>
-            <a
-              href="#plans"
+            <Link
+              href="/services"
               className="inline-flex items-center gap-2 rounded-full bg-canvas text-ink px-5 py-2.5 text-[11px] uppercase tracking-[0.15em] font-medium hover:bg-accent-soft transition-colors duration-300"
             >
               Our Services ↗
-            </a>
+            </Link>
           </div>
         </div>
 
