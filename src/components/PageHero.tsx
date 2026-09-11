@@ -78,11 +78,15 @@ export default function PageHero({
 
   const titleEl = (
     <h1
-      className={`page-hero-title font-banner font-bold leading-[1.05] text-4xl md:text-6xl mb-6 ${
+      className={`page-hero-title font-banner font-bold leading-[1.15] text-4xl md:text-6xl mb-6 ${
         isDark ? "text-canvas" : "text-ink"
       } ${variant === "editorial" ? "md:text-7xl" : ""}`}
     >
-      <span className="split-line block overflow-hidden">
+      {/* the entrance animation slides this span up from below inside an
+          overflow-hidden box — too little clearance here clips the cap
+          height of the first line, so pad it slightly rather than
+          relying on line-height alone */}
+      <span className="split-line block overflow-hidden pt-1">
         <span className="block">
           {title}
           {accentWord && (
