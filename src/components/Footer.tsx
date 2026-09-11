@@ -295,12 +295,6 @@ export default function Footer() {
         <div className="py-8 pb-24 md:pb-8 flex flex-col md:flex-row items-center justify-between gap-3 text-[11px] uppercase tracking-[0.1em] text-canvas/40 text-center md:text-left border-t border-canvas/10">
           <span>&#169; {new Date().getFullYear()} Navkar Global Sourcing. All rights reserved.</span>
           <div className="flex items-center gap-5">
-            <a href="#" className="text-canvas/40 hover:text-accent-soft transition-colors">
-              Terms
-            </a>
-            <a href="#" className="text-canvas/40 hover:text-accent-soft transition-colors">
-              Privacy
-            </a>
             <span>
               Crafted by{" "}
               <span className="text-canvas/60">Nakshatra Namaha Creations</span>
