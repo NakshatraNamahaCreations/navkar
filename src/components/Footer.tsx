@@ -18,6 +18,11 @@ const QUICK_LINKS = [
   { label: "Contact Us", href: "/contact-us" },
 ];
 
+{/* every one of these is covered by the Pro plan's own feature list and
+    "ideal for" copy (end-to-end sourcing, supplier verification,
+    competitive pricing, quality inspection, shipping & logistics
+    coordination) — it's the one plan page that's actually relevant to
+    all eight, not an arbitrary pick */}
 const SERVICES = [
   "Product Sourcing",
   "Supplier Identification",
@@ -27,7 +32,7 @@ const SERVICES = [
   "Price Negotiation",
   "Quality Inspection",
   "Shipping and Logistics",
-];
+].map((label) => ({ label, href: "/services/pro" }));
 
 const SOCIALS = [
   {
@@ -247,12 +252,12 @@ export default function Footer() {
             </p>
             <ul className="flex flex-col gap-3">
               {SERVICES.map((s) => (
-                <li key={s}>
+                <li key={s.label}>
                   <Link
-                    href="/services"
+                    href={s.href}
                     className="text-sm text-canvas/80 hover:text-accent-soft transition-colors duration-300"
                   >
-                    {s}
+                    {s.label}
                   </Link>
                 </li>
               ))}
