@@ -165,17 +165,17 @@ export default function VideoSlideHero() {
           }
         `}</style>
 
-        <p className="absolute top-28 md:top-32 right-6 md:right-10 z-10 text-[11px] uppercase tracking-[0.3em] text-canvas/60 text-left max-w-[220px]">
-          {SLIDES[active].kicker}
-        </p>
-
-        {/* headline: left-aligned block, stacked onto 3 lines. On narrow
-            phones a two-word title part (e.g. "Empowering Businesses")
-            wraps onto an extra line at 11vw, so the block needs both a
-            smaller font floor and more vertical room than the desktop
-            numbers alone would suggest, or the CTA button below clips it */}
-        <div className="absolute inset-x-0 top-0 z-10 flex flex-col justify-center gap-6 md:gap-8 px-6 md:px-10 pt-28 md:pt-40 h-[70%] md:h-[65%]">
-          <h1 className="max-w-2xl font-banner font-semibold leading-[1.05] text-[9vw] md:text-[3.6vw] overflow-hidden">
+        {/* headline block. On desktop the kicker floats top-right, clear
+            of this column. On mobile that spot sits directly under the
+            fixed header's opaque logo backdrop (which is above this
+            section in stacking order and would hide text placed there),
+            so on mobile the kicker instead becomes a normal in-flow
+            eyebrow line at the top of this column, wherever it lands. */}
+        <div className="absolute inset-x-0 top-0 z-10 flex flex-col justify-center gap-5 md:gap-8 px-6 md:px-10 pt-32 md:pt-40 h-[70%] md:h-[65%]">
+          <p className="md:absolute md:top-32 md:right-10 md:max-w-[220px] text-[10px] md:text-[11px] uppercase tracking-[0.25em] md:tracking-[0.3em] text-canvas/80 md:text-canvas/60 text-left [text-shadow:0_1px_4px_rgba(0,0,0,0.7)] md:[text-shadow:none]">
+            {SLIDES[active].kicker}
+          </p>
+          <h1 className="max-w-2xl font-banner font-semibold leading-[1.08] text-[8.5vw] md:text-[3.6vw] overflow-hidden">
             {SLIDES[active].titleParts.map((part, i) => (
               <span key={i} className="block overflow-hidden">
                 <span
@@ -210,8 +210,10 @@ export default function VideoSlideHero() {
           </div>
         </div>
 
-        {/* bottom-left: counter + arrows */}
-        <div className="absolute bottom-6 md:bottom-8 left-6 md:left-10 z-10 flex items-center gap-3">
+        {/* bottom-left: counter + arrows. Backed by a soft scrim on mobile
+            since that corner sits directly over busy video footage once
+            the desktop-only column dividers/description are gone */}
+        <div className="absolute bottom-6 md:bottom-8 left-6 md:left-10 z-10 flex items-center gap-3 bg-ink/30 backdrop-blur-sm rounded-full pl-3 pr-1.5 py-1.5 md:bg-transparent md:backdrop-blur-none md:p-0">
           <span className="font-mono text-xs text-canvas/70 tracking-[0.15em]">
             {String(active + 1).padStart(2, "0")} / {String(SLIDES.length).padStart(2, "0")}
           </span>
