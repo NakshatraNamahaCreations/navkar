@@ -78,15 +78,17 @@ export default function PageHero({
 
   const titleEl = (
     <h1
-      className={`page-hero-title font-banner font-bold leading-[1.15] text-4xl md:text-6xl mb-6 ${
+      className={`page-hero-title font-banner font-bold leading-[1.3] text-4xl md:text-6xl mb-6 ${
         isDark ? "text-canvas" : "text-ink"
       } ${variant === "editorial" ? "md:text-7xl" : ""}`}
     >
       {/* the entrance animation slides this span up from below inside an
-          overflow-hidden box — too little clearance here clips the cap
-          height of the first line, so pad it slightly rather than
-          relying on line-height alone */}
-      <span className="split-line block overflow-hidden pt-1">
+          overflow-hidden box — this font's actual glyph height (cap
+          height + descenders on letters like g) exceeds a tight custom
+          line-height, so the box clips either the top or the bottom
+          depending on how much room it's given. Padding both sides
+          keeps the full glyph clear of the clip on every render. */}
+      <span className="split-line block overflow-hidden py-1">
         <span className="block">
           {title}
           {accentWord && (
